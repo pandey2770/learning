@@ -39,5 +39,8 @@ app.post('/api/login',
     { successRedirect: '/', failureRedirect: '/login' }
   )
 );
-
+app.get('/api/logout', function(req, res){
+  req.logout();
+  res.sendStatus(200);
+});
 app.listen(3001, () => console.log("Server started on port 3001"));

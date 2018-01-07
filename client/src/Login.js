@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import  './Css.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,7 +7,7 @@ class Login extends Component{
     axios.post('/api/login', {username: 'abhi', password: 'pwd'})
     .then(() => {
       console.log(this.props);
-      this.props.history.push('/Main');
+      this.props.history.push('/');
     })
   }
   

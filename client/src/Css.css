@@ -4,4 +4,7 @@
 .form-control{
     width: 40%;
     margin: 10px;
- }
+}
+.cursor{
+    cursor: pointer;
+}
