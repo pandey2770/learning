@@ -25,11 +25,7 @@ const testList = await test.getAllTest();
   
 
 app.post('/api/login',
-  passport.authenticate('local'),
-  function(req, res) {
-    console.log('------------------------------------')
-    res.json({test: 'test'});
-  }
-);
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login' }));
 
 app.listen(3001, () => console.log("Server started on port 3001"));

@@ -4,6 +4,7 @@
   "description": "Server code",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "test"
   },
   "keywords": [
