@@ -8,7 +8,7 @@ class Login extends Component{
     axios.post('/api/login', {username: 'abhi', password: 'pwd'})
     .then(() => {
       console.log(this.props);
-      this.props.history.push('/');
+      this.props.history.push('/Main');
     })
   }
   

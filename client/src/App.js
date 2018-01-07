@@ -7,7 +7,7 @@ import Cart from './Cart';
 import Main from './Main';
 import Login from './Login';
 import SignUp from './SignUp';
-
+import Page from './Page';
 
 
 
@@ -22,7 +22,8 @@ class App extends Component {
           <Route path="/Cart" component={Cart} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
-          <Route path="/" component={Main} />
+          <Route path="/Main" component={Main} />
+          <Route path='/' component={Page} />
         </Switch>
       </div>
     );
