@@ -6,12 +6,15 @@ import axios from 'axios';
 class Login extends Component{
   login = () => {
     axios.post('/api/login', {username: 'abhi', password: 'pwd'})
+    .then(() => {
+      console.log(this.props);
+      this.props.history.push('/');
+    })
   }
   
       render(){
         return(
             <div>
-              <form>
                 <div className="form-group">
                   <lable for="exampleInputEmail1">Email Address</lable>
                   <input type="email" className="form-control"aria-describedby="emailHelp" placeholder="Enter email" />
@@ -26,7 +29,6 @@ class Login extends Component{
                 </div>
                 <button onClick={this.login} className="btn btn-primary">Submit</button>/
                 <Link to={`/SignUp`}><button className="btn btn-primary">SignUp</button></Link>
-              </form>
             </div>
         );
     }
