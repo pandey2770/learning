@@ -1,7 +1,8 @@
-const pg = require("pg");
+const { Pool, Client } = require('pg')
 
-const pool =new pg.pool({
-    user: 'myuser',
+
+const pool = new Pool({
+    user: 'postgres',
     host: 'localhost',
     database: 'demo',
     password: 'Mahatmaji@1',
@@ -19,7 +20,7 @@ async function mutate(query) {
     return res.rowCount;
 }
 
-module.export = {
+module.exports = {
     get,
     mutate
 };

@@ -3,26 +3,24 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-class App extends Component {
+class Header extends Component {
   state = {
     user: undefined
   }
 
-  async componentWillMount() {
-    const { data: user } = await axios.get('/api/currentuser');
+  componentWillMount() {
+    const { data: user } =  axios.get('/api/currentuser');
     this.setState({
       user
     });
   }
 
   logout = () => {
-    axios.get('/api/logout',)
+    axios.get('/api/logout')
     .then(() => {
-      console.log(this.props);
-      this.props.history.push('/Login');
-    });
+      this.props.history.push('/');
+    })
   }
-  
 
   render() {
     const { user } = this.state;
@@ -48,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Header;

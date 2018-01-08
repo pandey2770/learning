@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
 var test = require('./src/test');
-var User = require('./src/user');
+var user = require('./src/user');
 
 
 
@@ -31,6 +31,13 @@ console.log(testList)
   res.json(testList);
 });
 
+app.get('/api/user', async (req, res) => {
+  console.log('asdsad')
+  const userList = await user.getAllHistory();
+  console.log(userList)
+    res.json(userList);
+  });
+  
 app.get('/api/currentuser', (req, res) => {
   console.log(req.user)
   res.json(req.user);

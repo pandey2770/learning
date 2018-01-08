@@ -6,12 +6,12 @@ import axios from 'axios';
 
 class Home extends Component {
   state = {
-    data: []
+    data: [],
   };
 
   async componentWillMount() {
-    const { data } = await axios.get('/api/test');
-    this.setState({ data });
+    const { data } = await axios.get('/api/user');
+    this.setState({ data});
   }
 
 
@@ -20,7 +20,7 @@ class Home extends Component {
     return (
       <div>
         <h1>One</h1>
-          {data.map(d => <div key={d.id}>{d.employee_name}</div>)}
+          {data.map(d => <div key={d.id}>{d.name}</div>)}
         <Link to={`/`}><h3>Back to Demo</h3></Link>
       </div>
     );
