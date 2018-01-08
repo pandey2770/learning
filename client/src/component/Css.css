@@ -1,10 +1,10 @@
-.style{
-    display: flex;    
+.style {
+  display: flex;
 }
-.form-control{
-    width: 40%;
-    margin: 10px;
+.form-control {
+  width: 40%;
+  margin: 10px;
 }
-.cursor{
-    cursor: pointer;
+.cursor {
+  cursor: pointer;
 }

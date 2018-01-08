@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "prettier": "prettier src/**/*.js src/**/*.css --write --single-quote",
     "test": "test"
   },
   "keywords": [

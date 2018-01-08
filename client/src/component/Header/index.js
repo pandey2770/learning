@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-
 class Header extends Component {
   state = {
     user: undefined
-  }
+  };
 
   async componentWillMount() {
     const { data: user } = await axios.get('/api/currentuser');
@@ -21,11 +20,10 @@ class Header extends Component {
   }
 
   logout = () => {
-    axios.get('/api/logout')
-    .then(() => {
+    axios.get('/api/logout').then(() => {
       this.props.history.push('/');
-    })
-  }
+    });
+  };
 
   render() {
     const { user } = this.state;
@@ -36,13 +34,30 @@ class Header extends Component {
           <div className="collapse navbar-collapse">
             <div className="navbar-nav">
               <ul className="style">
-                <Link to={`/Home`}><li className="nav-item nav-link active">Home <span className="sr-only">(current)</span></li></Link>
-                <Link to={`/Two`}><li className="nav-item nav-link" >Features</li></Link>
-                <Link to={`/Three`}><li className="nav-item nav-link">Pricing</li></Link>
-                {!user ? <Link to={`/Login`}><li className="nav-item nav-link">Login</li></Link>:
-                  <a onClick={this.logout}><li className="nav-item cursor nav-link">Logout</li></a>}
-                <Link to={`/Cart`}><li className="nav-item nav-link">Cart</li></Link>
-              </ul>  
+                <Link to={`/Home`}>
+                  <li className="nav-item nav-link active">
+                    Home <span className="sr-only">(current)</span>
+                  </li>
+                </Link>
+                <Link to={`/Two`}>
+                  <li className="nav-item nav-link">Features</li>
+                </Link>
+                <Link to={`/Three`}>
+                  <li className="nav-item nav-link">Pricing</li>
+                </Link>
+                {!user ? (
+                  <Link to={`/Login`}>
+                    <li className="nav-item nav-link">Login</li>
+                  </Link>
+                ) : (
+                  <a onClick={this.logout}>
+                    <li className="nav-item cursor nav-link">Logout</li>
+                  </a>
+                )}
+                <Link to={`/Cart`}>
+                  <li className="nav-item nav-link">Cart</li>
+                </Link>
+              </ul>
             </div>
           </div>
         </nav>
