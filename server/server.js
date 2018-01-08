@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
 var test = require('./src/test');
+var User = require('./src/user');
+
+
 
 var app = express();
 

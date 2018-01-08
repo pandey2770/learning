@@ -26,7 +26,6 @@ class App extends Component {
 
   render() {
     const { user } = this.state;
-    console.log('********', user)
     return (
       <div>
         <nav className="navbar navbar-expand navbar-light bg-light">

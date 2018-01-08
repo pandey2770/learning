@@ -5,9 +5,9 @@ import Home from './Home';
 import Two from './Two';
 import Three from './Three';
 import Cart from './Cart';
-import Main from './Main';
-import Login from './Login';
-import SignUp from './SignUp';
+import Header from './Header/Header';
+import Login from './Login/Login';
+import SignUp from './SignUp/SignUp';
 
 
 
@@ -22,7 +22,7 @@ class App extends Component {
           <Route path="/Cart" component={Cart} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
-          <Route path='/' component={Main} />
+          <Route path='/' component={Header} />
         </Switch>
       </div>
     );
