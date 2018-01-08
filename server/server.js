@@ -36,7 +36,13 @@ app.get('/api/user', async (req, res) => {
   const userList = await user.getAllHistory();
   console.log(userList)
     res.json(userList);
-  });
+});
+
+app.post('/api/user', (req, res) => {
+  const userId = user.createLogin(req.body.user);
+  res.json(userId);
+});
+
   
 app.get('/api/currentuser', (req, res) => {
   console.log(req.user)
