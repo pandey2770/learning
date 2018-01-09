@@ -1,8 +1,13 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
-
-
-const allReducer = combineReducers({
-    
+function allReducer(state = { user: undefined }, action) {
+  switch (action.type) {
+    case 'LOGIN_USER':
+      return {};
+    default:
+      return state;
+  }
+}
+export default combineReducers({
+  allReducer
 });
-export default allReducer;

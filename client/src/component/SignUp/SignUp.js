@@ -2,26 +2,24 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class SignUp extends Component {
+  state = {
+    email: '',
+    password: '',
+    confirmPassword: ''
+  };
 
-state ={
-  email :'',
-  password :'',
-  confirmPassword :''
-}
+  change = event => {
+    this.setState({
+      [`${event.target.name}`]: event.target.value
+    });
+  };
 
-change =(event) =>{
-  this.setState({
-    [`${event.target.name}`]: event.target.value
-  });
-}
-  
-signUp = () => {
-  const { email, password, confirmPassword } =this.state;
-
-}
+  signUp = () => {
+    const { email, password, confirmPassword } = this.state;
+  };
 
   render() {
-    const { email, password, confirmPassword } =this.state;
+    const { email, password, confirmPassword } = this.state;
     return (
       <div>
         <form>
@@ -41,7 +39,7 @@ signUp = () => {
             <label for="exampleInputPassword1">Password</label>
             <input
               type="password"
-              name='password'
+              name="password"
               value={password}
               className="form-control"
               onChange={this.change}
@@ -52,7 +50,7 @@ signUp = () => {
             <label for="exampleInputPassword1">Confirm Password</label>
             <input
               type="password"
-              name='confirmPassword'
+              name="confirmPassword"
               value={confirmPassword}
               onChange={this.change}
               className="form-control"
@@ -65,7 +63,11 @@ signUp = () => {
               Check me out
             </label>
           </div>
-          <button  onClick={this.signUp} type="submit" className="btn btn-primary">
+          <button
+            onClick={this.signUp}
+            type="submit"
+            className="btn btn-primary"
+          >
             Submit
           </button>/
           <Link to={`/Login`}>

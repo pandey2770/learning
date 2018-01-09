@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Header from '../Header';
-import { login } from '../action';
+import { loginUser } from '../action';
+import { connect } from 'react-redux';
 
 class Login extends Component {
   state = {
-    email: '',
+    username: '',
     password: ''
   };
 
@@ -16,11 +16,9 @@ class Login extends Component {
     });
   };
   login = () => {
+    const { loginUser, history } = this.props;
     const { username, password } = this.state;
-    axios.post('/api/login', { username: '', password: '' }).then(() => {
-      console.log(this.props);
-      this.props.history.push('/');
-    });
+    loginUser(username, password, history);
   };
 
   render() {
@@ -68,4 +66,15 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loginUser: (username, password, history) =>
+      dispatch(loginUser(username, password, history))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -19,12 +19,6 @@ class Header extends Component {
     }
   }
 
-  logout = () => {
-    axios.get('/api/logout').then(() => {
-      this.props.history.push('/');
-    });
-  };
-
   render() {
     const { user } = this.state;
     return (
