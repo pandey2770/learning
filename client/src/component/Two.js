@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 
 class Two extends Component {
   render() {
     return (
       <div>
+        <Header history={this.props.history} location={this.props.location} />
         <h1>Two</h1>
         <Link to={`/`}>
           <h3>Back to Demo</h3>

@@ -17,3 +17,33 @@ export const loginUserDispatch = data => {
     data
   };
 };
+
+export const logoutUser = history => {
+  return async function(dispatch) {
+    const logout = axios.get('/api/logout').then(({ data }) => {
+      history.push('/login');
+      return dispatch(getLogoutDispatch(data));
+    });
+  };
+};
+
+export const getLogoutDispatch = data => {
+  return {
+    type: 'LOGOUT_USER',
+    data
+  };
+};
+
+export const currentUser = () => {
+  return async function(dispatch) {
+    const { data } = await axios.get('/api/currentuser');
+    return dispatch(getCurrentUser(data));
+  };
+};
+
+export const getCurrentUser = user => {
+  return {
+    type: 'CURRENT_USER',
+    user
+  };
+};

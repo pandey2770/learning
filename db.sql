@@ -2,7 +2,7 @@
  CREATE DATABASE demo;
   CREATE TABLE login (
  id uuid,
- email text,
+ username text,
  password varchar);
 
 

@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
+import { logoutUser, currentUser } from '../action';
+import { connect } from 'react-redux';
 
 class Header extends Component {
   state = {
     user: undefined
   };
 
-  async componentWillMount() {
-    const { data: user } = await axios.get('/api/currentuser');
-    if (user) {
-      this.setState({
-        user
-      });
-      if (this.props.location.pathname === '/Login') {
-        this.props.history.push('/');
-      }
-    }
+  componentWillMount() {
+    this.props.currentUser();
   }
 
+  logoutUser = () => {
+    const { history, logoutUser } = this.props;
+    logoutUser(history);
+  };
+
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
+    const { match, location, history } = this.props;
     return (
       <div>
         <nav className="navbar navbar-expand navbar-light bg-light">
@@ -44,7 +43,7 @@ class Header extends Component {
                     <li className="nav-item nav-link">Login</li>
                   </Link>
                 ) : (
-                  <a onClick={this.logout}>
+                  <a onClick={this.logoutUser}>
                     <li className="nav-item cursor nav-link">Logout</li>
                   </a>
                 )}
@@ -59,5 +58,17 @@ class Header extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
 
-export default Header;
+function mapDispatchToProps(dispatch) {
+  return {
+    logoutUser: history => dispatch(logoutUser(history)),
+    currentUser: () => dispatch(currentUser())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

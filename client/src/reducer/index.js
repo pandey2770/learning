@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
-function allReducer(state = { user: undefined }, action) {
+function userReducer(state = null, action) {
   switch (action.type) {
-    case 'LOGIN_USER':
-      return {};
+    case 'CURRENT_USER':
+      return action.user;
+    case 'LOGOUT_USER':
+      return null;
     default:
       return state;
   }
 }
 export default combineReducers({
-  allReducer
+  user: userReducer
 });

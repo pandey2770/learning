@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Header from './Header';
 
 class Home extends Component {
   state = {
     data: []
   };
-
-  async componentWillMount() {
-    const { data } = await axios.get('/api/user');
-    this.setState({ data });
-  }
 
   render() {
     const { data } = this.state;

@@ -4,8 +4,6 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
-var test = require('./src/test');
-var user = require('./src/user');
 
 
 
@@ -24,24 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
 require('./src/auth.js');
-
-app.get('/api/test', async (req, res) => {
-const testList = await test.getAllTest();
-console.log(testList)
-  res.json(testList);
-});
-
-app.get('/api/user', async (req, res) => {
-  console.log('asdsad')
-  const userList = await user.getAllHistory();
-  console.log(userList)
-    res.json(userList);
-});
-
-app.post('/api/user', (req, res) => {
-  const userId = user.createLogin(req.body.user);
-  res.json(userId);
-});
 
   
 app.get('/api/currentuser', (req, res) => {

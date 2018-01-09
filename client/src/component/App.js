@@ -7,7 +7,6 @@ import Three from './Three';
 import Cart from './Cart';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
-import axios from 'axios';
 
 class App extends Component {
   render() {

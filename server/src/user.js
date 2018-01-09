@@ -1,21 +1,24 @@
-const uuid = require('uuid/v1');
-const DB = require('./db');
+const uuidv1 = require("uuid/v1");
+const DB = require("./db");
 
-async function getAllHistory() {
-  return await DB.get('SELECT * FROM login');
+
+async function getUser(username, password) {
+  const query = {
+    text: "SELECT * FROM login WHERE username = $1 and password = $2 ",
+    values: [ username, password ]
+  };
+  return await DB.get(query);
 }
 
-async function createLogin({ id, email, password }) {
-  const id = uuidv1();
+async function findById(id) {
   const query = {
-    text: 'INSTER INTO login id ,email, password VALUES ($1, $2, $3 ) ',
-    values: [id, email, password]
+    text: "SELECT * FROM login where id = $1",
+    values: [id]
   };
-  await DB.mutate(query);
-  return id;
+  return await DB.get(query);
 }
 
 module.exports = {
-  getAllHistory,
-  createLogin
+  getUser,
+  findById
 };
