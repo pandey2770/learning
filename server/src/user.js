@@ -22,7 +22,7 @@ async function createSignUp(username, password) {
   const id = uuidv1();
   console.log(id, username ,password )
   const query = {
-    text: "INSERT INTO login (id, username, password) VALUES ($1, $2,$3)",
+    text: "INSERT INTO login (id, username, password) VALUES ($1, $2, $3)",
     values: [ id, username, password ]
   };console.log(id, username ,password, query )
   await DB.mutate(query);
