@@ -51,8 +51,9 @@ export const getCurrentUser = user => {
   };
 };
 
-export const signup = (history) => {
+export const signup = (history, username,password) => {
   return async function(dispatch) {
+    console.log(username,password,'2')
     const data = await axios.post('/api/signUp');
     history.push('/');
     return dispatch(getsignup(data));

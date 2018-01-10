@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
-var signUp = require('./src/user');
+var signup = require('./src/user');
 
 
 var app = express();
@@ -40,8 +40,7 @@ app.get('/api/logout', function(req, res){
 });
 
 app.post('/api/signUp',  async (req, res) => {
-  console.log(req.body,'asd')
-  const data = await signUp.createSignUp(req.body);
+  const data = await signup.signup(req.body);
   res.json({ data });
 });
 

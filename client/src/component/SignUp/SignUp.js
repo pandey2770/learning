@@ -20,6 +20,7 @@ class SignUp extends Component {
   signUp = () => {
     const { username, password, confirmPassword } = this.state;
     const { history } = this.props;
+    console.log(username,password,'1')
     if (username === '') {
       alert('Please enter the right Email.');
       return false;
@@ -92,7 +93,8 @@ function mapStateToprpos(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    signup: history => dispatch(signup(history))
+    signup: (username, password, history) =>
+      dispatch(signup(username, password, history))
   };
 }
 
