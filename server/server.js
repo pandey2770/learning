@@ -28,19 +28,25 @@ app.get('/api/currentuser', (req, res) => {
   res.json(req.user);
 });
   
+// app.post('/api/login',
+//   passport.authenticate(
+//     'local',
+//     { successRedirect: '/', failureRedirect: '/login' }
+//   )
+// );
 app.post('/api/login',
-  passport.authenticate(
-    'local',
-    { successRedirect: '/', failureRedirect: '/login' }
-  )
-);
+  passport.authenticate('local'),
+  function(req, res) {
+    res.sendStatus(200);
+  });
+
 app.get('/api/logout', function(req, res){
   req.logout();
   res.sendStatus(200);
 });
 
 app.post('/api/signUp',  async (req, res) => {
-  const data = await signup.signup(req.body.username,req.body.password);
+  const data = await signup.signup(req.body.username, req.body.password);
   res.json({ data });
 });
 
