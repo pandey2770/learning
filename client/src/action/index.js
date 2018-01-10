@@ -37,24 +37,23 @@ export const getLogoutDispatch = data => {
   };
 };
 
-export const currentUser = () => {
+export const getCurrentUser = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/currentuser');
-    return dispatch(getCurrentUser(data));
+    return dispatch(getcurrentUser(data));
   };
 };
 
-export const getCurrentUser = user => {
+export const getcurrentUser = user => {
   return {
     type: 'CURRENT_USER',
     user
   };
 };
 
-export const signup = (history, username,password) => {
+export const signup = (history, username, password) => {
   return async function(dispatch) {
-    console.log(username,password,'2')
-    const data = await axios.post('/api/signUp');
+    const data = await axios.post('/api/signUp', { username, password });
     history.push('/');
     return dispatch(getsignup(data));
   };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { logoutUser, currentUser } from '../action';
+import { logoutUser, getCurrentUser } from '../../action';
 import { connect } from 'react-redux';
 
 class Header extends Component {
@@ -9,7 +9,7 @@ class Header extends Component {
   };
 
   componentWillMount() {
-    this.props.currentUser();
+    this.props.getCurrentUser();
     if (
       (this.props.location.pathname === '/Login' ||
         this.props.location.pathname === '/SignUp') &&
@@ -36,7 +36,6 @@ class Header extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(user);
     return (
       <div className="style">
         <div className="width">
@@ -101,7 +100,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     logoutUser: history => dispatch(logoutUser(history)),
-    currentUser: () => dispatch(currentUser())
+    getCurrentUser: () => dispatch(getCurrentUser())
   };
 }
 

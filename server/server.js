@@ -40,7 +40,7 @@ app.get('/api/logout', function(req, res){
 });
 
 app.post('/api/signUp',  async (req, res) => {
-  const data = await signup.signup(req.body);
+  const data = await signup.signup(req.body.username,req.body.password);
   res.json({ data });
 });
 
