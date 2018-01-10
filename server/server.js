@@ -40,8 +40,8 @@ app.get('/api/logout', function(req, res){
 });
 
 app.post('/api/signUp',  async (req, res) => {
-  const data = await signUp.createSignUp(req.body.login);
-  console.log(data)
+  console.log(req.body,'asd')
+  const data = await signUp.createSignUp(req.body);
   res.json({ data });
 });
 

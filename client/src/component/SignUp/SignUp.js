@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header';
 import { connect } from 'react-redux';
-import { createSignUp } from '../action';
+import { signup } from '../action';
 
 class SignUp extends Component {
   state = {
@@ -28,7 +28,7 @@ class SignUp extends Component {
       alert('Passwords do not match.');
       return false;
     }
-    return this.props.createSignUp(history);
+    return this.props.signup(history, username, password);
   };
 
   render() {
@@ -92,7 +92,7 @@ function mapStateToprpos(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createSignUp: history => dispatch(createSignUp(history))
+    signup: history => dispatch(signup(history))
   };
 }
 

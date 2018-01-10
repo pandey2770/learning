@@ -18,13 +18,13 @@ async function findById(id) {
   return await DB.get(query);
 }
 
-async function createSignUp(username, password) {
+async function signup(username, password) {
   const id = uuidv1();
   console.log(id, username ,password )
   const query = {
     text: "INSERT INTO login (id, username, password) VALUES ($1, $2, $3)",
     values: [ id, username, password ]
-  };console.log(id, username ,password, query )
+  };
   await DB.mutate(query);
   return id;
 }
@@ -32,5 +32,5 @@ async function createSignUp(username, password) {
 module.exports = {
   getUser,
   findById,
-  createSignUp
+  signup
 };

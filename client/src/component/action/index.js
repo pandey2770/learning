@@ -51,15 +51,15 @@ export const getCurrentUser = user => {
   };
 };
 
-export const createSignUp = history => {
+export const signup = (history) => {
   return async function(dispatch) {
     const data = await axios.post('/api/signUp');
     history.push('/');
-    return dispatch(getCreateSignUp(data));
+    return dispatch(getsignup(data));
   };
 };
 
-export const getCreateSignUp = data => {
+export const getsignup = data => {
   return {
     type: 'CREATE_SIGNUP',
     data
