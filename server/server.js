@@ -40,9 +40,10 @@ app.get('/api/logout', function(req, res){
   res.sendStatus(200);
 });
 
-app.post('/api/signUp', (res, req) => {
-  const signUpId = signUp.createSignUp(req.body.signUp);
-  res.json(signUp);
+app.post('/api/signUp',  async (req, res) => {
+  const id = await signUp.createSignUp(req.body.signUp);
+  res.json({ id });
 });
+
 
 app.listen(3001, () => console.log("Server started on port 3001"));

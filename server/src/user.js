@@ -18,11 +18,11 @@ async function findById(id) {
   return await DB.get(query);
 }
 
-async function createSignUp(signUp) {
+async function createSignUp({username, password}) {
   const id = uuidv1();
   const query = {
-    text: "INSERT INTO login VALUES($1, $2, $3)",
-    values: [ id, username, password ],
+    text: "INSERT INTO login VALUES(id = $1, username = $2 where password = $3)",
+    values: [ id, username, password ]
   };
   await DB.mutate(query);
   return id;

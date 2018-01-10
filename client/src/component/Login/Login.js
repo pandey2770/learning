@@ -49,12 +49,6 @@ class Login extends Component {
             placeholder="Password"
           />
         </div>
-        <div className="form-check">
-          <input type="checkbox" className="form-check-input" />
-          <label className="form-check-label" for="exampleCheck1">
-            Check me out
-          </label>
-        </div>
         <button onClick={this.login} className="btn btn-primary">
           Submit
         </button>/

@@ -19,7 +19,7 @@ class SignUp extends Component {
 
   signUp = () => {
     const { username, password, confirmPassword } = this.state;
-    const { signUp, history } = this.props;
+    const { history } = this.props;
     if (username === '') {
       alert('Please enter the right Email.');
       return false;
@@ -28,7 +28,7 @@ class SignUp extends Component {
       alert('Passwords do not match.');
       return false;
     }
-    return createSignUp(signUp, history);
+    return this.props.createSignUp(history);
   };
 
   render() {
@@ -85,15 +85,15 @@ class SignUp extends Component {
     );
   }
 }
+
+function mapStateToprpos(state) {
+  return {};
+}
+
 function mapDispatchToProps(dispatch) {
   return {
-    createSignUp: signUp => dispatch(createSignUp(signUp))
+    createSignUp: history => dispatch(createSignUp(history))
   };
 }
-function mapStateToprpos(state) {
-  return {
 
-  }
-}
-
-export default connect(mapDispatchToProps, mapStateToprpos)(SignUp);
+export default connect(mapStateToprpos, mapDispatchToProps)(SignUp);

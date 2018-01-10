@@ -51,16 +51,14 @@ export const getCurrentUser = user => {
   };
 };
 
-
-export const createSignUp = (signUp, history) => {
-  console.log('check')
+export const createSignUp = history => {
+  console.log('check');
   return async function(dispatch) {
-    console.log(dispatch,'1')
-    const data = axios.get('/api/signUp').then(({ data }) => {
-      console.log('data','2')
-      history.push('/');
-      return dispatch(getCreateSignUp(data));
-    });
+    console.log(dispatch, '1');
+    const data = await axios.get('/api/signUp');
+    console.log('data', '2');
+    history.push('/');
+    return dispatch(getCreateSignUp(data));
   };
 };
 

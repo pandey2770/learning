@@ -36,40 +36,58 @@ class Header extends Component {
 
   render() {
     const { user } = this.props;
+    console.log(user);
     return (
-      <div>
-        <nav className="navbar navbar-expand navbar-light bg-light">
-          <h1 className="navbar-brand">DEMO</h1>
-          <div className="collapse navbar-collapse">
-            <div className="navbar-nav">
-              <ul className="style">
-                <Link to={`/Home`}>
-                  <li className="nav-item nav-link active">
-                    Home <span className="sr-only">(current)</span>
-                  </li>
-                </Link>
-                <Link to={`/Two`}>
-                  <li className="nav-item nav-link">Features</li>
-                </Link>
-                <Link to={`/Three`}>
-                  <li className="nav-item nav-link">Pricing</li>
-                </Link>
-                {!user ? (
-                  <Link to={`/Login`}>
-                    <li className="nav-item nav-link">Login</li>
+      <div className="style">
+        <div className="width">
+          <nav className="navbar navbar-expand navbar-light bg-light">
+            <h1 className="navbar-brand">DEMO</h1>
+            <div className="collapse navbar-collapse">
+              <div className="navbar-nav">
+                <ul className="style">
+                  <Link to={`/Home`}>
+                    <li className="nav-item nav-link active">
+                      Home <span className="sr-only">(current)</span>
+                    </li>
                   </Link>
-                ) : (
-                  <a onClick={this.logoutUser}>
-                    <li className="nav-item cursor nav-link">Logout</li>
-                  </a>
-                )}
-                <Link to={`/Cart`}>
-                  <li className="nav-item nav-link">Cart</li>
-                </Link>
+                  <Link to={`/Two`}>
+                    <li className="nav-item nav-link">Features</li>
+                  </Link>
+                  <Link to={`/Three`}>
+                    <li className="nav-item nav-link">Pricing</li>
+                  </Link>
+                  <Link to={`/Cart`}>
+                    <li className="nav-item nav-link">Cart</li>
+                  </Link>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div className="navbar navbar-expand navbar-light bg-light">
+          {!user ? (
+            <Link to={`/Login`}>
+              <li className="nav-item nav-link">Login</li>
+            </Link>
+          ) : (
+            <div className="dropdown">
+              <button
+                className=" btn-primary dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+              >
+                {user && user.username}name
+                <span className="caret" />
+              </button>
+              <ul className="dropdown-menu">
+                <a onClick={this.logoutUser}>
+                  <li className="nav-item cursor nav-link">Logout</li>
+                </a>
+                <li>setting</li>
               </ul>
             </div>
-          </div>
-        </nav>
+          )}
+        </div>
       </div>
     );
   }
@@ -88,3 +106,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
+{
+  /* */
+}
