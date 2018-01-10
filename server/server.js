@@ -25,7 +25,6 @@ require('./src/auth.js');
 
   
 app.get('/api/currentuser', (req, res) => {
-  console.log(req.user)
   res.json(req.user);
 });
   
@@ -41,8 +40,9 @@ app.get('/api/logout', function(req, res){
 });
 
 app.post('/api/signUp',  async (req, res) => {
-  const id = await signUp.createSignUp(req.body.signUp);
-  res.json({ id });
+  const data = await signUp.createSignUp(req.body.login);
+  console.log(data)
+  res.json({ data });
 });
 
 
