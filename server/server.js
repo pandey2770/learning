@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
-
+var signUp = require('./src/user');
 
 
 var app = express();
@@ -39,4 +39,10 @@ app.get('/api/logout', function(req, res){
   req.logout();
   res.sendStatus(200);
 });
+
+app.post('/api/signUp', (res, req) => {
+  const signUpId = signUp.createSignUp(req.body.signUp);
+  res.json(signUp);
+});
+
 app.listen(3001, () => console.log("Server started on port 3001"));

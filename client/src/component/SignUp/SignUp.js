@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../Header';
+import { connect } from 'react-redux';
+import { createSignUp } from '../action';
 
 class SignUp extends Component {
   state = {
-    email: '',
+    username: '',
     password: '',
     confirmPassword: ''
   };
@@ -15,20 +18,31 @@ class SignUp extends Component {
   };
 
   signUp = () => {
-    const { email, password, confirmPassword } = this.state;
+    const { username, password, confirmPassword } = this.state;
+    const { signUp, history } = this.props;
+    if (username === '') {
+      alert('Please enter the right Email.');
+      return false;
+    }
+    if (password !== confirmPassword) {
+      alert('Passwords do not match.');
+      return false;
+    }
+    return createSignUp(signUp, history);
   };
 
   render() {
-    const { email, password, confirmPassword } = this.state;
+    const { username, password, confirmPassword } = this.state;
     return (
       <div>
+        <Header history={this.props.history} location={this.props.location} />
         <form>
           <div className="form-group">
             <lable for="exampleInputEmail1">Email Address</lable>
             <input
               type="email"
-              name="email"
-              value={email}
+              name="username"
+              value={username}
               onChange={this.change}
               className="form-control"
               aria-describedby="emailHelp"
@@ -57,19 +71,12 @@ class SignUp extends Component {
               placeholder="Confirm Password"
             />
           </div>
-          <div className="form-check">
-            <input type="checkbox" className="form-check-input" />
-            <label className="form-check-label" for="exampleCheck1">
-              Check me out
-            </label>
-          </div>
-          <button
+          <input
+            type="button"
+            value="SignUp"
             onClick={this.signUp}
-            type="submit"
             className="btn btn-primary"
-          >
-            Submit
-          </button>/
+          />/
           <Link to={`/Login`}>
             <button className="btn btn-primary">Login</button>
           </Link>
@@ -78,5 +85,15 @@ class SignUp extends Component {
     );
   }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    createSignUp: signUp => dispatch(createSignUp(signUp))
+  };
+}
+function mapStateToprpos(state) {
+  return {
 
-export default SignUp;
+  }
+}
+
+export default connect(mapDispatchToProps, mapStateToprpos)(SignUp);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { logoutUser, currentUser } from '../action';
 import { connect } from 'react-redux';
 
@@ -10,6 +10,23 @@ class Header extends Component {
 
   componentWillMount() {
     this.props.currentUser();
+    if (
+      (this.props.location.pathname === '/Login' ||
+        this.props.location.pathname === '/SignUp') &&
+      this.props.user
+    ) {
+      this.props.history.push('/');
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    if (
+      (props.location.pathname === '/Login' ||
+        props.location.pathname === '/SignUp') &&
+      props.user
+    ) {
+      props.history.push('/');
+    }
   }
 
   logoutUser = () => {
@@ -19,7 +36,6 @@ class Header extends Component {
 
   render() {
     const { user } = this.props;
-    const { match, location, history } = this.props;
     return (
       <div>
         <nav className="navbar navbar-expand navbar-light bg-light">
