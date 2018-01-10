@@ -66,7 +66,7 @@ export const createSignUp = (signUp, history) => {
 
 export const getCreateSignUp = data => {
   return {
-    type: 'LOGOUT_USER',
+    type: 'CREATE_SIGNUP',
     data
   };
 };
