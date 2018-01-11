@@ -34,7 +34,6 @@ class Login extends Component {
             name="username"
             onChange={this.change}
             className="form-control"
-            aria-describedby="emailHelp"
             placeholder="Enter email"
           />
         </div>

@@ -80,9 +80,11 @@ class Header extends Component {
               </button>
               <ul className="dropdown-menu">
                 <a onClick={this.logoutUser}>
-                  <li className="nav-item cursor nav-link">Logout</li>
+                  <li className="nav-item nav-link">Logout</li>
                 </a>
-                <li>setting</li>
+                <Link to={`/Setting`}>
+                  <li className="nav-item nav-link">Setting</li>
+                </Link>
               </ul>
             </div>
           )}
