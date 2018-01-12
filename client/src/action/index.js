@@ -68,7 +68,9 @@ export const getsignup = data => {
 
 export const setting = (history, id ,name, number, address ) => {
   return async function(dispatch) {
-    const data = await axios.put('/api/setting/${id}', { user :{history, id, name, number, address}});
+    console.log(dispatch,'asd')
+    const data = await axios.put(`/api/setting/${id}`,{ user:{history, id, name, number, address}});
+    console.log(id,'id action')
     history.push('/setting');
     return dispatch(changeSetting(data));
   };

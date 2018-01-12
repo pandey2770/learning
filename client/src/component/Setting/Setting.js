@@ -20,6 +20,7 @@ class Setting extends Component {
     const { updateName, updateAddress, updateNumber } = this.state;
     const { history, name, number, address } = this.props;
     this.props.setting( history, id, name, number, address );
+    console.log(id,'id setting')
   };
 
   render() {

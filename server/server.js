@@ -45,6 +45,7 @@ app.post('/api/signUp',  async (req, res) => {
 });
 
 app.put('/api/setting/:id', async (req, res) => {
+  console.log(req.body)
   const rowCount = await changeSetting.changeSetting(req.params.id, req.body.user);
   res.json({ id: req.params.id }); 
 })
