@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 class Setting extends Component {
   state = {
-    updateName: '',
-    updateAddress: '',
-    updateNumber: ''
+    name: '',
+    address: '',
+    number: ''
   };
   details = event => {
     this.setState({
@@ -17,14 +17,14 @@ class Setting extends Component {
 
   send = event => {
     const { id } = this.props.user;
-    const { updateName, updateAddress, updateNumber } = this.state;
-    const { history, name, number, address } = this.props;
-    this.props.setting( history, id, name, number, address );
-    console.log(id,'id setting')
+    const { name, address, number } = this.state;
+    const { history, setting } = this.props;
+    setting( history, id, name, number, address );
+    console.log (id, name, number, address,'id setting')
   };
 
   render() {
-    const { updateName, updateAddress, updateNumber } = this.state;
+    const { name, address, number } = this.state;
     const { user } = this.props;
     return (
       <div>
@@ -34,9 +34,9 @@ class Setting extends Component {
             <label>Full Name</label>
             <input
               type="text"
-              name="updateName"
+              name="name"
               onChange={this.details}
-              value={updateName}
+              value={name}
               className="form-control"
               placeholder="Full Name"
             />
@@ -45,9 +45,9 @@ class Setting extends Component {
             <label>Address</label>
             <input
               type="text"
-              name="updateAddress"
+              name="address"
               onChange={this.details}
-              value={updateAddress}
+              value={address}
               className="form-control"
               placeholder="Address"
             />
@@ -56,9 +56,9 @@ class Setting extends Component {
             <label>Phone Number</label>
             <input
               type="text"
-              name="updateNumber"
+              name="number"
               onChange={this.details}
-              value={updateNumber}
+              value={number}
               className="form-control"
               placeholder="Phone Number"
             />
