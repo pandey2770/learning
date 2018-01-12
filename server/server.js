@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
 var signup = require('./src/user');
+var changeSetting = require('./src/user');
+var data = require('./src/user');
 
 
 var app = express();
@@ -50,5 +52,14 @@ app.post('/api/signUp',  async (req, res) => {
   res.json({ data });
 });
 
+app.put('/api/setting/:id', async (req, res) => {
+  const data = await changeSetting.changeSetting(req.params.id, req.body.user);
+  res.json({ id: req.params.id }); 
+})
+
+app.get('api/data', async(req,res) =>{
+  const data = await data.data();
+  res.json(data)
+})
 
 app.listen(3001, () => console.log("Server started on port 3001"));

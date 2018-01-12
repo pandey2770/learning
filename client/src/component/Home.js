@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import { data } from '../action';
+import { connect } from 'react-redux';
 
 class Home extends Component {
   state = {
-    data: []
+    data: ''
   };
 
+  componentWillMount() {
+  }
+
+
   render() {
-    const { data } = this.state;
+    const { data } = this.props;
+    console.log(data)
     return (
       <div>
         <Header history={this.props.history} location={this.props.location} />
-        <h1>One</h1>
-        {data.map(d => <div key={d.id}>{d.name}</div>)}
+        <div>
+          check
+        </div>
         <Link to={`/`}>
           <h3>Back to Demo</h3>
         </Link>
@@ -21,5 +29,16 @@ class Home extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return  {
+    data:state.data
+  };
+}
 
-export default Home;
+function mapDispatchToProps(dispatch) {
+  return {
+
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

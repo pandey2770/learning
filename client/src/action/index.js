@@ -65,3 +65,43 @@ export const getsignup = data => {
     data
   };
 };
+
+export const setting = (
+  history,
+  id,
+  username,
+  password,
+  name,
+  number,
+  address
+) => {
+  return async function(dispatch) {
+    const data = await axios.put(`/api/setting/${id}`, {
+      user: { id, username, password, name, number, address }
+    });
+    history.push('/setting');
+  };
+};
+
+export const changeSetting = (data, id) => {
+  return {
+    type: 'CHANGE_SETTING',
+    id,
+    data
+  };
+};
+
+export const data = () => {
+  return async function(dispatch) {
+    const { data } = await axios.get('/api/data');
+    console.log(data,'inaction')
+    return dispatch(getAllData(data));
+  };
+};
+
+export const getAllData = data => {
+  return {
+    type: 'ALL_DATA',
+    data
+  };
+};

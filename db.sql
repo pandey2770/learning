@@ -3,16 +3,13 @@
   CREATE TABLE login (
  id uuid,
  username text,
- password varchar);
-
-
-  CREATE TABLE loginUser (
- id uuid,
+ password varchar,
  name text,
  number varchar,
  address varchar,
  cart varchar );
 
- CREATE TABLE history (
+ CREATE TABLE items (
 id uuid,
-items varchar );
+items varchar,
+rate varchar );
