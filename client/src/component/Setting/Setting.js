@@ -7,7 +7,9 @@ class Setting extends Component {
   state = {
     name: '',
     address: '',
-    number: ''
+    number: '',
+    username: '',
+    password: ''
   };
   details = event => {
     this.setState({
@@ -17,15 +19,13 @@ class Setting extends Component {
 
   send = event => {
     const { id } = this.props.user;
-    const { name, address, number } = this.state;
+    const { name, address, number, username, password } = this.state;
     const { history, setting } = this.props;
-    setting( history, id, name, number, address );
-    console.log (id, name, number, address,'id setting')
+    setting(history, id, username, password, name, number, address);
   };
 
   render() {
-    const { name, address, number } = this.state;
-    const { user } = this.props;
+    const { name, address, number, username, password } = this.state;
     return (
       <div>
         <Header history={this.props.history} location={this.props.location} />
@@ -62,6 +62,22 @@ class Setting extends Component {
               className="form-control"
               placeholder="Phone Number"
             />
+            <input
+              type="text"
+              name="username"
+              onChange={this.details}
+              value={username}
+              className="form-control"
+              placeholder="usernamer"
+            />{' '}
+            <input
+              type="text"
+              name="password"
+              onChange={this.details}
+              value={password}
+              className="form-control"
+              placeholder="password"
+            />
           </div>
           <input type="button" value="send" onClick={this.send} />
         </form>
@@ -78,8 +94,8 @@ function mapStateToprpos(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setting: (history, id, name, number, address) =>
-      dispatch(setting(history, id, name, number, address))    
+    setting: (history, id, username, password, name, number, address) =>
+      dispatch(setting(history, id, username, password, name, number, address))
   };
 }
 

@@ -66,14 +66,22 @@ export const getsignup = data => {
   };
 };
 
-export const setting = (history, id ,name, number, address ) => {
+export const setting = (
+  history,
+  id,
+  username,
+  password,
+  name,
+  number,
+  address
+) => {
   return async function(dispatch) {
-    const data = await axios.put(`/api/setting/${id}`,{id, name, number, address});
-    console.log(id,'id action')
+    const data = await axios.put(`/api/setting/${id}`, {
+      user: { id, username, password, name, number, address }
+    });
     history.push('/setting');
-    return dispatch(changeSetting(data));
   };
-}
+};
 
 export const changeSetting = (data, id) => {
   return {
@@ -81,4 +89,19 @@ export const changeSetting = (data, id) => {
     id,
     data
   };
-} 
+};
+
+export const data = () => {
+  return async function(dispatch) {
+    const { data } = await axios.get('/api/data');
+    console.log(data,'inaction')
+    return dispatch(getAllData(data));
+  };
+};
+
+export const getAllData = data => {
+  return {
+    type: 'ALL_DATA',
+    data
+  };
+};
