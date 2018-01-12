@@ -7,7 +7,7 @@ function userReducer(state = null, action) {
     case 'LOGOUT_USER':
       return null;
     case 'ALL_DATA':
-      return [...state,action.data];
+      return {...state,data:action.data};
     default:
       return state;
   }

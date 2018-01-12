@@ -1,12 +1,13 @@
+var getCurrentUser = require('../client/src/action');
+
 var passport = require('passport');
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
-var signup = require('./src/user');
-var changeSetting = require('./src/user');
-var data = require('./src/user');
+var user = require('./src/user');
+
 
 
 var app = express();
@@ -48,17 +49,23 @@ app.get('/api/logout', function(req, res){
 });
 
 app.post('/api/signUp',  async (req, res) => {
-  const data = await signup.signup(req.body.username, req.body.password);
+  const data = await user.signup(req.body.username,req.body.password);
   res.json({ data });
 });
 
 app.put('/api/setting/:id', async (req, res) => {
-  const data = await changeSetting.changeSetting(req.params.id, req.body.user);
-  res.json({ id: req.params.id }); 
+  console.log(req.body.user,req.user.id)
+  const data = await user.changeSetting(req.user.id, req.body.user);
+  if (getCurrentUser) {
+    res.json({ id: req.user.id }); 
+  }
+    else{
+      res.status(401).send('Unauthorized!')
+   }
 })
 
 app.get('api/data', async(req,res) =>{
-  const data = await data.data();
+  const data = await user.data();
   res.json(data)
 })
 
