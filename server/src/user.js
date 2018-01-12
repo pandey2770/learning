@@ -28,10 +28,10 @@ async function signup(username, password) {
   return id;
 }
 
-async function changeSetting (id,username, password,name, number, address ) {
+async function changeSetting (id,user ) {
   const query = {
     text: "UPDATE login SET id = $1, username = $2, password = $3, name = $4, number = $5 WHERE address = $6 ",
-    values : [id, username, password, name, number, address ],
+    values : [id, user.username, user.password, user.name, user.number, user.address ],
   };
   return await DB.mutate(query);
 }

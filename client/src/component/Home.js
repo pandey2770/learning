@@ -10,6 +10,8 @@ class Home extends Component {
   };
 
   componentWillMount() {
+    console.log(this.props.data)
+    this.props.data
   }
 
 
@@ -20,7 +22,7 @@ class Home extends Component {
       <div>
         <Header history={this.props.history} location={this.props.location} />
         <div>
-          check
+          
         </div>
         <Link to={`/`}>
           <h3>Back to Demo</h3>
@@ -30,14 +32,16 @@ class Home extends Component {
   }
 }
 function mapStateToProps(state) {
+  console.log(state)
   return  {
-    data:state.data
+    data:state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
+  console.log(data)
   return {
-
+    data: () => dispatch(data())
   };
 }
 
