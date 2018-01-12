@@ -65,3 +65,19 @@ export const getsignup = data => {
     data
   };
 };
+
+export const setting = (history, id ,name, number, address ) => {
+  return async function(dispatch) {
+    const data = await axios.put('/api/setting/${id}', { user :{history, id, name, number, address}});
+    history.push('/setting');
+    return dispatch(changeSetting(data));
+  };
+}
+
+export const changeSetting = (data, id) => {
+  return {
+    type: 'CHANGE_SETTING',
+    id,
+    data
+  };
+} 

@@ -75,7 +75,7 @@ class Header extends Component {
                 type="button"
                 data-toggle="dropdown"
               >
-                {user && user.username}name
+                {user && user.username}
                 <span className="caret" />
               </button>
               <ul className="dropdown-menu">
@@ -107,6 +107,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
-{
-  /* */
-}

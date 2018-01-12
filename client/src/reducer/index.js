@@ -6,6 +6,8 @@ function userReducer(state = null, action) {
       return action.user;
     case 'LOGOUT_USER':
       return null;
+    case 'CHANGE_SETTING':
+      return 
     default:
       return state;
   }

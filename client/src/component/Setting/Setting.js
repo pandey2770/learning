@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Header from '../Header';
+import { setting } from '../../action';
+import { connect } from 'react-redux';
 
 class Setting extends Component {
   state = {
-    name: '',
-    address: '',
-    number: ''
+    updateName: '',
+    updateAddress: '',
+    updateNumber: ''
   };
   details = event => {
     this.setState({
@@ -14,11 +16,15 @@ class Setting extends Component {
   };
 
   send = event => {
-    const { name, address, number } = this.state;
+    const { id } = this.props.user;
+    const { updateName, updateAddress, updateNumber } = this.state;
+    const { history, name, number, address } = this.props;
+    this.props.setting( history, id, name, number, address );
   };
 
   render() {
-    const { name, address, number } = this.state;
+    const { updateName, updateAddress, updateNumber } = this.state;
+    const { user } = this.props;
     return (
       <div>
         <Header history={this.props.history} location={this.props.location} />
@@ -27,9 +33,9 @@ class Setting extends Component {
             <label>Full Name</label>
             <input
               type="text"
-              name="name"
+              name="updateName"
               onChange={this.details}
-              value={name}
+              value={updateName}
               className="form-control"
               placeholder="Full Name"
             />
@@ -38,9 +44,9 @@ class Setting extends Component {
             <label>Address</label>
             <input
               type="text"
-              name="address"
+              name="updateAddress"
               onChange={this.details}
-              value={address}
+              value={updateAddress}
               className="form-control"
               placeholder="Address"
             />
@@ -49,9 +55,9 @@ class Setting extends Component {
             <label>Phone Number</label>
             <input
               type="text"
-              name="number"
+              name="updateNumber"
               onChange={this.details}
-              value={number}
+              value={updateNumber}
               className="form-control"
               placeholder="Phone Number"
             />
@@ -63,4 +69,17 @@ class Setting extends Component {
   }
 }
 
-export default Setting;
+function mapStateToprpos(state) {
+  return {
+    user: state.user
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setting: (history, id, name, number, address) =>
+      dispatch(setting(history, id, name, number, address))    
+  };
+}
+
+export default connect(mapStateToprpos, mapDispatchToProps)(Setting);
