@@ -1,15 +1,19 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./user')
+const {comparePassword} = require('./password');
 
  passport.use(
   new LocalStrategy(async (username, password, done) => {
-     var user = await User.getUser(username, password);
+     var user = await User.getUser(username);
      if (user.length === 1) {
-      return done(null, user[0]);
-    } else {
-       return done(null, false);
+       console.log(user);
+       const pwdCorrect = await comparePassword(password, user[0].password);
+       if (pwdCorrect) {
+        return done(null, user[0]);
+      }
     }
+    return done(null, false);
   })
 );
 

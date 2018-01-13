@@ -1,20 +1,25 @@
 var bcrypt = require('bcrypt');
 
-exports.cryptPassword = function(password, callback) {
-   bcrypt.genSalt(10, function(err, salt) {
-    if (err) 
-      return callback(err);
+exports.cryptPassword = (password) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) 
+        return reject(err);
 
-    bcrypt.hash(password, salt, function(err, hash) {
-      return callback(err, hash);
+      bcrypt.hash(password, salt, (err, hash) => {
+        return resolve(hash);
+      });
     });
   });
 };
 
-exports.comparePassword = function(plainPass, hashword, callback) {
-   bcrypt.compare(plainPass, hashword, function(err, isPasswordMatch) {   
-       return err == null ?
-           callback(null, isPasswordMatch) :
-           callback(err);
-   });
+exports.comparePassword = (plainPass, hashword) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(plainPass, hashword, (err, isPasswordMatch) => {
+      if (err) 
+        return reject(err);
+
+      return resolve(isPasswordMatch);
+    });
+  });
 };
