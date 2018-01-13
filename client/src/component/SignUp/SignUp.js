@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../Header';
-import { connect } from 'react-redux';
-import { signup } from '../action';
+import { signup } from '../../action';
 
 class SignUp extends Component {
   state = {
@@ -20,7 +20,6 @@ class SignUp extends Component {
   signUp = () => {
     const { username, password, confirmPassword } = this.state;
     const { history } = this.props;
-    console.log(username,password,'1')
     if (username === '') {
       alert('Please enter the right Email.');
       return false;

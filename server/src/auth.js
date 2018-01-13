@@ -5,7 +5,6 @@ var User = require('./user')
  passport.use(
   new LocalStrategy(async (username, password, done) => {
      var user = await User.getUser(username, password);
-     console.log('asdsdasd', user)
      if (user.length === 1) {
       return done(null, user[0]);
     } else {

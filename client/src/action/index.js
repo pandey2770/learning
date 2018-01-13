@@ -37,24 +37,23 @@ export const getLogoutDispatch = data => {
   };
 };
 
-export const currentUser = () => {
+export const getCurrentUser = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/currentuser');
-    return dispatch(getCurrentUser(data));
+    return dispatch(getcurrentUser(data));
   };
 };
 
-export const getCurrentUser = user => {
+export const getcurrentUser = user => {
   return {
     type: 'CURRENT_USER',
     user
   };
 };
 
-export const signup = (history, username,password) => {
+export const signup = (history, username, password) => {
   return async function(dispatch) {
-    console.log(username,password,'2')
-    const data = await axios.post('/api/signUp');
+    const data = await axios.post('/api/signUp', { username, password });
     history.push('/');
     return dispatch(getsignup(data));
   };
@@ -63,6 +62,45 @@ export const signup = (history, username,password) => {
 export const getsignup = data => {
   return {
     type: 'CREATE_SIGNUP',
+    data
+  };
+};
+
+export const setting = (
+  history,
+  id,
+  username,
+  password,
+  name,
+  number,
+  address
+) => {
+  return async function(dispatch) {
+    const data = await axios.put(`/api/setting/${id}`, {
+      user: { id, username, password, name, number, address }
+    });
+    history.push('/setting');
+  };
+};
+
+export const changeSetting = (data, id) => {
+  return {
+    type: 'CHANGE_SETTING',
+    id,
+    data
+  };
+};
+
+export const data = () => {
+  return async function(dispatch) {
+    const { data } = await axios.get('/api/data');
+    return dispatch(getAllData(data));
+  };
+};
+
+export const getAllData = data => {
+  return {
+    type: 'ALL_DATA',
     data
   };
 };

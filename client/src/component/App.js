@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import './Css.css';
+import '../Css.css';
 import Home from './Home';
 import Two from './Two';
 import Three from './Three';
 import Cart from './Cart';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
+import Setting from './Setting/Setting';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path="/Three" component={Three} />
           <Route path="/Cart" component={Cart} />
           <Route path="/SignUp" component={SignUp} />
+          <Route path="/Setting" component={Setting} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

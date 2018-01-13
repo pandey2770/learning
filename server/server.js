@@ -1,10 +1,12 @@
+
 var passport = require('passport');
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
-var signup = require('./src/user');
+var user = require('./src/user');
+
 
 
 var app = express();
@@ -28,21 +30,36 @@ app.get('/api/currentuser', (req, res) => {
   res.json(req.user);
 });
   
+
 app.post('/api/login',
-  passport.authenticate(
-    'local',
-    { successRedirect: '/', failureRedirect: '/login' }
-  )
-);
+  passport.authenticate('local'),
+  function(req, res) {
+    res.sendStatus(200);
+  });
+
 app.get('/api/logout', function(req, res){
   req.logout();
   res.sendStatus(200);
 });
 
 app.post('/api/signUp',  async (req, res) => {
-  const data = await signup.signup(req.body);
+  const data = await user.signup(req.body.username,req.body.password);
   res.json({ data });
 });
 
+app.put('/api/setting/:id', async (req, res) => {
+  if (req.user) {
+    const data = await user.changeSetting(req.user.id, req.body.user);
+    res.json({ id: req.user.id }); 
+  }
+    else{
+      res.status(401).send('Unauthorized!')
+   }
+})
+
+app.get('/api/data', async(req,res) =>{
+  const data = await user.getAllData();
+  res.json(data)
+})
 
 app.listen(3001, () => console.log("Server started on port 3001"));
