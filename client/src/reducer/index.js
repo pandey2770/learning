@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import dataReducer  from './data';
 
 function userReducer(state = null, action) {
   switch (action.type) {
@@ -6,13 +7,14 @@ function userReducer(state = null, action) {
       return action.user;
     case 'LOGOUT_USER':
       return null;
-    case 'ALL_DATA':
-      return {...state,data:action.data};
     default:
       return state;
   }
 }
 
-export default combineReducers({
-  user: userReducer
+const allReducer  = combineReducers({
+  user: userReducer,
+  data: dataReducer
 });
+
+export default allReducer

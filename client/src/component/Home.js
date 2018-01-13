@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Header from './Header';
 import { data } from '../action';
-import { connect } from 'react-redux';
+
 
 class Home extends Component {
   state = {
-    user: ''
   };
 
   componentWillMount() {
@@ -15,13 +15,11 @@ class Home extends Component {
 
 
   render() {
-    const { user } = this.props;
-    console.log(user&&user.data)
+    const { data } = this.props;
      return (
       <div>
         <Header history={this.props.history} location={this.props.location} />
         <div>
-          
         </div>
         <Link to={`/`}>
           <h3>Back to Demo</h3>
@@ -31,9 +29,9 @@ class Home extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state.user&&state.user.data,'1')
+  console.log(state)
   return  {
-    user:state.data
+    data:state.data
   };
 }
 

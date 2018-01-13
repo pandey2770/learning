@@ -30,12 +30,7 @@ app.get('/api/currentuser', (req, res) => {
   res.json(req.user);
 });
   
-// app.post('/api/login',
-//   passport.authenticate(
-//     'local',
-//     { successRedirect: '/', failureRedirect: '/login' }
-//   )
-// );
+
 app.post('/api/login',
   passport.authenticate('local'),
   function(req, res) {
@@ -64,7 +59,6 @@ app.put('/api/setting/:id', async (req, res) => {
 
 app.get('/api/data', async(req,res) =>{
   const data = await user.getAllData();
-    console.log(data)
   res.json(data)
 })
 

@@ -1,6 +1,6 @@
 const uuidv1 = require("uuid/v1");
 const DB = require("./db");
-
+const {cryptPassword} = require('./password');
 
 async function getUser(username, password) {
   const query = {
@@ -20,9 +20,10 @@ async function findById(id) {
 
 async function signup(username, password) {
   const id = uuidv1();
+  const pwd = cryptPassword(password)
   const query = {
     text: "INSERT INTO login (id, username, password) VALUES ($1, $2, $3)",
-    values: [ id, username, password ]
+    values: [ id, username, pwd ]
   };
   await DB.mutate(query);
   return id;
