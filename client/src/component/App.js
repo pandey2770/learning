@@ -8,6 +8,7 @@ import Cart from './Cart';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import Setting from './Setting/Setting';
+import Data from './Setting/data';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/Cart" component={Cart} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/Setting" component={Setting} />
+          <Route path="/data" component={Data} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

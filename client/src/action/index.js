@@ -95,7 +95,7 @@ export const data = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/data');
     return dispatch(getAllData(data));
-    console.log('123')
+    console.log('123');
   };
 };
 
@@ -105,3 +105,11 @@ export const getAllData = data => {
     data
   };
 };
+
+export const img = imgData =>{
+  console.log('in acttion')
+  return {
+    type: 'IMG',
+    imgData
+  };
+}
