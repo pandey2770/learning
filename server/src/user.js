@@ -30,13 +30,13 @@ async function signup(username, password) {
 
 async function changeSetting (id,user ) {
   const query = {
-    text: "UPDATE login SET id = $1, username = $2, password = $3, name = $4, number = $5 WHERE address = $6 ",
+    text: "UPDATE login SET username = $2, password = $3, name = $4, number = $5 , address = $6  where id = $1",
     values : [id, user.username, user.password, user.name, user.number, user.address ],
   };
   return await DB.mutate(query);
 }
 
-async function data(id) {
+async function getAllData(id) {
   const query = {
     text: "SELECT * FROM items where id = $1",
     values: [id]    
@@ -48,5 +48,6 @@ module.exports = {
   getUser,
   findById,
   signup,
-  changeSetting
+  changeSetting,
+  getAllData
 };

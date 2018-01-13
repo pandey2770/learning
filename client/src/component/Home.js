@@ -6,19 +6,18 @@ import { connect } from 'react-redux';
 
 class Home extends Component {
   state = {
-    data: ''
+    user: ''
   };
 
   componentWillMount() {
-    console.log(this.props.data)
-    this.props.data
+      this.props.data()
   }
 
 
   render() {
-    const { data } = this.props;
-    console.log(data)
-    return (
+    const { user } = this.props;
+    console.log(user&&user.data)
+     return (
       <div>
         <Header history={this.props.history} location={this.props.location} />
         <div>
@@ -32,14 +31,13 @@ class Home extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state)
+  console.log(state.user&&state.user.data,'1')
   return  {
-    data:state.user
+    user:state.data
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log(data)
   return {
     data: () => dispatch(data())
   };

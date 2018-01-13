@@ -1,4 +1,3 @@
-var getCurrentUser = require('../client/src/action');
 
 var passport = require('passport');
 var express = require('express');
@@ -48,9 +47,8 @@ app.post('/api/signUp',  async (req, res) => {
 });
 
 app.put('/api/setting/:id', async (req, res) => {
-  console.log(req.body.user,req.user.id)
-  const data = await user.changeSetting(req.user.id, req.body.user);
-  if (getCurrentUser) {
+  if (req.user) {
+    const data = await user.changeSetting(req.user.id, req.body.user);
     res.json({ id: req.user.id }); 
   }
     else{
@@ -58,8 +56,9 @@ app.put('/api/setting/:id', async (req, res) => {
    }
 })
 
-app.get('api/data', async(req,res) =>{
-  const data = await user.data();
+app.get('/api/data', async(req,res) =>{
+  const data = await user.getAllData();
+    console.log(data)
   res.json(data)
 })
 

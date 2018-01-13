@@ -94,8 +94,8 @@ export const changeSetting = (data, id) => {
 export const data = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/data');
-    console.log(data,'inaction')
     return dispatch(getAllData(data));
+    console.log('123')
   };
 };
 
