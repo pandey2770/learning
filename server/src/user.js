@@ -14,7 +14,7 @@ async function findById(id) {
   const query = {
     text: "SELECT * FROM login where id = $1",
     values: [id]
-  };
+  };console.log(query)
   return await DB.get(query);
 }
 
@@ -36,12 +36,8 @@ async function changeSetting (id,user ) {
   return await DB.mutate(query);
 }
 
-async function getAllData(id) {
-  const query = {
-    text: "SELECT * FROM items where id = $1",
-    values: [id]    
-  };
-  return await DB.get(query);
+async function getAllData() {
+  return await DB.get("SELECT * FROM items");
 }
 
 module.exports = {
