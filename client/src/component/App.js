@@ -7,6 +7,7 @@ import Cart from './Cart';
 import Login from './Login';
 import SignUp from './SignUp';
 import Profile from './Profile';
+import Product from './Product';
 import '../style.css';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/profile" component={Profile} />
+          <Route path="/product/:id" component={Product} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

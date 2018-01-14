@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import { getAllProducts, getProduct } from '../action';
+import { getAllProducts } from '../action';
 
 class Home extends Component {
   componentWillMount() {
     this.props.getAllProducts()
   }
 
-  getProduct = (event) => {
+  openProductPage = (event) => {
     const { id } = event.target.dataset;
-    const { getProduct } = this.props;
-    getProduct(id);
+    const { history } = this.props;
+    history.push(`/product/${id}`)
   }
 
   render() {
@@ -22,7 +22,14 @@ class Home extends Component {
           <Header history={history} location={location} />
         </div>
           {product.map((p, id) => {
-            return <img src={p.img} key={id} className='img' alt="Product" />
+            return <img
+              src={p.img}
+              data-id={p.id}
+              key={id}
+              onClick={this.openProductPage}
+              className='img'
+              alt="Product"
+            />
           })}
       </div>
     );
@@ -38,7 +45,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
-    getProduct: id => dispatch(getProduct(id))
   };
 }
 

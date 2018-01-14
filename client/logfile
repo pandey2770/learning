@@ -48,3 +48,7 @@ STATEMENT:  CREATE TABLE user (
 	  address varchar,
 	  cart varchar
 	);
+ERROR:  syntax error at or near "cc3" at character 39
+STATEMENT:  SELECT * FROM product WHERE id = 19815cc3-4d10-4dde-ab57-663dcfa15734
+ERROR:  invalid input syntax for uuid: "19815cc3-4d10-4dde-ab57-663dcfa1573"
+STATEMENT:  SELECT * FROM product WHERE id = $1

@@ -14,5 +14,8 @@
 .img {
   height: 100px;
 }
+.img-big {
+  height: 300px;
+}
 /* TODO: fix css class names */
 /* TODO: add all log files to gitignore */

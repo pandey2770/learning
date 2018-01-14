@@ -5,7 +5,12 @@ async function getAll() {
 }
 
 async function get(id) {
-  return await DB.get(`SELECT * FROM product WHERE id = ${id}`);
+  const query = {
+    text: "SELECT * FROM product WHERE id = $1",
+    values: [id]
+  };
+  const products = await DB.get(query);
+  return products[0];
 }
 
 module.exports = {

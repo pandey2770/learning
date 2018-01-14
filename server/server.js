@@ -60,7 +60,6 @@ app.get('/api/product', async(req,res) =>{
 
 app.get('/api/product/:id', async(req,res) => {
   const data = await Product.get(req.params.id);
-  console.log(data)
   res.json(data)
 })
 

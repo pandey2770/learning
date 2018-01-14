@@ -6,7 +6,8 @@ async function get(username, password) {
     text: "SELECT * FROM demouser WHERE username = $1 and password = $2 ",
     values: [username, password]
   };
-  return await DB.get(query);
+  const users = await DB.get(query);
+  return users[0];
 }
 
 async function getById(id) {

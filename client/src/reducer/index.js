@@ -16,8 +16,7 @@ const productReducer = (state = [], action) => {
     case 'GET_ALL_PRODUCT':
       return action.products;
     case 'GET_PRODUCT':
-      // TODO: correct below
-      return [action.product]
+      return [...state, action.product]
     default:
       return state;
   }
