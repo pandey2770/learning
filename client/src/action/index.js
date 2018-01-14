@@ -109,7 +109,7 @@ export const img = (id) => {
   console.log(id,'inaction')
   return async function(dispatch) {
     console.log(dispatch,'diapatch')
-    const { data } = await axios.get(`/api/dataimg/${id}`,{id});
+    const { data } = await axios.get(`/api/dataimg/ac1be12c-f8fc-4bf3-827d-4023b28655cc`,{id});
     return dispatch(getImgData(data));
   };
 };

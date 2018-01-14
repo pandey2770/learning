@@ -62,8 +62,8 @@ app.get('/api/data', async(req,res) =>{
 })
 
 app.get('/api/dataimg/:id', async(req,res) => {
-  console.log(req.params.id,'id')
   const data = await user.getImgDetails(req.params.id);
+  console.log(data)
   res.json(data)
 })
 
