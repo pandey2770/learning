@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Header from './Header';
 import { data, img } from '../action';
-import { connect } from 'react-redux';
 
 class Home extends Component {
-
+state = {
+}
   componentWillMount() {
       this.props.data()
   }
 
-  img = () => {
-    img()
-    console.log('asd',img())
+  img = (event) => {
+    const { id }= event.target.dataset;
+    const { img } = this.props;
+    img(id);
+    console.log(id)
   }
 
   render() {
+    console.log(this.props)
     const {user} = this.props;
-    const list = user.map(data => {
+    const list = user.map((data,id) => {
+      console.log(data.id,'check')
       return (
-        <img src={data.items} className='img' onClick={this.img}   />
+        <img src={data.items} kye={id}  className='img'onClick={this.img}  />
       )
     })
     return (
@@ -27,14 +31,7 @@ class Home extends Component {
         <div>
           <Header history={this.props.history} location={this.props.location} />
         </div>
-        <div>
           {list}
-          {/* {
-            user.map(img => <div>
-              {img.items}
-            </div>)
-          } */}
-        </div>
       </div>
     );
   }
@@ -48,7 +45,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     data: () => dispatch(data()),
-    img: () => dispatch(img())
+    img: (id) => dispatch(img(id))
   };
 }
 

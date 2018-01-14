@@ -14,7 +14,7 @@ async function findById(id) {
   const query = {
     text: "SELECT * FROM login where id = $1",
     values: [id]
-  };console.log(query)
+  };
   return await DB.get(query);
 }
 
@@ -40,10 +40,15 @@ async function getAllData() {
   return await DB.get("SELECT * FROM items");
 }
 
+async function getImgDetails(id) {
+  return await DB.get(`SELECT id, items, rate, details, quantity FROM items WHERE id = ${id}`)
+}
+
 module.exports = {
   getUser,
   findById,
   signup,
   changeSetting,
-  getAllData
+  getAllData,
+  getImgDetails
 };

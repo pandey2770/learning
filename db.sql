@@ -12,4 +12,6 @@
  CREATE TABLE items (
 id uuid,
 items varchar,
-rate varchar );
+rate varchar,
+details varchar,
+quantity varchar );

@@ -61,4 +61,10 @@ app.get('/api/data', async(req,res) =>{
   res.json(data)
 })
 
+app.get('/api/dataimg/:id', async(req,res) => {
+  console.log(req.params.id,'id')
+  const data = await user.getImgDetails(req.params.id);
+  res.json(data)
+})
+
 app.listen(3001, () => console.log("Server started on port 3001"));

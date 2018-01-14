@@ -95,7 +95,6 @@ export const data = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/data');
     return dispatch(getAllData(data));
-    console.log('123');
   };
 };
 
@@ -106,10 +105,18 @@ export const getAllData = data => {
   };
 };
 
-export const img = imgData =>{
-  console.log('in acttion')
+export const img = (id) => {
+  console.log(id,'inaction')
+  return async function(dispatch) {
+    console.log(dispatch,'diapatch')
+    const { data } = await axios.get(`/api/dataimg/${id}`,{id});
+    return dispatch(getImgData(data));
+  };
+};
+
+export const getImgData = data => {
   return {
     type: 'IMG',
-    imgData
+    data
   };
-}
+};
