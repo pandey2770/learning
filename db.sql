@@ -9,9 +9,17 @@
  address varchar,
  cart varchar );
 
- CREATE TABLE items (
+ CREATE TABLE item (
 id uuid,
-items varchar,
+img varchar,
 rate varchar,
 details varchar,
 quantity varchar );
+
+insert into item values (
+  '19815cc3-4d10-4dde-ab57-663dcfa15734',
+  'https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg',
+  '100.00',
+  'Product',
+  '100'
+);

@@ -37,16 +37,16 @@ export const getLogoutDispatch = data => {
   };
 };
 
-export const getCurrentUser = () => {
+export const getUser = () => {
   return async function(dispatch) {
-    const { data } = await axios.get('/api/currentuser');
-    return dispatch(getcurrentUser(data));
+    const { data } = await axios.get('/api/user');
+    return dispatch(getLoggedinUser(data));
   };
 };
 
-export const getcurrentUser = user => {
+export const getLoggedinUser = user => {
   return {
-    type: 'CURRENT_USER',
+    type: 'LOGGEDIN_USER',
     user
   };
 };

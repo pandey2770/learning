@@ -37,11 +37,11 @@ async function changeSetting (id,user ) {
 }
 
 async function getAllData() {
-  return await DB.get("SELECT * FROM items");
+  return await DB.get("SELECT * FROM item");
 }
 
 async function getImgDetails(id) {
-  return await DB.get(`SELECT id, items, rate, details, quantity FROM items WHERE id = ${id}`)
+  return await DB.get(`SELECT id, img, rate, details, quantity FROM item WHERE id = ${id}`);
 }
 
 module.exports = {

@@ -18,12 +18,11 @@ state = {
   }
 
   render() {
-    console.log(this.props)
-    const {user} = this.props;
-    const list = user.map((data,id) => {
-      console.log(data.id,'check')
+    const {items} = this.props;
+    const list = items.map((item,id) => {
+      console.log(item.id,'check')
       return (
-        <img src={data.items} kye={id}  className='img'onClick={this.img}  />
+        <img src={item.img} key={id} className='img'onClick={item.img} alt="Product Image" />
       )
     })
     return (
@@ -38,7 +37,7 @@ state = {
 }
 function mapStateToProps(state) {
   return  {
-    user:state.data
+    items: state.data
   };
 }
 

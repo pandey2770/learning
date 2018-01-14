@@ -1,0 +1,16 @@
+LOG:  database system was shut down at 2018-01-14 00:18:07 IST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  column "ac1be12c-f8fc-4bf3-827d-4023b28655cc" does not exist at character 26
+STATEMENT:  insert into items values("ac1be12c-f8fc-4bf3-827d-4023b28655cc", "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");
+ERROR:  relation "items" does not exist at character 13
+STATEMENT:  insert into items(id, img, rate, details, quantity) values("ac1be12c-f8fc-4bf3-827d-4023b28655cc", "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");
+ERROR:  column "ac1be12c-f8fc-4bf3-827d-4023b28655cc" does not exist at character 59
+STATEMENT:  insert into item(id, img, rate, details, quantity) values("ac1be12c-f8fc-4bf3-827d-4023b28655cc", "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");
+ERROR:  column "ac1be12c-f8fc-4bf3-827d-4023b28655cc" does not exist at character 61
+STATEMENT:  insert into item (id, img, rate, details, quantity) values ("ac1be12c-f8fc-4bf3-827d-4023b28655cc", "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");
+ERROR:  syntax error at or near "cc3" at character 31
+STATEMENT:  insert into item values (19815cc3-4d10-4dde-ab57-663dcfa15734, "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");
+ERROR:  column "19815cc3-4d10-4dde-ab57-663dcfa15734" does not exist at character 26
+STATEMENT:  insert into item values ("19815cc3-4d10-4dde-ab57-663dcfa15734", "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");

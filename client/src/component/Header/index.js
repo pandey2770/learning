@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser, getCurrentUser } from '../../action';
+import { logoutUser, getUser } from '../../action';
 
 class Header extends Component {
   state = {
@@ -9,7 +9,7 @@ class Header extends Component {
   };
 
   componentWillMount() {
-    this.props.getCurrentUser();
+    this.props.getUser();
     if (
       (this.props.location.pathname === '/Login' ||
         this.props.location.pathname === '/SignUp') &&
@@ -102,7 +102,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     logoutUser: history => dispatch(logoutUser(history)),
-    getCurrentUser: () => dispatch(getCurrentUser())
+    getUser: () => dispatch(getUser())
   };
 }
 
