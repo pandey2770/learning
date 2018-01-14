@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from '../Header';
-import { loginUser } from '../../action';
+import Header from './Header';
+import { loginUser } from '../action';
 
 class Login extends Component {
   state = {
@@ -10,11 +10,12 @@ class Login extends Component {
     password: ''
   };
 
-  change = event => {
+  updateInput = event => {
     this.setState({
       [`${event.target.name}`]: event.target.value
     });
   };
+
   login = () => {
     const { loginUser, history } = this.props;
     const { username, password } = this.state;
@@ -23,16 +24,17 @@ class Login extends Component {
 
   render() {
     const { username, password } = this.state;
+    const { history, location } = this.props;
     return (
       <div>
-        <Header history={this.props.history} location={this.props.location} />
+        <Header history={history} location={location} />
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email Address</label>
           <input
             type="email"
             value={username}
             name="username"
-            onChange={this.change}
+            onChange={this.updateInput}
             className="form-control"
             placeholder="Enter email"
           />
@@ -43,7 +45,7 @@ class Login extends Component {
             type="password"
             value={password}
             name="password"
-            onChange={this.change}
+            onChange={this.updateInput}
             className="form-control"
             placeholder="Password"
           />
@@ -59,10 +61,6 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {};
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
@@ -70,4 +68,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(undefined, mapDispatchToProps)(Login);

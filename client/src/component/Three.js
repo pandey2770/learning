@@ -4,11 +4,12 @@ import Header from './Header';
 
 class Three extends Component {
   render() {
+    const { history, location } = this.props;
     return (
       <div>
-        <Header history={this.props.history} location={this.props.location} />
+        <Header history={history} location={location} />
         <h1>Three</h1>
-        <Link to={`/`}>
+        <Link to={'/'}>
           <h3>Back to Demo</h3>
         </Link>
       </div>

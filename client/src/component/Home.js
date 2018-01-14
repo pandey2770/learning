@@ -1,50 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import { data, img } from '../action';
+import { getAllProducts, getProduct } from '../action';
 
 class Home extends Component {
-state = {
-}
   componentWillMount() {
-      this.props.data()
+    this.props.getAllProducts()
   }
 
-  img = (event) => {
-    const { id }= event.target.dataset;
-    const { img } = this.props;
-    img(id);
-    console.log(id)
+  getProduct = (event) => {
+    const { id } = event.target.dataset;
+    const { getProduct } = this.props;
+    getProduct(id);
   }
 
   render() {
-    const {items} = this.props;
-    const list = items.map((item,id) => {
-      console.log(item.id,'check')
-      return (
-        <img src={item.img} key={id} className='img' alt="Product Image" />
-      )
-    })
+    const { product, history, location } = this.props;
     return (
       <div>
         <div>
-          <Header history={this.props.history} location={this.props.location} />
+          <Header history={history} location={location} />
         </div>
-          {list}
+          {product.map((p, id) => {
+            return <img src={p.img} key={id} className='img' alt="Product" />
+          })}
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return  {
-    items: state.data
+    product: state.product
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    data: () => dispatch(data()),
-    img: (id) => dispatch(img(id))
+    getAllProducts: () => dispatch(getAllProducts()),
+    getProduct: id => dispatch(getProduct(id))
   };
 }
 

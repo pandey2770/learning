@@ -2,16 +2,10 @@ import axios from 'axios';
 
 export const loginUser = (username, password, history) => {
   return async function(dispatch) {
-    const login = axios.post('/api/login', { username, password }).then(
-      ({ data }) => {
-        history.push('/');
-        return dispatch(loginUserDispatch(data));
-      },
-      () => {
-        alert("Please don't force me enter the right Password or Email else ");
-      }
-    );
-  };
+    await axios.post('/api/login', { username, password });
+    history.push('/');
+    return dispatch(loginUserDispatch({username}));
+  }
 };
 
 export const loginUserDispatch = data => {
@@ -23,100 +17,81 @@ export const loginUserDispatch = data => {
 
 export const logoutUser = history => {
   return async function(dispatch) {
-    const logout = axios.get('/api/logout').then(({ data }) => {
-      history.push('/login');
-      return dispatch(getLogoutDispatch(data));
-    });
+    await axios.get('/api/logout');
+    history.push('/login');
+    return dispatch(logoutUserDispatch());
   };
 };
 
-export const getLogoutDispatch = data => {
+export const logoutUserDispatch = () => {
   return {
-    type: 'LOGOUT_USER',
-    data
+    type: 'LOGOUT_USER'
   };
 };
 
 export const getUser = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/user');
-    return dispatch(getLoggedinUser(data));
+    return dispatch(getUserDispatch(data));
   };
 };
 
-export const getLoggedinUser = user => {
+export const getUserDispatch = user => {
   return {
     type: 'LOGGEDIN_USER',
     user
   };
 };
 
-export const signup = (history, username, password) => {
+export const signUp = (history, username, password) => {
   return async function(dispatch) {
-    const data = await axios.post('/api/signUp', { username, password });
+    await axios.post('/api/signUp', {username, password});
     history.push('/');
-    return dispatch(getsignup(data));
+    return dispatch(getUserDispatch(username));
   };
 };
 
-export const getsignup = data => {
-  return {
-    type: 'CREATE_SIGNUP',
-    data
-  };
-};
-
-export const setting = (
-  history,
-  id,
-  username,
-  password,
-  name,
-  number,
-  address
-) => {
+export const updateData = (id, user) => {
   return async function(dispatch) {
-    const data = await axios.put(`/api/user/${id}`, {
-      user: { id, username, password, name, number, address }
-    });
-    history.push('/setting');
+    await axios.put(`/api/user/${id}`, {user});
+    return dispatch(updateDataDispatch(id, user));
   };
 };
 
-export const changeSetting = (data, id) => {
+export const updateDataDispatch = (id, user) => {
   return {
-    type: 'CHANGE_SETTING',
+    type: 'UPDATE_USER_DATA',
     id,
-    data
+    user
   };
 };
 
-export const data = () => {
+export const getAllProducts = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/product');
-    return dispatch(getAllData(data));
+    return dispatch(getAllProductsDispatch(data));
   };
 };
 
-export const getAllData = data => {
+export const getAllProductsDispatch = products => {
   return {
-    type: 'ALL_DATA',
-    data
+    type: 'GET_ALL_PRODUCT',
+    products
   };
 };
 
-export const img = (id) => {
-  console.log(id,'inaction')
+export const getProduct = id => {
   return async function(dispatch) {
-    console.log(dispatch,'diapatch')
     const { data } = await axios.get(`/api/product/${id}`);
-    return dispatch(getImgData(data));
+    return dispatch(getProductDispatch(data));
   };
 };
 
-export const getImgData = data => {
+export const getProductDispatch = product => {
   return {
-    type: 'IMG',
-    data
+    type: 'GET_PRODUCT',
+    product
   };
 };
+
+// TODO: separate action for user and product

@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import dataReducer from './data';
 
-function userReducer(state = null, action) {
+const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'LOGGEDIN_USER':
       return action.user;
@@ -12,7 +11,19 @@ function userReducer(state = null, action) {
   }
 }
 
+const productReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'GET_ALL_PRODUCT':
+      return action.products;
+    case 'GET_PRODUCT':
+      // TODO: correct below
+      return [action.product]
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   user: userReducer,
-  data: dataReducer
+  product: productReducer
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser, getUser } from '../../action';
+import { logoutUser, getUser } from '../action';
 
 class Header extends Component {
   state = {
@@ -10,22 +10,16 @@ class Header extends Component {
 
   componentWillMount() {
     this.props.getUser();
-    if (
-      (this.props.location.pathname === '/Login' ||
-        this.props.location.pathname === '/SignUp') &&
-      this.props.user
-    ) {
-      this.props.history.push('/');
+    const { user, location: { pathname }, history } = this.props;
+    if ((pathname === '/Login' || pathname === '/SignUp') && user) {
+      history.push('/');
     }
   }
 
   componentWillReceiveProps(props) {
-    if (
-      (props.location.pathname === '/Login' ||
-        props.location.pathname === '/SignUp') &&
-      props.user
-    ) {
-      props.history.push('/');
+    const { user, location: { pathname }, history } = props;
+    if ((pathname === '/Login' || pathname === '/SignUp') && user) {
+      history.push('/');
     }
   }
 
@@ -44,18 +38,18 @@ class Header extends Component {
             <div className="collapse navbar-collapse">
               <div className="navbar-nav">
                 <ul className="style">
-                  <Link to={`/Home`}>
+                  <Link to={`/home`}>
                     <li className="nav-item nav-link active">
                       Home <span className="sr-only">(current)</span>
                     </li>
                   </Link>
-                  <Link to={`/Two`}>
+                  <Link to={`/two`}>
                     <li className="nav-item nav-link">Features</li>
                   </Link>
-                  <Link to={`/Three`}>
+                  <Link to={`/three`}>
                     <li className="nav-item nav-link">Pricing</li>
                   </Link>
-                  <Link to={`/Cart`}>
+                  <Link to={`/cart`}>
                     <li className="nav-item nav-link">Cart</li>
                   </Link>
                 </ul>
@@ -65,7 +59,7 @@ class Header extends Component {
         </div>
         <div className="navbar navbar-expand navbar-light bg-light">
           {!user ? (
-            <Link to={`/Login`}>
+            <Link to={`/login`}>
               <li className="nav-item nav-link">Login</li>
             </Link>
           ) : (
@@ -82,7 +76,7 @@ class Header extends Component {
                 <a onClick={this.logoutUser}>
                   <li className="nav-item nav-link">Logout</li>
                 </a>
-                <Link to={`/Setting`}>
+                <Link to={`/setting`}>
                   <li className="nav-item nav-link">Setting</li>
                 </Link>
               </ul>

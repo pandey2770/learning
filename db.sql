@@ -1,6 +1,6 @@
 CREATE DATABASE demo;
 
-CREATE TABLE user (
+CREATE TABLE demouser (
   id uuid,
   username text,
   password varchar,

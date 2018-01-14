@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import Header from '../Header';
-import { setting } from '../../action';
+import Header from './Header';
+import { updateData } from '../action';
 import { connect } from 'react-redux';
 
-class Setting extends Component {
+class Profile extends Component {
+  // TODO: show already saved data
+  // create single user in the state
   state = {
     name: '',
     address: '',
@@ -11,31 +13,32 @@ class Setting extends Component {
     username: '',
     password: ''
   };
-  details = event => {
+
+  updateInput = event => {
     this.setState({
       [`${event.target.name}`]: event.target.value
     });
   };
 
   send = event => {
-    const { id } = this.props.user;
+    const { updateData, user: { id }} = this.props;
     const { name, address, number, username, password } = this.state;
-    const { history, setting } = this.props;
-    setting(history, id, username, password, name, number, address);
+    updateData(id, {username, password, name, number, address});
   };
 
   render() {
     const { name, address, number, username, password } = this.state;
+    const { history, location } = this.props;
     return (
       <div>
-        <Header history={this.props.history} location={this.props.location} />
+        <Header history={history} location={location} />
         <form>
           <div className="form-group">
             <label>Full Name</label>
             <input
               type="text"
               name="name"
-              onChange={this.details}
+              onChange={this.updateInput}
               value={name}
               className="form-control"
               placeholder="Full Name"
@@ -46,7 +49,7 @@ class Setting extends Component {
             <input
               type="text"
               name="address"
-              onChange={this.details}
+              onChange={this.updateInput}
               value={address}
               className="form-control"
               placeholder="Address"
@@ -94,9 +97,9 @@ function mapStateToprpos(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setting: (history, id, username, password, name, number, address) =>
-      dispatch(setting(history, id, username, password, name, number, address))
+    updateData: (history, id, username, password, name, number, address) =>
+      dispatch(updateData(history, id, username, password, name, number, address))
   };
 }
 
-export default connect(mapStateToprpos, mapDispatchToProps)(Setting);
+export default connect(mapStateToprpos, mapDispatchToProps)(Profile);
