@@ -27,7 +27,7 @@ class Login extends Component {
       <div>
         <Header history={this.props.history} location={this.props.location} />
         <div className="form-group">
-          <lable for="exampleInputEmail1">Email Address</lable>
+          <label htmlFor="exampleInputEmail1">Email Address</label>
           <input
             type="email"
             value={username}
@@ -38,7 +38,7 @@ class Login extends Component {
           />
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputPassword1">Password</label>
           <input
             type="password"
             value={password}

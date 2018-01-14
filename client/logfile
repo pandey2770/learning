@@ -14,3 +14,37 @@ ERROR:  syntax error at or near "cc3" at character 31
 STATEMENT:  insert into item values (19815cc3-4d10-4dde-ab57-663dcfa15734, "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");
 ERROR:  column "19815cc3-4d10-4dde-ab57-663dcfa15734" does not exist at character 26
 STATEMENT:  insert into item values ("19815cc3-4d10-4dde-ab57-663dcfa15734", "https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg", "100.00", "Product", "100");
+ERROR:  syntax error at or near "user" at character 14
+STATEMENT:  CREATE TABLE user (
+	  id uuid,
+	  username text,
+	  password varchar,
+	  name text,
+	  number varchar,
+	  address varchar,
+	  cart varchar
+	);
+ERROR:  relation "login" does not exist at character 15
+STATEMENT:  SELECT * FROM login where id = $1
+ERROR:  relation "login" does not exist at character 15
+STATEMENT:  SELECT * FROM login where id = $1
+ERROR:  relation "login" does not exist at character 15
+STATEMENT:  SELECT * FROM login where id = $1
+ERROR:  relation "login" does not exist at character 15
+STATEMENT:  SELECT * FROM login where id = $1
+ERROR:  syntax error at or near "user" at character 13
+STATEMENT:  INSERT INTO user (id, username, password) VALUES ($1, $2, $3)
+ERROR:  syntax error at or near "user" at character 13
+STATEMENT:  INSERT INTO user (id, username, password) VALUES ($1, $2, $3)
+ERROR:  syntax error at or near "user" at character 13
+STATEMENT:  INSERT INTO user (id, username, password) VALUES ($1, $2, $3)
+ERROR:  syntax error at or near "user" at character 14
+STATEMENT:  CREATE TABLE user (
+	  id uuid,
+	  username text,
+	  password varchar,
+	  name text,
+	  number varchar,
+	  address varchar,
+	  cart varchar
+	);

@@ -22,7 +22,7 @@ state = {
     const list = items.map((item,id) => {
       console.log(item.id,'check')
       return (
-        <img src={item.img} key={id} className='img'onClick={item.img} alt="Product Image" />
+        <img src={item.img} key={id} className='img' alt="Product Image" />
       )
     })
     return (

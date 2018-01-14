@@ -4,7 +4,7 @@ var User = require('./user')
 
  passport.use(
   new LocalStrategy(async (username, password, done) => {
-     var user = await User.getUser(username, password);
+     var user = await User.get(username, password);
      if (user.length === 1) {
       return done(null, user[0]);
     } else {
@@ -18,11 +18,12 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-   User.findById(id)
-      .then((user) => {
-         done(null, user[0]);
-       })
-      .catch((error) => {
-         console.log(`Error: ${error}`);
+  User.getById(id)
+    .then((user) => {
+      done(null, user[0]);
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
     });
-});
+  }
+);

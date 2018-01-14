@@ -76,7 +76,7 @@ export const setting = (
   address
 ) => {
   return async function(dispatch) {
-    const data = await axios.put(`/api/setting/${id}`, {
+    const data = await axios.put(`/api/user/${id}`, {
       user: { id, username, password, name, number, address }
     });
     history.push('/setting');
@@ -93,7 +93,7 @@ export const changeSetting = (data, id) => {
 
 export const data = () => {
   return async function(dispatch) {
-    const { data } = await axios.get('/api/data');
+    const { data } = await axios.get('/api/product');
     return dispatch(getAllData(data));
   };
 };
@@ -109,7 +109,7 @@ export const img = (id) => {
   console.log(id,'inaction')
   return async function(dispatch) {
     console.log(dispatch,'diapatch')
-    const { data } = await axios.get(`/api/dataimg/ac1be12c-f8fc-4bf3-827d-4023b28655cc`,{id});
+    const { data } = await axios.get(`/api/product/${id}`);
     return dispatch(getImgData(data));
   };
 };

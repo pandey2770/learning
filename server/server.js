@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var session = require("express-session");
 var bodyParser = require("body-parser");
-var user = require('./src/user');
+var User = require('./src/user');
+var Product = require('./src/product');
 
 var app = express();
 app.use(express.static("public"));
@@ -21,9 +22,9 @@ app.use(bodyParser.raw());
 require('./src/auth.js');
 
 app.post('/api/signUp',  async (req, res) => {
-  const data = await user.signup(req.body.username,req.body.password);
+  const data = await User.signUp(req.body.username,req.body.password);
   passport.authenticate('local')(req, res, function () {
-    res.json({ data });
+    res.sendStatus(200);
   });
 });
 
@@ -43,22 +44,22 @@ app.get('/api/logout', function(req, res){
   res.sendStatus(200);
 });
 
-app.put('/api/setting/:id', async (req, res) => {
+app.put('/api/user/:id', async (req, res) => {
   if (req.user) {
-    const data = await user.changeSetting(req.params.id, req.body.user);
+    const data = await User.updateData(req.params.id, req.body.user);
     res.sendStatus(200);
   } else {
       res.status(401).send('Unauthorized!')
    }
 });
 
-app.get('/api/data', async(req,res) =>{
-  const data = await user.getAllData();
+app.get('/api/product', async(req,res) =>{
+  const data = await Product.getAll();
   res.json(data)
 });
 
-app.get('/api/dataimg/:id', async(req,res) => {
-  const data = await user.getImgDetails(req.params.id);
+app.get('/api/product/:id', async(req,res) => {
+  const data = await Product.get(req.params.id);
   console.log(data)
   res.json(data)
 })
