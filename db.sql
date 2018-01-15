@@ -25,3 +25,10 @@ insert into product values (
   'Product',
   '100'
 );
+insert into product values (
+  '7a52c9d0-1a96-4902-bdcc-bce9bdf044a2',
+  'https://images-na.ssl-images-amazon.com/images/I/81PiNKhm0-L._SL1500_.jpg',
+  '100.00',
+  'Product',
+  '100'
+);

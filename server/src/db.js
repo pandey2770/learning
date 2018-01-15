@@ -1,11 +1,10 @@
 const { Pool, Client } = require('pg');
 
 const pool = new Pool({
-  user: '',
+  user: 'postgres',
   host: 'localhost',
   database: 'demo',
-  password: '',
-  port: 5432
+  password: 'Mahatmaji@1',
 });
 
 async function get(query) {

@@ -7,7 +7,8 @@ async function get(username, password) {
     values: [username, password]
   };
   const users = await DB.get(query);
-  return users[0];
+  console.log(users)
+  return users;
 }
 
 async function getById(id) {

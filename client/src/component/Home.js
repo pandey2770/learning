@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import { getAllProducts } from '../action';
 
@@ -13,24 +14,37 @@ class Home extends Component {
     const { history } = this.props;
     history.push(`/product/${id}`)
   }
+  
+  buy = (event) => {
+    const { id } = event.target.dataset;
+    const { history } = this.props;
+    history.push(`/cart/${id}`)
+  }
 
   render() {
-    const { product, history, location } = this.props;
+    const { product,user, history, location } = this.props;
     return (
       <div>
         <div>
           <Header history={history} location={location} />
         </div>
-          {product.map((p, id) => {
-            return <img
-              src={p.img}
-              data-id={p.id}
+        {product.map((p, id) => {
+            return <div
               key={id}
-              onClick={this.openProductPage}
               className='img'
               alt="Product"
-            />
-          })}
+            >
+             <img 
+                src={p.img}
+                data-id={p.id}
+                key={id}
+                onClick={this.openProductPage}
+                className='img'
+                alt="Product" />
+                {!user? ( <Link to={`/login/${p.id}`}><button data-id={p.id} >buy</button></Link>)
+                :( <button data-id={p.id} onClick={this.buy} >buy</button>)}
+            </div>
+          })} 
       </div>
     );
   }
@@ -38,6 +52,7 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return  {
+    user: state.user,
     product: state.product
   };
 }

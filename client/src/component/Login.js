@@ -7,7 +7,7 @@ import { loginUser } from '../action';
 class Login extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
   };
 
   updateInput = event => {
@@ -17,7 +17,7 @@ class Login extends Component {
   };
 
   login = () => {
-    const { loginUser, history } = this.props;
+    const { loginUser, history,one } = this.props;
     const { username, password } = this.state;
     loginUser(username, password, history);
   };
