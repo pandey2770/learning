@@ -1,3 +1,4 @@
+
 var passport = require('passport');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -23,9 +24,13 @@ require('./src/auth.js');
 
 app.post('/api/signUp',  async (req, res) => {
   const data = await User.signUp(req.body.username,req.body.password);
-  passport.authenticate('local')(req, res, function () {
-    res.sendStatus(200);
-  });
+  if (data){
+    passport.authenticate('local')(req, res, function () {
+      res.sendStatus(200);
+    })
+ } else {
+    res.status(500).send('Email Already Exists !')
+  }
 });
 
 app.post('/api/login',

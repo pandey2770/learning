@@ -69,7 +69,7 @@ class Header extends Component {
                 type="button"
                 data-toggle="dropdown"
               >
-                {user && user.username}
+                {user && user.email}
                 <span className="caret" />
               </button>
               <ul className="dropdown-menu">

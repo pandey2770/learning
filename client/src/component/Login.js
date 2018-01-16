@@ -17,7 +17,7 @@ class Login extends Component {
   };
 
   login = () => {
-    const { loginUser, history,one } = this.props;
+    const { loginUser, history } = this.props;
     const { username, password } = this.state;
     loginUser(username, password, history);
   };
