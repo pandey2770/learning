@@ -4,11 +4,11 @@ var User = require('./user')
 
  passport.use(
   new LocalStrategy(async (username, password, done) => {
-     var user = await User.get(username, password);
-     if (user.length === 1) {
+    var user = await User.get(username, password);
+    if (user.length === 1) {
       return done(null, user[0]);
     } else {
-       return done(null, false);
+        return done(null, false);
     }
   })
 );

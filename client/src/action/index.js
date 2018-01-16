@@ -1,21 +1,5 @@
 import axios from 'axios';
 
-export const server = (history) => {
-  return async function(dispatch) {
-    const { data } = await axios.get('/api/error');
-    console.log(data)
-    return dispatch(serverData(data));
-  }
-};
-
-
-export const serverData = data => {
-  return {
-    type: 'SERVER',
-    data
-  };
-};
-
 export const loginUser = (username, password, history) => {
   return async function(dispatch) {
     await axios.post('/api/login', { username, password });
@@ -61,9 +45,13 @@ export const getUserDispatch = user => {
 
 export const signUp = (history, username, password) => {
   return async function(dispatch) {console.log(username, password)
-    await axios.post('/api/signUp', {username, password});
-    history.push('/');
-    return dispatch(getUserDispatch(username));
+    axios.post('/api/signUp', {username, password})
+    .then(() => {
+      history.push('/');
+      return dispatch(getUserDispatch(username));
+    }, (response) => {
+      // console.log(message);
+    });
   }
 };
 

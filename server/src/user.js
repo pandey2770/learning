@@ -26,14 +26,12 @@ async function getById(id) {
 async function signUp(email, password) {
   const id = uuidv1();
   const query = {
-    text: "INSERT INTO demouser  (id, email, password) VALUES ($1, $2, $3)",
+    text: "INSERT INTO demouser (id, email, password) VALUES ($1, $2, $3)",
     values: [id, email, password],  
   };
-   await DB.mutate(query);
-   return id;
+  await DB.mutate(query);
+  return id;
 }
-
-
 
 async function updateData (id,user ) {
   const query = {

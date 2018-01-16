@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser, getUser, server } from '../action';
+import { logoutUser, getUser } from '../action';
 
 class Header extends Component {
   state = {
@@ -9,7 +9,6 @@ class Header extends Component {
   };
 
   componentWillMount() {
-    this.props.server();
     this.props.getUser();
     const { user, location: { pathname }, history } = this.props;
     if ((pathname === '/Login' || pathname === '/SignUp') && user) {
@@ -89,7 +88,6 @@ class Header extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state)
   return {
     error:state.error,
     user: state.user,
@@ -100,7 +98,6 @@ function mapDispatchToProps(dispatch) {
   return {
     logoutUser: history => dispatch(logoutUser(history)),
     getUser: () => dispatch(getUser()),
-    server: history => dispatch(server(history)),
   };
 }
 
