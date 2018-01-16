@@ -22,14 +22,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 require('./src/auth.js');
 
+
+
+app.get('/api/error',async (req,res) => {
+  const data = await User.error();
+    res.json(data);
+});
+
 app.post('/api/signUp',  async (req, res) => {
   const data = await User.signUp(req.body.username,req.body.password);
-  if (data){
-    passport.authenticate('local')(req, res, function () {
-      res.sendStatus(200);
-    })
- } else {
+  console.log(data)
+  if (data === 'error'){
     res.status(500).send('Email Already Exists !')
+ } else {
+  passport.authenticate('local')(req, res, function () {
+    res.sendStatus(200);
+  })
   }
 });
 

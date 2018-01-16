@@ -53,7 +53,7 @@ class Home extends Component {
 function mapStateToProps(state) {
   return  {
     user: state.user,
-    product: state.product
+    product: state.product,
   };
 }
 

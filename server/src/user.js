@@ -1,6 +1,11 @@
 const uuidv1 = require("uuid/v1");
 const DB = require("./db");
 
+
+async function error() {
+  return await DB.get("SELECT * FROM data");
+}
+
 async function get(email, password) {
   const query = {
     text: "SELECT * FROM demouser WHERE email = $1 and password = $2 ",
@@ -21,12 +26,14 @@ async function getById(id) {
 async function signUp(email, password) {
   const id = uuidv1();
   const query = {
-    text: "INSERT INTO demouser (id, email, password) VALUES ($1, $2, $3)",
-    values: [id, email, password]
+    text: "INSERT INTO demouser  (id, email, password) VALUES ($1, $2, $3)",
+    values: [id, email, password],  
   };
-  await DB.mutate(query);
-  return id;
+   await DB.mutate(query);
+   return id;
 }
+
+
 
 async function updateData (id,user ) {
   const query = {
@@ -41,4 +48,5 @@ module.exports = {
   getById,
   signUp,
   updateData,
+  error,
 };

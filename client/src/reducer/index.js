@@ -11,6 +11,17 @@ const userReducer = (state = null, action) => {
   }
 }
 
+
+const errorReducer = (state = null, action) => {
+  switch (action.type) {
+    case 'SERVER':
+      return action.data;
+    default:
+      return state;
+  }
+}
+
+
 const productReducer = (state = [], action) => {
   switch (action.type) {
     case 'GET_ALL_PRODUCT':
@@ -24,5 +35,6 @@ const productReducer = (state = [], action) => {
 
 export default combineReducers({
   user: userReducer,
-  product: productReducer
+  product: productReducer,
+  error: errorReducer,  
 });

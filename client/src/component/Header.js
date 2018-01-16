@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser, getUser } from '../action';
+import { logoutUser, getUser, server } from '../action';
 
 class Header extends Component {
   state = {
-    user: undefined
+    user: undefined,
   };
 
   componentWillMount() {
+    this.props.server();
     this.props.getUser();
     const { user, location: { pathname }, history } = this.props;
     if ((pathname === '/Login' || pathname === '/SignUp') && user) {
@@ -88,15 +89,18 @@ class Header extends Component {
   }
 }
 function mapStateToProps(state) {
+  console.log(state)
   return {
-    user: state.user
+    error:state.error,
+    user: state.user,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     logoutUser: history => dispatch(logoutUser(history)),
-    getUser: () => dispatch(getUser())
+    getUser: () => dispatch(getUser()),
+    server: history => dispatch(server(history)),
   };
 }
 

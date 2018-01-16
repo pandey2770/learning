@@ -18,6 +18,14 @@ CREATE TABLE product (
   quantity varchar
 );
 
+CREATE TABLE data (
+ data varchar
+);
+
+insert into data values (
+  '19815cc3-4d10-4dde-ab57-663dcfa15734'
+);
+
 insert into product values (
   '19815cc3-4d10-4dde-ab57-663dcfa15734',
   'https://www.freightcenter.com/content/img/shipping-applicances-via-freight.jpg',

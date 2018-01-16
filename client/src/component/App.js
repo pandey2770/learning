@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Two from './Two';
-import Three from './Three';
+import Down from './Down';
 import Cart from './Cart';
 import Login from './Login';
 import SignUp from './SignUp';
@@ -16,7 +16,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route path="/two" component={Two} />
-          <Route path="/three" component={Three} />
+          <Route path="/down" component={Down} />
           <Route path="/cart" component={Cart} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
@@ -28,5 +28,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
