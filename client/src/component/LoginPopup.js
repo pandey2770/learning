@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from './Header';
 import { loginUser } from '../action';
 
 class LoginPopup extends Component {
@@ -24,7 +23,6 @@ class LoginPopup extends Component {
 
   render() {
     const { username, password } = this.state;
-    const { history, location } = this.props;
     return (
       <div className="modal">
         <div className="modal-content">

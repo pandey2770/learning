@@ -22,7 +22,19 @@ const productReducer = (state = [], action) => {
   }
 }
 
+const buyReducer = ( state=null,action) => {
+  switch (action.type) {
+    case 'ITEM' :
+    console.log('inreduser',action.id)
+      return action.id;
+      default:
+        return state;
+  }
+}
+
+
 export default combineReducers({
   user: userReducer,
   product: productReducer,
+  buyLogin:buyReducer,
 });

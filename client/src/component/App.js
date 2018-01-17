@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Home from './Home';
 import Two from './Two';
 import Down from './Down';
@@ -12,6 +13,9 @@ import Product from './Product';
 import '../style.css';
 
 class App extends Component {
+
+
+
   render() {
     return (
       <div style={{position: 'relative', height: '100%'}}>
@@ -25,11 +29,22 @@ class App extends Component {
           <Route path="/product/:id" component={Product} />
           <Route path="/" component={Home} />
         </Switch>
-        {/* {true && <LoginPopup />} */}
+        {true && <LoginPopup />}
       </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  console.log(state)
+  return  {
+    buyLogin:state.buyLogin
+  };
+}
 
-export default App;
+function mapDispatchToProps(dispatch) {
+  return {
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

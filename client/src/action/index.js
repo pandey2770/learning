@@ -98,4 +98,12 @@ export const getProductDispatch = product => {
   };
 };
 
+export const buyLogin= (id)=>{
+  console.log
+    return {
+      type:"ITEM",
+      id
+    }
+
+};
 // TODO: separate action for user and product

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Header from './Header';
-import { getAllProducts } from '../action';
+import { getAllProducts, buyLogin } from '../action';
 
 class Home extends Component {
   componentWillMount() {
@@ -19,6 +18,10 @@ class Home extends Component {
     const { id } = event.target.dataset;
     const { history } = this.props;
     history.push(`/cart/${id}`)
+  }
+
+  buyLogin = () => {
+    this.props.buyLogin('login');
   }
 
   render() {
@@ -41,7 +44,7 @@ class Home extends Component {
                 onClick={this.openProductPage}
                 className='img'
                 alt="Product" />
-                {!user? ( <Link to={`/login/${p.id}`}><button data-id={p.id} >buy</button></Link>)
+                {!user? ( <button data-id={p.id} onClick={this.buyLogin} >buy</button>)
                 :( <button data-id={p.id} onClick={this.buy} >buy</button>)}
             </div>
           })} 
@@ -60,6 +63,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
+    buyLogin:(state) => dispatch(buyLogin(state)),
   };
 }
 
