@@ -20,8 +20,9 @@ class Home extends Component {
     history.push(`/cart/${id}`)
   }
 
-  buyLogin = () => {
-    this.props.buyLogin('login');
+  buyLogin = (event) => {
+    const { id } = event.target.dataset;
+    this.props.buyLogin(id);
   }
 
   render() {
@@ -63,7 +64,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
-    buyLogin:(state) => dispatch(buyLogin(state)),
+    buyLogin:(id) => dispatch(buyLogin(id)),
   };
 }
 

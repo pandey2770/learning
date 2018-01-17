@@ -3,7 +3,6 @@ import axios from 'axios';
 export const loginUser = (username, password, history) => {
   return async function(dispatch) {
     await axios.post('/api/login', { username, password });
-    history.push('/');
     return dispatch(loginUserDispatch({username}));
   }
 };
@@ -98,12 +97,18 @@ export const getProductDispatch = product => {
   };
 };
 
-export const buyLogin= (id)=>{
-  console.log
-    return {
-      type:"ITEM",
-      id
-    }
-
+export const buyLogin = (id)=>{
+  return {
+    type:"ITEM",
+    id
+  }
 };
+
+export const close = (state) => {
+  return {
+    type:'CLOSE',
+    state
+  }
+}
+
 // TODO: separate action for user and product

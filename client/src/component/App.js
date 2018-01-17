@@ -14,7 +14,9 @@ import '../style.css';
 
 class App extends Component {
 
-
+  state = {
+    buyLogin: null,
+  };
 
   render() {
     return (
@@ -29,16 +31,20 @@ class App extends Component {
           <Route path="/product/:id" component={Product} />
           <Route path="/" component={Home} />
         </Switch>
-        {true && <LoginPopup />}
+        {!this.props.buyLogin ? (
+            null
+          ) : (
+          <LoginPopup /> 
+        )}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  console.log(state,'state')
   return  {
-    buyLogin:state.buyLogin
+    buyLogin:state.buyLogin,
   };
 }
 

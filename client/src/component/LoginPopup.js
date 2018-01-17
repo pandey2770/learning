@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUser } from '../action';
+import Header from './Header';
+import { loginUser,close } from '../action';
 
 class LoginPopup extends Component {
   state = {
@@ -21,10 +22,15 @@ class LoginPopup extends Component {
     loginUser(username, password, history);
   };
 
+  close = () => {
+    this.props.close('close');
+  }
+
   render() {
     const { username, password } = this.state;
     return (
       <div className="modal">
+      <input type='button' value='X' onClick={this.close} />
         <div className="modal-content">
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email Address</label>
@@ -63,7 +69,8 @@ class LoginPopup extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
-      dispatch(loginUser(username, password, history))
+      dispatch(loginUser(username, password, history)),
+      close: (state) => dispatch(close(state)),
   };
 }
 
