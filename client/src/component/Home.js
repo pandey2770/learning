@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
 import { getAllProducts, buyLogin } from '../action';
@@ -47,7 +46,7 @@ class Home extends Component {
                 onClick={this.openProductPage}
                 className='img'
                 alt="Product" />
-                {!user? ( <Link to={`/Login`}><button data-id={p.id} onClick={this.buyLogin} >buy</button></Link>)
+                {!user? ( <button data-id={p.id} onClick={this.buyLogin} >buy</button>)
                 :( <button data-id={p.id} onClick={this.buy} >buy</button>)}
             </div>
           })} 

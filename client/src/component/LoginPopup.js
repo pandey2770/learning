@@ -5,6 +5,7 @@ import { loginUser,close } from '../action';
 
 class LoginPopup extends Component {
   state = {
+    buyLogin: null,
     username: '',
     password: '',
   };
@@ -27,6 +28,10 @@ class LoginPopup extends Component {
 
   render() {
     const { username, password } = this.state;
+    if(this.props.buyLogin){
+      return  (<LoginPopup />)
+    } else{ return null }
+
     return (
       <div className="modal">
       <input type='button' value='X' onClick={this.close} />
@@ -65,6 +70,13 @@ class LoginPopup extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return  {
+    buyLogin:state.buyLogin,
+  };
+}
+
+
 function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
@@ -73,4 +85,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(undefined, mapDispatchToProps)(LoginPopup);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPopup);

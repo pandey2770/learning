@@ -7,6 +7,7 @@ import Cart from './Cart';
 import Login from './Login';
 import SignUp from './SignUp';
 import Profile from './Profile';
+import LoginPopup from './LoginPopup';
 import Product from './Product';
 import '../style.css';
 
@@ -24,6 +25,7 @@ class App extends Component {
           <Route path="/product/:id" component={Product} />
           <Route path="/" component={Home} />
         </Switch>
+        <LoginPopup />
       </div>
     );
   }
