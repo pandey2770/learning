@@ -34,7 +34,7 @@ class App extends Component {
         {!this.props.buyLogin ? (
             null
           ) : (
-          <LoginPopup /> 
+          <LoginPopup />
         )}
       </div>
     );

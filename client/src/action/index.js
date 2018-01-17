@@ -3,6 +3,7 @@ import axios from 'axios';
 export const loginUser = (username, password, history) => {
   return async function(dispatch) {
     await axios.post('/api/login', { username, password });
+    history.push('/');
     return dispatch(loginUserDispatch({username}));
   }
 };

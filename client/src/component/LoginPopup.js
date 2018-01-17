@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from './Header';
 import { loginUser,close } from '../action';
 
 class LoginPopup extends Component {
@@ -31,7 +30,7 @@ class LoginPopup extends Component {
     return (
       <div className="modal">
       <input type='button' value='X' onClick={this.close} />
-        <div className="modal-content">
+      <div className="modal-content">
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email Address</label>
           <input
@@ -57,7 +56,7 @@ class LoginPopup extends Component {
         <button onClick={this.login} className="btn btn-primary">
           Submit
         </button>/
-        <Link to={`/SignUp`}>
+        <Link to={`/SignUp`} onClick={this.close}>
           <button className="btn btn-primary">SignUp</button>
         </Link>
         </div>
