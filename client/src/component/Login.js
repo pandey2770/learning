@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
 import { loginUser } from '../action';
+import LoginPopup from './LoginPopup';
 
 class Login extends Component {
+  
   state = {
+    buyLogin: null,
     username: '',
     password: '',
   };
@@ -25,6 +28,10 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     const { history, location } = this.props;
+    if(this.props.buyLogin){
+      return  (<LoginPopup />)
+    } else{ return null ;}
+
     return (
       <div>
         <Header history={history} location={location} />
@@ -61,11 +68,17 @@ class Login extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    loginUser: (username, password, history) =>
-      dispatch(loginUser(username, password, history))
+function mapStateToProps(state) {
+  return  {
+    buyLogin:state.buyLogin,
   };
 }
 
-export default connect(undefined, mapDispatchToProps)(Login);
+function mapDispatchToProps(dispatch) {
+  return {
+    loginUser: (username, password, history) =>
+      dispatch(loginUser(username, password, history)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

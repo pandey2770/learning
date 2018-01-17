@@ -99,6 +99,7 @@ export const getProductDispatch = product => {
 };
 
 export const buyLogin = (id)=>{
+  console.log('inaction')
   return {
     type:"ITEM",
     id

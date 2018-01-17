@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
 import { getAllProducts, buyLogin } from '../action';
@@ -21,6 +22,7 @@ class Home extends Component {
   }
 
   buyLogin = (event) => {
+    console.log('asddfg')
     const { id } = event.target.dataset;
     this.props.buyLogin(id);
   }
@@ -45,7 +47,7 @@ class Home extends Component {
                 onClick={this.openProductPage}
                 className='img'
                 alt="Product" />
-                {!user? ( <button data-id={p.id} onClick={this.buyLogin} >buy</button>)
+                {!user? ( <Link to={`/Login`}><button data-id={p.id} onClick={this.buyLogin} >buy</button></Link>)
                 :( <button data-id={p.id} onClick={this.buy} >buy</button>)}
             </div>
           })} 
