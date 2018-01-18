@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUser, close, hideLogin } from '../action';
+import { loginUser, hideLogin, showSignUp } from '../action';
 
 class LoginPopup extends Component {
   state = {
@@ -22,6 +22,10 @@ class LoginPopup extends Component {
     loginUser(username, password, history);
   };
 
+  showSignUp  = () => {
+    this.props.showSignUp();
+  }
+
   close = () => {
     this.props.hideLogin();
   };
@@ -29,10 +33,8 @@ class LoginPopup extends Component {
   render() {
     const { username, password } = this.state;
     if (!this.props.showLogin) {
-      console.log('returning null')
       return null;
     }
-
     return (
       <div className="modal">
         <input type="button" value="X" onClick={this.close} />
@@ -61,10 +63,8 @@ class LoginPopup extends Component {
           </div>
           <button onClick={this.login} className="btn btn-primary">
             Submit
-          </button>/
-          <Link to={`/SignUp`} onClick={this.close}>
-            <button className="btn btn-primary">SignUp</button>
-          </Link>
+          </button>
+          <button onClick={this.showSignUp}> signUp</button>
         </div>
       </div>
     );
@@ -80,8 +80,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
-      dispatch(loginUser(username, password, history)),
-    hideLogin: state => dispatch(hideLogin(state))
+    dispatch(loginUser(username, password, history)),
+    hideLogin: state => dispatch(hideLogin(state)),
+    showSignUp: () => dispatch(showSignUp()),
   };
 }
 

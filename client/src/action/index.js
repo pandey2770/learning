@@ -46,8 +46,7 @@ export const signUp = (history, username, password) => {
   return async function(dispatch) {
     axios.post('/api/signUp', { username, password }).then(
       () => {
-        history.push('/');
-        return dispatch(getUserDispatch(username));
+        return dispatch(getUserDispatch({email: username }));
       },
       response => {
         // console.log(message);
@@ -102,6 +101,11 @@ export const getProductDispatch = product => {
 export const showLogin = () => {
   return {
   type: 'SHOW_LOGIN'
+}};
+
+export const showSignUp = () => {
+  return {
+  type: 'SHOW_SIGNUP'
 }};
 
 export const hideLogin = () => {

@@ -12,7 +12,6 @@ class ButtonUser extends Component {
 
   showLogin = (event) => {
     const { id } = event.target.dataset;
-    console.log('into component showLogin')
     showLogin();
     this.props.cartUser(id,'state');
   }
@@ -59,7 +58,6 @@ class ButtonUser extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
   return  {
     product: state.product,
     cart:state.cart,

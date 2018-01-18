@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Header from './Header';
-import { signUp } from '../action';
+import { signUp, hideLogin, showLogin } from '../action';
 
 class SignUp extends Component {
   state = {
@@ -31,12 +29,23 @@ class SignUp extends Component {
     return this.props.signUp(history, username, password);
   };
 
+  showLogin = () => {
+    this.props.showLogin();
+  }
+
+  close = () => {
+    this.props.hideLogin();
+  };
+
   render() {
     const { username, password, confirmPassword } = this.state;
-    const { history, location } = this.props;
+    if (!this.props.showSignUp) {
+        return null;
+      }  
     return (
-      <div>
-        <Header history={history} location={location} />
+        <div className="modal">
+        <input type="button" value="X" onClick={this.close} />
+        <div className="modal-content">        
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email Address</label>
@@ -72,29 +81,31 @@ class SignUp extends Component {
               placeholder="Confirm Password"
             />
           </div>
-          <input
-            type="button"
-            value="SignUp"
+          <button
             onClick={this.signUp}
             className="btn btn-primary"
-          />/
-          <Link to={`/Login`}>
-            <button className="btn btn-primary">Login</button>
-          </Link>
+          > SignUp
+          </button>
+          <button onClick={this.showLogin}> login </button>
         </form>
+      </div>
       </div>
     );
   }
 }
 
 function mapStateToprpos(state) {
-  return {};
+  return {
+    showSignUp: state.user.showSignUp
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     signUp: (username, password, history) =>
-      dispatch(signUp(username, password, history))
+      dispatch(signUp(username, password, history)),
+    hideLogin: state => dispatch(hideLogin(state)),
+    showLogin: () => dispatch(showLogin()),
   };
 }
 

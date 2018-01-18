@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser, getUser } from '../action';
+import { logoutUser, getUser, showLogin, showSignUp } from '../action';
 
 class Header extends Component {
   state = {
@@ -14,6 +14,14 @@ class Header extends Component {
     if ((pathname === '/Login' || pathname === '/SignUp') && user) {
       history.push('/');
     }
+  }
+    
+  showLogin = () => {
+    this.props.showLogin();
+  }
+  
+  showSignUp  = () => {
+    this.props.showSignUp();
   }
 
   componentWillReceiveProps(props) {
@@ -55,10 +63,9 @@ class Header extends Component {
           </nav>
         </div>
         <div className="navbar navbar-expand navbar-light bg-light">
-          {!user ? (
-            <Link to={`/login`}>
-              <li className="nav-item nav-link">Login</li>
-            </Link>
+          {!user ? (<div>
+              <li className="nav-item nav-link" onClick={this.showLogin} >Login</li>
+              <li className="nav-item nav-link" onClick={this.showSignUp} >SignUp</li></div>
           ) : (
             <div className="dropdown">
               <button
@@ -85,7 +92,6 @@ class Header extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state)
   return {
     error: state.error,
     user: state.user.user
@@ -95,7 +101,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     logoutUser: history => dispatch(logoutUser(history)),
-    getUser: () => dispatch(getUser())
+    getUser: () => dispatch(getUser()),
+    showLogin: () => dispatch(showLogin()),
+    showSignUp: () => dispatch(showSignUp()),
   };
 }
 

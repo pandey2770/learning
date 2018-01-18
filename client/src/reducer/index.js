@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const userReducer = (state = {user: null, showLogin: false}, action) => {
+const userReducer = (state = {user: null, showLogin: false, showSignUp:false}, action) => {
   switch (action.type) {
     case 'LOGIN_USER':
       return {...state, user: action.data, showLogin: false};
@@ -9,9 +9,11 @@ const userReducer = (state = {user: null, showLogin: false}, action) => {
     case 'LOGOUT_USER':
       return {...state, user: null};
     case 'SHOW_LOGIN':
-      return {...state, showLogin: true};
+    return {...state, showLogin: true};
+    case 'SHOW_SIGNUP':
+      return {...state, showSignUp: true};
     case 'HIDE_LOGIN':
-      return {...state, showLogin: false};
+      return {...state, showLogin: false, showSignUp: false};
     default:
       return state;
   }
