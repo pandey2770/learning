@@ -28,13 +28,8 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return  {
-    user: state.user,
+    user: state.user.user,
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, undefined)(Home);

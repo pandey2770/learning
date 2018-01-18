@@ -85,9 +85,10 @@ class Header extends Component {
   }
 }
 function mapStateToProps(state) {
+  console.log(state)
   return {
     error: state.error,
-    user: state.user
+    user: state.user.user
   };
 }
 

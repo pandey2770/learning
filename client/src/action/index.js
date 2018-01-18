@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-export const loginUser = (username, password, history) => {
+export const loginUser = (username, password) => {
   return async function(dispatch) {
     await axios.post('/api/login', { username, password });
-    history.push('/');
-    return dispatch(loginUserDispatch({ username }));
+    return dispatch(loginUserDispatch({email: username }));
   };
 };
 
@@ -36,16 +35,15 @@ export const getUser = () => {
   };
 };
 
-export const getUserDispatch = user => {
+export const getUserDispatch = data => {
   return {
     type: 'LOGGEDIN_USER',
-    user
+    data
   };
 };
 
 export const signUp = (history, username, password) => {
   return async function(dispatch) {
-    console.log(username, password);
     axios.post('/api/signUp', { username, password }).then(
       () => {
         history.push('/');
@@ -101,19 +99,15 @@ export const getProductDispatch = product => {
   };
 };
 
-export const buyLogin = id => {
+export const showLogin = () => {
   return {
-    type: 'ITEM',
-    id
-  };
-};
+  type: 'SHOW_LOGIN'
+}};
 
-export const close = state => {
+export const hideLogin = () => {
   return {
-    type: 'CLOSE',
-    state
-  };
-};
+  type: 'HIDE_LOGIN'
+}};
 
 export const cartUser = (id, state) => {
   return {

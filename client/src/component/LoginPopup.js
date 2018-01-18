@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUser, close } from '../action';
+import { loginUser, close, hideLogin } from '../action';
 
 class LoginPopup extends Component {
   state = {
@@ -23,14 +23,13 @@ class LoginPopup extends Component {
   };
 
   close = () => {
-    this.props.close('close');
+    this.props.hideLogin();
   };
 
   render() {
     const { username, password } = this.state;
-    if (this.props.buyLogin) {
-      return <LoginPopup />;
-    } else {
+    if (!this.props.showLogin) {
+      console.log('returning null')
       return null;
     }
 
@@ -74,7 +73,7 @@ class LoginPopup extends Component {
 
 function mapStateToProps(state) {
   return {
-    buyLogin: state.buyLogin
+    showLogin: state.user.showLogin
   };
 }
 
@@ -82,7 +81,7 @@ function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
       dispatch(loginUser(username, password, history)),
-    close: state => dispatch(close(state))
+    hideLogin: state => dispatch(hideLogin(state))
   };
 }
 
