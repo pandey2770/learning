@@ -33,8 +33,18 @@ const buyReducer = (state = null, action) => {
   }
 };
 
+const cartReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'CART':
+      return [...state, action.id];
+    default:
+      return [];
+  }
+};
+
 export default combineReducers({
   user: userReducer,
   product: productReducer,
-  buyLogin: buyReducer
+  buyLogin: buyReducer,
+  cart: cartReducer,
 });

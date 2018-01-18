@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
-import Two from './Two';
+import Features from './Features';
 import Down from './Down';
 import Cart from './Cart';
 import Login from './Login';
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div style={{ position: 'relative', height: '100%' }}>
         <Switch>
-          <Route path="/two" component={Two} />
+          <Route path="/features" component={Features} />
           <Route path="/down" component={Down} />
           <Route path="/cart" component={Cart} />
           <Route path="/login" component={Login} />

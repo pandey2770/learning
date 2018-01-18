@@ -115,4 +115,12 @@ export const close = state => {
   };
 };
 
+export const cartUser = (id, state) => {
+  return {
+    type:'CART',
+    id,
+    state
+  }
+}
+
 // TODO: separate action for user and product
