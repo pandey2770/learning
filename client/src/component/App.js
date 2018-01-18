@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Router } from 'react-router-dom';
-import { browserHistory } from 'react-router'
+import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Two from './Two';
 import Down from './Down';
@@ -16,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div style={{ position: 'relative', height: '100%' }}>
-        <Router history={browserHistory} >
+        <Switch>
           <Route path="/two" component={Two} />
           <Route path="/down" component={Down} />
           <Route path="/cart" component={Cart} />
@@ -25,7 +24,7 @@ class App extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/product/:id" component={Product} />
           <Route path="/" component={Home} />
-        </Router>
+        </Switch>
         <LoginPopup />
       </div>
     );

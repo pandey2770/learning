@@ -25,7 +25,6 @@ const productReducer = (state = [], action) => {
 const buyReducer = (state = null, action) => {
   switch (action.type) {
     case 'ITEM':
-      console.log('inreducer', action.id);
       return action.id;
     case 'CLOSE':
       return null;

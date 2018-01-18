@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAllProducts } from '../action';
 
 
 class Button extends Component {
+
   componentWillMount() {
     this.props.getAllProducts()
-  }
-
-  openProductPage = (event) => {
-    const { id } = event.target.dataset;
-    const { history } = this.props;
-    history.push(`/product/${id}`)
   }
   
   buy = (event) => {
     const { id } = event.target.dataset;
     const { history } = this.props;
-    history.push(`/cart/${id}`)
   }
 
   render() {
@@ -29,14 +24,13 @@ class Button extends Component {
               key={id}
               className='img'
               alt="Product"
-            >
+            ><Link to={`/product/${p.id}`} >
              <img 
                 src={p.img}
                 data-id={p.id}
                 key={id}
-                onClick={this.openProductPage}
                 className='img'
-                alt="Product" />
+                alt="Product" /></Link>
                  <button data-id={p.id} onClick={this.buy}>buy</button>
                  <button data-id={p.id} onClick={this.Cart}>Cart</button>
             </div>
