@@ -5,11 +5,10 @@ import Header from './Header';
 import { loginUser } from '../action';
 
 class Login extends Component {
-  
   state = {
     buyLogin: null,
     username: '',
-    password: '',
+    password: ''
   };
 
   updateInput = event => {
@@ -66,7 +65,7 @@ class Login extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
-      dispatch(loginUser(username, password, history)),
+      dispatch(loginUser(username, password, history))
   };
 }
 

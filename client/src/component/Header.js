@@ -5,7 +5,7 @@ import { logoutUser, getUser } from '../action';
 
 class Header extends Component {
   state = {
-    user: undefined,
+    user: undefined
   };
 
   componentWillMount() {
@@ -45,9 +45,6 @@ class Header extends Component {
                   </Link>
                   <Link to={`/two`}>
                     <li className="nav-item nav-link">Features</li>
-                  </Link>
-                  <Link to={`/three`}>
-                    <li className="nav-item nav-link">Pricing</li>
                   </Link>
                   <Link to={`/cart`}>
                     <li className="nav-item nav-link">Cart</li>
@@ -89,15 +86,15 @@ class Header extends Component {
 }
 function mapStateToProps(state) {
   return {
-    error:state.error,
-    user: state.user,
+    error: state.error,
+    user: state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     logoutUser: history => dispatch(logoutUser(history)),
-    getUser: () => dispatch(getUser()),
+    getUser: () => dispatch(getUser())
   };
 }
 

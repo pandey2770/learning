@@ -21,9 +21,9 @@ class Profile extends Component {
   };
 
   send = event => {
-    const { updateData, user: { id }} = this.props;
+    const { updateData, user: { id } } = this.props;
     const { name, address, number, username, password } = this.state;
-    updateData(id, {username, password, name, number, address});
+    updateData(id, { username, password, name, number, address });
   };
 
   render() {
@@ -98,7 +98,9 @@ function mapStateToprpos(state) {
 function mapDispatchToProps(dispatch) {
   return {
     updateData: (history, id, username, password, name, number, address) =>
-      dispatch(updateData(history, id, username, password, name, number, address))
+      dispatch(
+        updateData(history, id, username, password, name, number, address)
+      )
   };
 }
 

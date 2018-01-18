@@ -9,34 +9,33 @@ const userReducer = (state = null, action) => {
     default:
       return state;
   }
-}
+};
 
 const productReducer = (state = [], action) => {
   switch (action.type) {
     case 'GET_ALL_PRODUCT':
       return action.products;
     case 'GET_PRODUCT':
-      return [...state, action.product]
+      return [...state, action.product];
     default:
       return state;
   }
-}
+};
 
-const buyReducer = ( state=null,action) => {
+const buyReducer = (state = null, action) => {
   switch (action.type) {
-    case 'ITEM' :
-    console.log('inreducer',action.id)
+    case 'ITEM':
+      console.log('inreducer', action.id);
       return action.id;
-    case 'CLOSE' :
+    case 'CLOSE':
       return null;
-      default:
-        return state;
+    default:
+      return state;
   }
-}
-
+};
 
 export default combineReducers({
   user: userReducer,
   product: productReducer,
-  buyLogin:buyReducer,
+  buyLogin: buyReducer
 });

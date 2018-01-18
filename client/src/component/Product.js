@@ -6,7 +6,7 @@ import { getProduct } from '../action';
 class Product extends Component {
   state = {
     product: undefined
-  }
+  };
 
   componentWillMount() {
     const { id } = this.props.match.params;
@@ -15,7 +15,7 @@ class Product extends Component {
       if (productList) {
         const product = productList.find(p => p.id === id);
         if (product) {
-          this.setState({product});
+          this.setState({ product });
           return;
         }
       }
@@ -30,7 +30,7 @@ class Product extends Component {
     if (id && !product && productList !== this.props.productList) {
       const product = productList.find(p => p.id === id);
       if (product) {
-        this.setState({product});
+        this.setState({ product });
       }
     }
   }
@@ -43,14 +43,14 @@ class Product extends Component {
         <div>
           <Header history={history} location={location} />
         </div>
-        <img src={product && product.img} className='img-big' alt="Product" />
+        <img src={product && product.img} className="img-big" alt="Product" />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return  {
+  return {
     productList: state.product
   };
 }

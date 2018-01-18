@@ -4,8 +4,8 @@ export const loginUser = (username, password, history) => {
   return async function(dispatch) {
     await axios.post('/api/login', { username, password });
     history.push('/');
-    return dispatch(loginUserDispatch({username}));
-  }
+    return dispatch(loginUserDispatch({ username }));
+  };
 };
 
 export const loginUserDispatch = data => {
@@ -44,20 +44,23 @@ export const getUserDispatch = user => {
 };
 
 export const signUp = (history, username, password) => {
-  return async function(dispatch) {console.log(username, password)
-    axios.post('/api/signUp', {username, password})
-    .then(() => {
-      history.push('/');
-      return dispatch(getUserDispatch(username));
-    }, (response) => {
-      // console.log(message);
-    });
-  }
+  return async function(dispatch) {
+    console.log(username, password);
+    axios.post('/api/signUp', { username, password }).then(
+      () => {
+        history.push('/');
+        return dispatch(getUserDispatch(username));
+      },
+      response => {
+        // console.log(message);
+      }
+    );
+  };
 };
 
 export const updateData = (id, user) => {
   return async function(dispatch) {
-    await axios.put(`/api/user/${id}`, {user});
+    await axios.put(`/api/user/${id}`, { user });
     return dispatch(updateDataDispatch(id, user));
   };
 };
@@ -98,19 +101,19 @@ export const getProductDispatch = product => {
   };
 };
 
-export const buyLogin = (id)=>{
-  console.log('inaction')
+export const buyLogin = id => {
+  console.log('inaction');
   return {
-    type:"ITEM",
+    type: 'ITEM',
     id
-  }
+  };
 };
 
-export const close = (state) => {
+export const close = state => {
   return {
-    type:'CLOSE',
+    type: 'CLOSE',
     state
-  }
-}
+  };
+};
 
 // TODO: separate action for user and product
