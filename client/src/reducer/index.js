@@ -5,7 +5,7 @@ const userReducer = (state = {user: null, showLogin: false, showSignUp:false}, a
     case 'LOGIN_USER':
       return {...state, user: action.data, showLogin: false};
     case 'LOGGEDIN_USER':
-      return {...state, user: action.data};
+      return {...state, user: action.data, showSignUp: false};
     case 'LOGOUT_USER':
       return {...state, user: null};
     case 'SHOW_LOGIN':

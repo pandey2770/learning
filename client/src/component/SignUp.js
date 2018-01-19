@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signUp, hideLogin, showLogin } from '../action';
+import { Link } from 'react-router-dom';
+import Header from './Header';
+import { signUp } from '../action';
 
 class SignUp extends Component {
   state = {
@@ -14,10 +16,6 @@ class SignUp extends Component {
       [`${event.target.name}`]: event.target.value
     });
   };
-
-  showLogin = () => {
-    this.props.showLogin();
-  }
 
   signUp = () => {
     const { username, password, confirmPassword } = this.state;
@@ -33,20 +31,12 @@ class SignUp extends Component {
     return this.props.signUp(history, username, password);
   };
 
-  close = () => {
-    this.props.hideLogin();
-  };
-
   render() {
     const { username, password, confirmPassword } = this.state;
-    if (!this.props.showSignUp) {
-        return null;
-      }  
+    const { history, location } = this.props;
     return (
-        <div className="modal">
-        <input type="button" value="X" onClick={this.close} />
-        <div className="modal-content">  
-        <h2 className='center'>SignUp</h2>      
+      <div>
+        <Header history={history} location={location} />
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email Address</label>
@@ -82,27 +72,29 @@ class SignUp extends Component {
               placeholder="Confirm Password"
             />
           </div>
-          <input type='button' value='SignUp' onClick={this.signUp} className="btn button btn-primary" />
-          <input type='button' value='login' onClick={this.showLogin} className="btn button btn-primary" />
+          <input
+            type="button"
+            value="SignUp"
+            onClick={this.signUp}
+            className="btn btn-primary"
+          />/
+          <Link to={`/Login`}>
+            <button className="btn btn-primary">Login</button>
+          </Link>
         </form>
-      </div>
       </div>
     );
   }
 }
 
 function mapStateToprpos(state) {
-  return {
-    showSignUp: state.user.showSignUp
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     signUp: (username, password, history) =>
-      dispatch(signUp(username, password, history)),
-    hideLogin: state => dispatch(hideLogin(state)),
-    showLogin: () => dispatch(showLogin()),
+      dispatch(signUp(username, password, history))
   };
 }
 

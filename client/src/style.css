@@ -7,8 +7,11 @@ body,
   display: flex;
 }
 .form-control {
-  width: 40%;
-  margin: 10px;
+  width: 75%;
+}
+.form-group {
+  margin-left: 85px;
+  margin-top: 15px;
 }
 .cursor {
   cursor: pointer;
@@ -21,6 +24,14 @@ body,
 }
 .img-big {
   height: 300px;
+}
+.center {
+  margin-top: 10px;
+  text-align: center;
+}
+.button {
+  margin: 10px;
+  width: 100px;
 }
 .modal {
   position: absolute;
@@ -35,9 +46,10 @@ body,
   align-items: center;
 }
 .modal-content {
-  height: 300px;
+  height: 400px;
   width: 500px;
   border: 1px solid gray;
+  background-color: #f8f9fa;
 }
 /* TODO: fix css class names */
 /* TODO: add all log files to gitignore */

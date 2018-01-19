@@ -38,6 +38,8 @@ class LoginPopup extends Component {
       <div className="modal">
         <input type="button" value="X" onClick={this.close} />
         <div className="modal-content">
+          <h2 className='center'>Login</h2>
+          <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email Address</label>
             <input
@@ -59,11 +61,9 @@ class LoginPopup extends Component {
               className="form-control"
               placeholder="Password"
             />
-          </div>
-          <button onClick={this.login} className="btn btn-primary">
-            Submit
-          </button>
-          <button onClick={this.showSignUp}> signUp</button>
+          </div><input type='button' value='Login' onClick={this.login} className="btn button btn-primary" />
+          <input type='button' value='signUp' onClick={this.showSignUp} className="btn button btn-primary" />
+          </form>
         </div>
       </div>
     );

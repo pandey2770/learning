@@ -51,7 +51,7 @@ class Header extends Component {
                       Home <span className="sr-only">(current)</span>
                     </li>
                   </Link>
-                  <Link to={`/two`}>
+                  <Link to={`/features`}>
                     <li className="nav-item nav-link">Features</li>
                   </Link>
                   <Link to={`/cart`}>
@@ -63,9 +63,9 @@ class Header extends Component {
           </nav>
         </div>
         <div className="navbar navbar-expand navbar-light bg-light">
-          {!user ? (<div>
-              <li className="nav-item nav-link" onClick={this.showLogin} >Login</li>
-              <li className="nav-item nav-link" onClick={this.showSignUp} >SignUp</li></div>
+          {!user ? (<div className='style'>
+              <li className="nav-item nav-link cursor" onClick={this.showLogin} >Login</li>
+              <li className="nav-item nav-link cursor" onClick={this.showSignUp} >SignUp</li></div>
           ) : (
             <div className="dropdown">
               <button
