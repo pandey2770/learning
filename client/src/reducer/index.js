@@ -9,7 +9,7 @@ const userReducer = (state = {user: null, showLogin: false, showSignUp:false}, a
     case 'LOGOUT_USER':
       return {...state, user: null};
     case 'SHOW_LOGIN':
-    return {...state, showLogin: true};
+    return {...state,showSignUp: false, showLogin: true};
     case 'SHOW_SIGNUP':
       return {...state, showSignUp: true};
     case 'HIDE_LOGIN':

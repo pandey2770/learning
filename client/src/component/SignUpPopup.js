@@ -15,6 +15,10 @@ class SignUp extends Component {
     });
   };
 
+  showLogin = () => {
+    this.props.showLogin();
+  }
+
   signUp = () => {
     const { username, password, confirmPassword } = this.state;
     const { history } = this.props;
@@ -28,10 +32,6 @@ class SignUp extends Component {
     }
     return this.props.signUp(history, username, password);
   };
-
-  showLogin = () => {
-    this.props.showLogin();
-  }
 
   close = () => {
     this.props.hideLogin();
@@ -86,7 +86,7 @@ class SignUp extends Component {
             className="btn btn-primary"
           > SignUp
           </button>
-          <button onClick={this.showLogin}> login </button>
+          <input type='button' value='login' onClick={this.showLogin} />
         </form>
       </div>
       </div>
