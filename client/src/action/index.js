@@ -113,6 +113,14 @@ export const hideLogin = () => {
   type: 'HIDE_LOGIN'
 }};
 
+export const removeCart = id => {
+  console.log(id)
+  return {
+    type: 'REMOVE_TO_CART',
+    id
+  }
+}
+
 export const addToCart = id => {
   return {
     type:'ADD_TO_CART',

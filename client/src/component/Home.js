@@ -16,7 +16,7 @@ class Home extends Component {
   }
 
   render() {
-    const { user, product, history, location } = this.props;
+    const {  product, history, location } = this.props;
     return (
       <div>
         <div>
@@ -40,6 +40,7 @@ function mapStateToProps(state) {
   return  {
     user: state.user.user,
     product: state.product,
+    cart : state.cart,
   };
 }
 

@@ -82,8 +82,10 @@ class SignUp extends Component {
               placeholder="Confirm Password"
             />
           </div>
-          <div className='button-style'>          
+          <div className='button-style'>     
             <input type='button' value='SignUp' onClick={this.signUp} className="btn button btn-primary" />
+            </div>
+          <div className='button-style'>
             <input type='button' value='login' onClick={this.showLogin} className="btn button btn-primary" />
           </div>
         </form>

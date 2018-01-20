@@ -55,7 +55,7 @@ class Header extends Component {
                     <li className="nav-item nav-link">Features</li>
                   </Link>
                   <Link to={`/cart`}>
-                    <li className="nav-item nav-link">Cart{cart.length > 0 && ` - ${cart.length}`}</li>
+                    <li className="nav-item nav-link">Cart{cart.length > 0 && `  ${cart.length}`}</li>
                   </Link>
                 </ul>
               </div>

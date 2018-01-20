@@ -64,6 +64,8 @@ class LoginPopup extends Component {
           </div>
           <div className='button-style'>
             <input type='button' value='Login' onClick={this.login} className="btn button btn-primary" />
+          </div>
+          <div className='button-style'>
             <input type='button' value='signUp' onClick={this.showSignUp} className="btn button btn-primary" />
           </div>
           </form>
