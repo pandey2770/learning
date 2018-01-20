@@ -11,7 +11,7 @@ const userReducer = (state = {user: null, showLogin: false, showSignUp:false}, a
     case 'SHOW_LOGIN':
     return {...state,showSignUp: false, showLogin: true};
     case 'SHOW_SIGNUP':
-      return {...state, showSignUp: true};
+      return {...state, showSignUp: true, showLogin: false};
     case 'HIDE_LOGIN':
       return {...state, showLogin: false, showSignUp: false};
     default:

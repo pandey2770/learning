@@ -36,8 +36,8 @@ class LoginPopup extends Component {
     }
     return (
       <div className="modal">
-        <input type="button" value="X" onClick={this.close} />
         <div className="modal-content">
+        <input type="button" value="X" onClick={this.close} className='closeButton' />
           <h2 className='center'>Login</h2>
           <form>
           <div className="form-group">
@@ -61,8 +61,11 @@ class LoginPopup extends Component {
               className="form-control"
               placeholder="Password"
             />
-          </div><input type='button' value='Login' onClick={this.login} className="btn button btn-primary" />
-          <input type='button' value='signUp' onClick={this.showSignUp} className="btn button btn-primary" />
+          </div>
+          <div className='button-style'>
+            <input type='button' value='Login' onClick={this.login} className="btn button btn-primary" />
+            <input type='button' value='signUp' onClick={this.showSignUp} className="btn button btn-primary" />
+          </div>
           </form>
         </div>
       </div>

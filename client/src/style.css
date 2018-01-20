@@ -16,6 +16,10 @@ body,
 .cursor {
   cursor: pointer;
 }
+.button-style {
+  display: flex;
+  justify-content: center;
+}
 .width {
   width: 100%;
 }
@@ -25,13 +29,21 @@ body,
 .img-big {
   height: 300px;
 }
+.center-center {
+  text-align: center;
+}
 .center {
-  margin-top: 10px;
+  margin-top: 30px;
   text-align: center;
 }
 .button {
   margin: 10px;
   width: 100px;
+}
+.closeButton {
+  width: 27px;
+  background-color: black;
+  color: white;
 }
 .modal {
   position: absolute;
@@ -46,10 +58,11 @@ body,
   align-items: center;
 }
 .modal-content {
-  height: 400px;
+  height: 450px;
   width: 500px;
   border: 1px solid gray;
   background-color: #f8f9fa;
 }
+
 /* TODO: fix css class names */
 /* TODO: add all log files to gitignore */

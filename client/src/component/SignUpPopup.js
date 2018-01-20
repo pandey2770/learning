@@ -44,9 +44,9 @@ class SignUp extends Component {
       }  
     return (
         <div className="modal">
-        <input type="button" value="X" onClick={this.close} />
-        <div className="modal-content">  
-        <h2 className='center'>SignUp</h2>      
+        <div className="modal-content"> 
+        <input type="button" value="X" onClick={this.close} className='closeButton' /> 
+        <h2 className='center-center'>SignUp</h2>      
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email Address</label>
@@ -82,8 +82,10 @@ class SignUp extends Component {
               placeholder="Confirm Password"
             />
           </div>
-          <input type='button' value='SignUp' onClick={this.signUp} className="btn button btn-primary" />
-          <input type='button' value='login' onClick={this.showLogin} className="btn button btn-primary" />
+          <div className='button-style'>          
+            <input type='button' value='SignUp' onClick={this.signUp} className="btn button btn-primary" />
+            <input type='button' value='login' onClick={this.showLogin} className="btn button btn-primary" />
+          </div>
         </form>
       </div>
       </div>
