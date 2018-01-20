@@ -5,15 +5,20 @@ import { getProduct, removeCart } from '../action';
 
 class Cart extends Component {
 
+
+  state = {
+    product: undefined
+  };
+
   componentWillMount() {
-    console.log(this.props.product.id)
+    console.log(this.props.product)
     const { id } = this.props.cart;
     console.log(id,'id')
     if (id) {
-      const { productList } = this.props;
-      console.log(productList,'list')
-      if (productList) {
-        const product = productList.find(p => p.id === id);
+      const { product } = this.props;
+      console.log(product,'list')
+      if (product) {
+        const product = product.find(p => p.id === id);
         if (product) {
           this.setState({ product });
           return;
@@ -30,8 +35,8 @@ class Cart extends Component {
   }
 
   render() {
-    console.log(this.props.product)
-    const { history, location, cart, product } = this.props;
+    const { history, location, cart } = this.props;
+    const { product } = this.state;
     return (
       <div>
         <Header history={history} location={location} />
@@ -49,10 +54,8 @@ class Cart extends Component {
 
 
 function mapStateToProps(state) {
-  console.log(state)
   return  {
     product: state.product,
-    user: state.user.user,
     cart:state.cart,
   };
 }
