@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getAllProducts, addToCart } from '../action';
 import Header from './Header';
-import ButtonUser from './ButtonUser';
-import Button from './Button';
-
 
 class Home extends Component {
 
+  componentWillMount() {
+    this.props.getAllProducts();
+  }
+
+  addToCart = (event) => {
+    const { id } = event.target.dataset;
+    this.props.addToCart(id);
+  }
+
   render() {
-    const {user, history, location } = this.props;
+    const { user, product, history, location } = this.props;
     return (
       <div>
         <div>
           <Header history={history} location={location} />
         </div>
-          {!user? 
-            ( 
-              <Button/>
-            ):( 
-              <ButtonUser/>
-            )
-          }
+        <div>
+          {product.map((p, id) => (
+            <div key={id} className='img' alt="Product">
+              <Link to={`/product/${p.id}`}>
+              <img src={p.img} data-id={p.id} className='img' alt="Product" /></Link>
+              <button data-id={p.id} onClick={this.addToCart}>Add to Cart</button>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -29,7 +39,15 @@ class Home extends Component {
 function mapStateToProps(state) {
   return  {
     user: state.user.user,
+    product: state.product,
   };
 }
 
-export default connect(mapStateToProps, undefined)(Home);
+function mapDispatchToProps(dispatch) {
+  return {
+    getAllProducts: () => dispatch(getAllProducts()),
+    addToCart: id => dispatch(addToCart(id)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

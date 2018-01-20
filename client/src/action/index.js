@@ -113,11 +113,10 @@ export const hideLogin = () => {
   type: 'HIDE_LOGIN'
 }};
 
-export const cartUser = (id, state) => {
+export const addToCart = id => {
   return {
-    type:'CART',
-    id,
-    state
+    type:'ADD_TO_CART',
+    id
   }
 }
 

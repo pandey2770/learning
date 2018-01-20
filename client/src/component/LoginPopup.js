@@ -82,7 +82,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
-    dispatch(loginUser(username, password, history)),
+      dispatch(loginUser(username, password, history)),
     hideLogin: state => dispatch(hideLogin(state)),
     showSignUp: () => dispatch(showSignUp()),
   };

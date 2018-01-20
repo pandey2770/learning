@@ -37,7 +37,7 @@ class Header extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, cart } = this.props;
     return (
       <div className="style">
         <div className="width">
@@ -55,7 +55,7 @@ class Header extends Component {
                     <li className="nav-item nav-link">Features</li>
                   </Link>
                   <Link to={`/cart`}>
-                    <li className="nav-item nav-link">Cart</li>
+                    <li className="nav-item nav-link">Cart{cart.length > 0 && ` - ${cart.length}`}</li>
                   </Link>
                 </ul>
               </div>
@@ -94,7 +94,8 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     error: state.error,
-    user: state.user.user
+    user: state.user.user,
+    cart: state.cart
   };
 }
 

@@ -5,9 +5,9 @@ import Features from './Features';
 import Cart from './Cart';
 import Profile from './Profile';
 import LoginPopup from './LoginPopup';
+import SignUpPopup from './SignUpPopup';
 import Product from './Product';
 import '../style.css';
-import SignUpPopup from './SignUpPopup';
 
 class App extends Component {
   render() {

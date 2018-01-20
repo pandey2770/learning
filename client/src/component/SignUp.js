@@ -87,10 +87,6 @@ class SignUp extends Component {
   }
 }
 
-function mapStateToprpos(state) {
-  return {};
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     signUp: (username, password, history) =>
@@ -98,4 +94,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToprpos, mapDispatchToProps)(SignUp);
+export default connect(undefined, mapDispatchToProps)(SignUp);

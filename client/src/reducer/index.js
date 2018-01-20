@@ -32,7 +32,7 @@ const productReducer = (state = [], action) => {
 
 const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case 'CART':
+    case 'ADD_TO_CART':
       return [...state, action.id];
     default:
       return [];

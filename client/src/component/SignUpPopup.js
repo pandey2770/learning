@@ -40,8 +40,8 @@ class SignUp extends Component {
   render() {
     const { username, password, confirmPassword } = this.state;
     if (!this.props.showSignUp) {
-        return null;
-      }  
+      return null;
+    }  
     return (
         <div className="modal">
         <div className="modal-content"> 
