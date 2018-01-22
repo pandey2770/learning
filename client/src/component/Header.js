@@ -80,7 +80,7 @@ class Header extends Component {
                 <a onClick={this.logoutUser}>
                   <li className="nav-item nav-link">Logout</li>
                 </a>
-                <Link to={`/setting`}>
+                <Link to={`/profile`}>
                   <li className="nav-item nav-link">Setting</li>
                 </Link>
               </ul>

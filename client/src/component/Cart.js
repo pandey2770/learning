@@ -7,27 +7,7 @@ class Cart extends Component {
 
 
   state = {
-    product: undefined
   };
-
-  componentWillMount() {
-    console.log(this.props.product)
-    const { id } = this.props.cart;
-    console.log(id,'id')
-    if (id) {
-      const { product } = this.props;
-      console.log(product,'list')
-      if (product) {
-        const product = product.find(p => p.id === id);
-        if (product) {
-          this.setState({ product });
-          return;
-        }
-      }
-      this.props.getProduct(id);
-    }
-  }
-
 
   removeCart = (event) => {
     const {id} = event.target.dataset;
@@ -36,14 +16,13 @@ class Cart extends Component {
 
   render() {
     const { history, location, cart } = this.props;
-    const { product } = this.state;
     return (
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
         {cart.map((p,id) => (
           <div key={id} alt='Cart Product'>
-            <img src={product && product.img} className="img-big" alt="Product" />
+            <img src={cart.img} className="img-big" alt="Product" />
             <button onClick={this.removeCart} data-id={p} >Remove</button>
           </div>
         ))}
@@ -55,14 +34,14 @@ class Cart extends Component {
 
 function mapStateToProps(state) {
   return  {
-    product: state.product,
+    productList: state.product,
     cart:state.cart,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getProduct: id => dispatch(getProduct(id)),
+    getProduct: (cart) => dispatch(getProduct(cart)),
     removeCart: id => dispatch(removeCart(id))
   };
 }

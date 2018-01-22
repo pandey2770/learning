@@ -1,4 +1,4 @@
-CREATE DATABASE demo;
+createdb demo;
 
 CREATE TABLE demouser (
   id uuid,
@@ -16,14 +16,6 @@ CREATE TABLE product (
   rate varchar,
   details varchar,
   quantity varchar
-);
-
-CREATE TABLE data (
- data varchar
-);
-
-insert into data values (
-  '19815cc3-4d10-4dde-ab57-663dcfa15734'
 );
 
 insert into product values (

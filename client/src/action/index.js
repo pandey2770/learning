@@ -98,6 +98,20 @@ export const getProductDispatch = product => {
   };
 };
 
+export const getProductCart = id => {
+  return async function(dispatch) {
+    const { data } = await axios.get(`/api/product/${id}`);
+    return dispatch(getCartDispatch(data));
+  };
+};
+
+export const getCartDispatch = cart => {
+  return {
+    type: 'ADD_TO_CART',
+    cart
+  };
+};
+
 export const showLogin = () => {
   return {
   type: 'SHOW_LOGIN'
@@ -121,11 +135,5 @@ export const removeCart = id => {
   }
 }
 
-export const addToCart = id => {
-  return {
-    type:'ADD_TO_CART',
-    id
-  }
-}
 
 // TODO: separate action for user and product

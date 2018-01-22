@@ -34,11 +34,10 @@ const cartReducer = (state = [], action) => {
   let index;
   switch (action.type) {
     case 'ADD_TO_CART':
-      return [...state, action.id];
-    case 'REMOVE_TO_CART':console.log(...state.slice(action.id))
-      index = state.findIndex(cart => cart.id === action.id);
+      return [...state, action.cart]
+    case 'REMOVE_TO_CART':console.log(...state.slice(action.cart))
+      index = state.findIndex(cart => cart.cart === action.cart);
       state.splice(index);
-      console.log(...state,'inreducer')
       return [...state];
     default:
       return state;
