@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllProducts, getProductCart } from '../action';
+import { getAllProducts, getProductCart, removeCart } from '../action';
 import Header from './Header';
 
 class Home extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        visible: false  
+    };
+
+    this.addToCart = this.addToCart.bind(this);
+}
+
 
   componentWillMount() {
     this.props.getAllProducts();
@@ -13,6 +24,13 @@ class Home extends Component {
   addToCart = (event) => {
     const { id } = event.target.dataset;
     this.props.getProductCart(id);
+    this.setState({visible: !this.state.visible})    
+  }
+
+  removeCart = (event) => {
+    const {id} = event.target.dataset;
+    this.props.removeCart(id);
+    this.setState({visible: !this.state.visible})    
   }
 
   render() {
@@ -27,7 +45,10 @@ class Home extends Component {
             <div key={id} className='img' alt="Product">
               <Link to={`/product/${p.id}`}>
               <img src={p.img} data-id={p.id} className='img' alt="Product" /></Link>
-              <button data-id={p.id} onClick={this.addToCart}>Add to Cart</button>
+              {this.state.visible ?
+              this.state.visible  && <button data-id={p.id} onClick={this.removeCart}>remove from cart</button>:
+             <button data-id={p.id} onClick={this.addToCart}>Add to Cart</button> 
+              }
             </div>
           ))}
         </div>
@@ -47,7 +68,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
-    getProductCart: id => dispatch(getProductCart(id))    
+    getProductCart: id => dispatch(getProductCart(id)),
+    removeCart: id => dispatch(removeCart(id))    
   };
 }
 

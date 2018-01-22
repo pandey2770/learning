@@ -31,16 +31,13 @@ const productReducer = (state = [], action) => {
 };
 
 const cartReducer = (state = [], action) => {
-  let index;
+  let commentId;
   switch (action.type) {
     case 'ADD_TO_CART':
       return [...state, action.cart];
     case 'REMOVE_TO_CART':
-      index = state.findIndex(cart => cart.id === action.id);
-      console.log(index)
-      state.splice(index);
-      console.log(...state,'inreducer')
-      return [...state];
+      commentId = action.id;
+      return [...state.filter(comment => comment.id !== commentId)];
     default:
       return state;
   }

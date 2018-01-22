@@ -128,7 +128,6 @@ export const hideLogin = () => {
 }};
 
 export const removeCart = id => {
-  console.log(id)
   return {
     type: 'REMOVE_TO_CART',
     id

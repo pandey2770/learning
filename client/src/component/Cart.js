@@ -5,13 +5,8 @@ import { getProduct, removeCart } from '../action';
 
 class Cart extends Component {
 
-
-  state = {
-  };
-
   removeCart = (event) => {
     const {id} = event.target.dataset;
-    console.log(id)
     this.props.removeCart(id);
   }
 
@@ -21,10 +16,10 @@ class Cart extends Component {
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
-        {cart.map((p,id) => (
+        {cart.map((c,id) => (
           <div key={id} alt='Cart Product'>
-            <img src={cart.img} className="img-big" alt="Product" />
-            <button onClick={this.removeCart} data-id={p.id} >Remove</button>
+            <img src={c.img} className="img-big" alt="Product" />
+            <button onClick={this.removeCart} data-id={c.id} >Remove</button>
           </div>
         ))}
       </div>
