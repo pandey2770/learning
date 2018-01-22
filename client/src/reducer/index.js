@@ -1,19 +1,22 @@
 import { combineReducers } from 'redux';
 
-const userReducer = (state = {user: null, showLogin: false, showSignUp:false}, action) => {
+const userReducer = (
+  state = { user: null, showLogin: false, showSignUp: false },
+  action
+) => {
   switch (action.type) {
     case 'LOGIN_USER':
-      return {...state, user: action.data, showLogin: false};
+      return { ...state, user: action.data, showLogin: false };
     case 'LOGGEDIN_USER':
-      return {...state, user: action.data, showSignUp: false};
+      return { ...state, user: action.data, showSignUp: false };
     case 'LOGOUT_USER':
-      return {...state, user: null};
+      return { ...state, user: null };
     case 'SHOW_LOGIN':
-    return {...state,showSignUp: false, showLogin: true};
+      return { ...state, showSignUp: false, showLogin: true };
     case 'SHOW_SIGNUP':
-      return {...state, showSignUp: true, showLogin: false};
+      return { ...state, showSignUp: true, showLogin: false };
     case 'HIDE_LOGIN':
-      return {...state, showLogin: false, showSignUp: false};
+      return { ...state, showLogin: false, showSignUp: false };
     default:
       return state;
   }
@@ -46,5 +49,5 @@ const cartReducer = (state = [], action) => {
 export default combineReducers({
   user: userReducer,
   product: productReducer,
-  cart: cartReducer,
+  cart: cartReducer
 });

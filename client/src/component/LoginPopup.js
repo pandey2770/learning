@@ -21,9 +21,9 @@ class LoginPopup extends Component {
     loginUser(username, password, history);
   };
 
-  showSignUp  = () => {
+  showSignUp = () => {
     this.props.showSignUp();
-  }
+  };
 
   close = () => {
     this.props.hideLogin();
@@ -37,37 +37,52 @@ class LoginPopup extends Component {
     return (
       <div className="modal">
         <div className="modal-content">
-        <input type="button" value="X" onClick={this.close} className='closeButton' />
-          <h2 className='center'>Login</h2>
+          <input
+            type="button"
+            value="X"
+            onClick={this.close}
+            className="closeButton"
+          />
+          <h2 className="center">Login</h2>
           <form>
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email Address</label>
-            <input
-              type="email"
-              value={username}
-              name="username"
-              onChange={this.updateInput}
-              className="form-control"
-              placeholder="Enter email"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              value={password}
-              name="password"
-              onChange={this.updateInput}
-              className="form-control"
-              placeholder="Password"
-            />
-          </div>
-          <div className='button-style'>
-            <input type='button' value='Login' onClick={this.login} className="btn button btn-primary" />
-          </div>
-          <div className='button-style'>
-            <input type='button' value='signUp' onClick={this.showSignUp} className="btn button btn-primary" />
-          </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">Email Address</label>
+              <input
+                type="email"
+                value={username}
+                name="username"
+                onChange={this.updateInput}
+                className="form-control"
+                placeholder="Enter email"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input
+                type="password"
+                value={password}
+                name="password"
+                onChange={this.updateInput}
+                className="form-control"
+                placeholder="Password"
+              />
+            </div>
+            <div className="button-style">
+              <input
+                type="button"
+                value="Login"
+                onClick={this.login}
+                className="btn button btn-primary"
+              />
+            </div>
+            <div className="button-style">
+              <input
+                type="button"
+                value="signUp"
+                onClick={this.showSignUp}
+                className="btn button btn-primary"
+              />
+            </div>
           </form>
         </div>
       </div>
@@ -86,7 +101,7 @@ function mapDispatchToProps(dispatch) {
     loginUser: (username, password, history) =>
       dispatch(loginUser(username, password, history)),
     hideLogin: state => dispatch(hideLogin(state)),
-    showSignUp: () => dispatch(showSignUp()),
+    showSignUp: () => dispatch(showSignUp())
   };
 }
 

@@ -15,14 +15,14 @@ class Header extends Component {
       history.push('/');
     }
   }
-    
+
   showLogin = () => {
     this.props.showLogin();
-  }
-  
-  showSignUp  = () => {
+  };
+
+  showSignUp = () => {
     this.props.showSignUp();
-  }
+  };
 
   componentWillReceiveProps(props) {
     const { user, location: { pathname }, history } = props;
@@ -55,7 +55,9 @@ class Header extends Component {
                     <li className="nav-item nav-link">Features</li>
                   </Link>
                   <Link to={`/cart`}>
-                    <li className="nav-item nav-link">Cart{cart.length > 0 && `  ${cart.length}`}</li>
+                    <li className="nav-item nav-link">
+                      Cart{cart.length > 0 && `  ${cart.length}`}
+                    </li>
                   </Link>
                 </ul>
               </div>
@@ -63,29 +65,39 @@ class Header extends Component {
           </nav>
         </div>
         <div className="navbar navbar-expand navbar-light bg-light">
-          {!user ? (<div className='style'>
-              <li className="nav-item nav-link cursor" onClick={this.showLogin} >Login</li>
-              <li className="nav-item nav-link cursor" onClick={this.showSignUp} >SignUp</li></div>
-          ) : (
-            <div className="dropdown">
-              <button
-                className=" btn-primary dropdown-toggle"
-                type="button"
-                data-toggle="dropdown"
-              >
-                {user && user.email}
-                <span className="caret" />
-              </button>
-              <ul className="dropdown-menu">
-                <a onClick={this.logoutUser}>
-                  <li className="nav-item nav-link">Logout</li>
-                </a>
-                <Link to={`/profile`}>
-                  <li className="nav-item nav-link">Setting</li>
-                </Link>
-              </ul>
-            </div>
-          )}
+          {!user
+            ? <div className="style">
+                <li
+                  className="nav-item nav-link cursor"
+                  onClick={this.showLogin}
+                >
+                  Login
+                </li>
+                <li
+                  className="nav-item nav-link cursor"
+                  onClick={this.showSignUp}
+                >
+                  SignUp
+                </li>
+              </div>
+            : <div className="dropdown">
+                <button
+                  className=" btn-primary dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown"
+                >
+                  {user && user.email}
+                  <span className="caret" />
+                </button>
+                <ul className="dropdown-menu">
+                  <a onClick={this.logoutUser}>
+                    <li className="nav-item nav-link">Logout</li>
+                  </a>
+                  <Link to={`/profile`}>
+                    <li className="nav-item nav-link">Setting</li>
+                  </Link>
+                </ul>
+              </div>}
         </div>
       </div>
     );
@@ -104,7 +116,7 @@ function mapDispatchToProps(dispatch) {
     logoutUser: history => dispatch(logoutUser(history)),
     getUser: () => dispatch(getUser()),
     showLogin: () => dispatch(showLogin()),
-    showSignUp: () => dispatch(showSignUp()),
+    showSignUp: () => dispatch(showSignUp())
   };
 }
 

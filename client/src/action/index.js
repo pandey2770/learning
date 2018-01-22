@@ -3,7 +3,7 @@ import axios from 'axios';
 export const loginUser = (username, password) => {
   return async function(dispatch) {
     await axios.post('/api/login', { username, password });
-    return dispatch(loginUserDispatch({email: username }));
+    return dispatch(loginUserDispatch({ email: username }));
   };
 };
 
@@ -46,7 +46,7 @@ export const signUp = (history, username, password) => {
   return async function(dispatch) {
     axios.post('/api/signUp', { username, password }).then(
       () => {
-        return dispatch(getUserDispatch({email: username }));
+        return dispatch(getUserDispatch({ email: username }));
       },
       response => {
         // console.log(message);
@@ -114,25 +114,27 @@ export const getCartDispatch = cart => {
 
 export const showLogin = () => {
   return {
-  type: 'SHOW_LOGIN'
-}};
+    type: 'SHOW_LOGIN'
+  };
+};
 
 export const showSignUp = () => {
   return {
-  type: 'SHOW_SIGNUP'
-}};
+    type: 'SHOW_SIGNUP'
+  };
+};
 
 export const hideLogin = () => {
   return {
-  type: 'HIDE_LOGIN'
-}};
+    type: 'HIDE_LOGIN'
+  };
+};
 
 export const removeCart = id => {
   return {
     type: 'REMOVE_TO_CART',
     id
-  }
-}
-
+  };
+};
 
 // TODO: separate action for user and product

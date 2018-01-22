@@ -17,7 +17,7 @@ class SignUp extends Component {
 
   showLogin = () => {
     this.props.showLogin();
-  }
+  };
 
   signUp = () => {
     const { username, password, confirmPassword } = this.state;
@@ -41,55 +41,70 @@ class SignUp extends Component {
     const { username, password, confirmPassword } = this.state;
     if (!this.props.showSignUp) {
       return null;
-    }  
+    }
     return (
-        <div className="modal">
-        <div className="modal-content"> 
-        <input type="button" value="X" onClick={this.close} className='closeButton' /> 
-        <h2 className='center-center'>SignUp</h2>      
-        <form>
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email Address</label>
-            <input
-              type="email"
-              name="username"
-              value={username}
-              onChange={this.change}
-              className="form-control"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              className="form-control"
-              onChange={this.change}
-              placeholder="Password"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={this.change}
-              className="form-control"
-              placeholder="Confirm Password"
-            />
-          </div>
-          <div className='button-style'>     
-            <input type='button' value='SignUp' onClick={this.signUp} className="btn button btn-primary" />
+      <div className="modal">
+        <div className="modal-content">
+          <input
+            type="button"
+            value="X"
+            onClick={this.close}
+            className="closeButton"
+          />
+          <h2 className="center-center">SignUp</h2>
+          <form>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">Email Address</label>
+              <input
+                type="email"
+                name="username"
+                value={username}
+                onChange={this.change}
+                className="form-control"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+              />
             </div>
-          <div className='button-style'>
-            <input type='button' value='login' onClick={this.showLogin} className="btn button btn-primary" />
-          </div>
-        </form>
-      </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input
+                type="password"
+                name="password"
+                value={password}
+                className="form-control"
+                onChange={this.change}
+                placeholder="Password"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={this.change}
+                className="form-control"
+                placeholder="Confirm Password"
+              />
+            </div>
+            <div className="button-style">
+              <input
+                type="button"
+                value="SignUp"
+                onClick={this.signUp}
+                className="btn button btn-primary"
+              />
+            </div>
+            <div className="button-style">
+              <input
+                type="button"
+                value="login"
+                onClick={this.showLogin}
+                className="btn button btn-primary"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
@@ -106,7 +121,7 @@ function mapDispatchToProps(dispatch) {
     signUp: (username, password, history) =>
       dispatch(signUp(username, password, history)),
     hideLogin: state => dispatch(hideLogin(state)),
-    showLogin: () => dispatch(showLogin()),
+    showLogin: () => dispatch(showLogin())
   };
 }
 
