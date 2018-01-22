@@ -11,6 +11,7 @@ class Cart extends Component {
 
   removeCart = (event) => {
     const {id} = event.target.dataset;
+    console.log(id)
     this.props.removeCart(id);
   }
 
@@ -23,7 +24,7 @@ class Cart extends Component {
         {cart.map((p,id) => (
           <div key={id} alt='Cart Product'>
             <img src={cart.img} className="img-big" alt="Product" />
-            <button onClick={this.removeCart} data-id={p} >Remove</button>
+            <button onClick={this.removeCart} data-id={p.id} >Remove</button>
           </div>
         ))}
       </div>
