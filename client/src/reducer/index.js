@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import dataReducer  from './data';
 
 const userReducer = (
   state = { user: null, showLogin: false, showSignUp: false },
@@ -46,8 +47,11 @@ const cartReducer = (state = [], action) => {
   }
 };
 
+
 export default combineReducers({
   user: userReducer,
   product: productReducer,
   cart: cartReducer
 });
+
+export default allReducer

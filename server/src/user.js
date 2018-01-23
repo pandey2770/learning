@@ -1,10 +1,8 @@
 const uuidv1 = require("uuid/v1");
 const DB = require("./db");
+const {cryptPassword} = require('./password');
 
 
-async function error() {
-  return await DB.get("SELECT * FROM data");
-}
 
 async function get(email, password) {
   const query = {
@@ -25,6 +23,7 @@ async function getById(id) {
 
 async function signUp(email, password) {
   const id = uuidv1();
+  const pwd = await cryptPassword(password);
   const query = {
     text: "INSERT INTO demouser (id, email, password) VALUES ($1, $2, $3)",
     values: [id, email, password],  

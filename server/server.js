@@ -67,6 +67,7 @@ app.get('/api/product', async(req,res) =>{
   res.json(data)
 });
 
+
 app.get('/api/product/:id', async(req,res) => {
   const data = await Product.get(req.params.id);
   res.json(data)

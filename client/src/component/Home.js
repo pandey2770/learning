@@ -14,7 +14,7 @@ class Home extends Component {
 
     this.addToCart = this.addToCart.bind(this);
   }
-
+  
   componentWillMount() {
     this.props.getAllProducts();
   }

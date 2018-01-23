@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./user')
+const {comparePassword} = require('./password');
 
  passport.use(
   new LocalStrategy(async (username, password, done) => {
@@ -10,6 +11,7 @@ var User = require('./user')
     } else {
         return done(null, false);
     }
+    return done(null, false);
   })
 );
 
