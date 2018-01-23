@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Header from '../Header';
-import { signup } from '../../action';
+import Header from './Header';
+import { signUp } from '../action';
 
 class SignUp extends Component {
   state = {
@@ -28,17 +28,18 @@ class SignUp extends Component {
       alert('Passwords do not match.');
       return false;
     }
-    return this.props.signup(history, username, password);
+    return this.props.signUp(history, username, password);
   };
 
   render() {
     const { username, password, confirmPassword } = this.state;
+    const { history, location } = this.props;
     return (
       <div>
-        <Header history={this.props.history} location={this.props.location} />
+        <Header history={history} location={location} />
         <form>
           <div className="form-group">
-            <lable for="exampleInputEmail1">Email Address</lable>
+            <label htmlFor="exampleInputEmail1">Email Address</label>
             <input
               type="email"
               name="username"
@@ -50,7 +51,7 @@ class SignUp extends Component {
             />
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label htmlFor="exampleInputPassword1">Password</label>
             <input
               type="password"
               name="password"
@@ -61,7 +62,7 @@ class SignUp extends Component {
             />
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">Confirm Password</label>
+            <label htmlFor="exampleInputPassword1">Confirm Password</label>
             <input
               type="password"
               name="confirmPassword"
@@ -86,15 +87,11 @@ class SignUp extends Component {
   }
 }
 
-function mapStateToprpos(state) {
-  return {};
-}
-
 function mapDispatchToProps(dispatch) {
   return {
-    signup: (username, password, history) =>
-      dispatch(signup(username, password, history))
+    signUp: (username, password, history) =>
+      dispatch(signUp(username, password, history))
   };
 }
 
-export default connect(mapStateToprpos, mapDispatchToProps)(SignUp);
+export default connect(undefined, mapDispatchToProps)(SignUp);

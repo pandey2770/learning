@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import '../Css.css';
 import Home from './Home';
-import Two from './Two';
-import Three from './Three';
+import Features from './Features';
 import Cart from './Cart';
-import Login from './Login/Login';
-import SignUp from './SignUp/SignUp';
-import Setting from './Setting/Setting';
+import Profile from './Profile';
+import LoginPopup from './LoginPopup';
+import SignUpPopup from './SignUpPopup';
+import Product from './Product';
+import '../style.css';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{ position: 'relative', height: '100%' }}>
         <Switch>
-          <Route path="/Login" component={Login} />
-          <Route path="/Two" component={Two} />
-          <Route path="/Three" component={Three} />
-          <Route path="/Cart" component={Cart} />
-          <Route path="/SignUp" component={SignUp} />
-          <Route path="/Setting" component={Setting} />
+          <Route path="/features" component={Features} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/product/:id" component={Product} />
           <Route path="/" component={Home} />
         </Switch>
+        <LoginPopup />
+        <SignUpPopup />
       </div>
     );
   }

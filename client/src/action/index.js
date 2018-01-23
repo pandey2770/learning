@@ -1,16 +1,9 @@
 import axios from 'axios';
 
-export const loginUser = (username, password, history) => {
+export const loginUser = (username, password) => {
   return async function(dispatch) {
-    const login = axios.post('/api/login', { username, password }).then(
-      ({ data }) => {
-        history.push('/');
-        return dispatch(loginUserDispatch(data));
-      },
-      () => {
-        alert("Please don't force me enter the right Password or Email else ");
-      }
-    );
+    await axios.post('/api/login', { username, password });
+    return dispatch(loginUserDispatch({ email: username }));
   };
 };
 
@@ -23,84 +16,125 @@ export const loginUserDispatch = data => {
 
 export const logoutUser = history => {
   return async function(dispatch) {
-    const logout = axios.get('/api/logout').then(({ data }) => {
-      history.push('/login');
-      return dispatch(getLogoutDispatch(data));
-    });
+    await axios.get('/api/logout');
+    history.push('/login');
+    return dispatch(logoutUserDispatch());
   };
 };
 
-export const getLogoutDispatch = data => {
+export const logoutUserDispatch = () => {
   return {
-    type: 'LOGOUT_USER',
+    type: 'LOGOUT_USER'
+  };
+};
+
+export const getUser = () => {
+  return async function(dispatch) {
+    const { data } = await axios.get('/api/user');
+    return dispatch(getUserDispatch(data));
+  };
+};
+
+export const getUserDispatch = data => {
+  return {
+    type: 'LOGGEDIN_USER',
     data
   };
 };
 
-export const getCurrentUser = () => {
+export const signUp = (history, username, password) => {
   return async function(dispatch) {
-    const { data } = await axios.get('/api/currentuser');
-    return dispatch(getcurrentUser(data));
+    axios.post('/api/signUp', { username, password }).then(
+      () => {
+        return dispatch(getUserDispatch({ email: username }));
+      },
+      response => {
+        // console.log(message);
+      }
+    );
   };
 };
 
-export const getcurrentUser = user => {
+export const updateData = (id, user) => {
+  return async function(dispatch) {
+    await axios.put(`/api/user/${id}`, { user });
+    return dispatch(updateDataDispatch(id, user));
+  };
+};
+
+export const updateDataDispatch = (id, user) => {
   return {
-    type: 'CURRENT_USER',
+    type: 'UPDATE_USER_DATA',
+    id,
     user
   };
 };
 
-export const signup = (history, username, password) => {
+export const getAllProducts = () => {
   return async function(dispatch) {
-    const data = await axios.post('/api/signUp', { username, password });
-    history.push('/');
-    return dispatch(getsignup(data));
+    const { data } = await axios.get('/api/product');
+    return dispatch(getAllProductsDispatch(data));
   };
 };
 
-export const getsignup = data => {
+export const getAllProductsDispatch = products => {
   return {
-    type: 'CREATE_SIGNUP',
-    data
+    type: 'GET_ALL_PRODUCT',
+    products
   };
 };
 
-export const setting = (
-  history,
-  id,
-  username,
-  password,
-  name,
-  number,
-  address
-) => {
+export const getProduct = id => {
   return async function(dispatch) {
-    const data = await axios.put(`/api/setting/${id}`, {
-      user: { id, username, password, name, number, address }
-    });
-    history.push('/setting');
+    const { data } = await axios.get(`/api/product/${id}`);
+    return dispatch(getProductDispatch(data));
   };
 };
 
-export const changeSetting = (data, id) => {
+export const getProductDispatch = product => {
   return {
-    type: 'CHANGE_SETTING',
-    id,
-    data
+    type: 'GET_PRODUCT',
+    product
   };
 };
 
-export const data = () => {
+export const getProductCart = id => {
   return async function(dispatch) {
-    const { data } = await axios.get('/api/data');
-    return dispatch(getAllData(data));
+    const { data } = await axios.get(`/api/product/${id}`);
+    return dispatch(getCartDispatch(data));
   };
 };
 
-export const getAllData = data => {
+export const getCartDispatch = cart => {
   return {
-    type: 'ALL_DATA',
-    data
+    type: 'ADD_TO_CART',
+    cart
   };
 };
+
+export const showLogin = () => {
+  return {
+    type: 'SHOW_LOGIN'
+  };
+};
+
+export const showSignUp = () => {
+  return {
+    type: 'SHOW_SIGNUP'
+  };
+};
+
+export const hideLogin = () => {
+  return {
+    type: 'HIDE_LOGIN'
+  };
+};
+
+export const removeCart = id => {
+  return {
+    type: 'REMOVE_TO_CART',
+    id
+  };
+};
+
+// TODO: separate action for user and product

@@ -1,20 +1,57 @@
 import { combineReducers } from 'redux';
 import dataReducer  from './data';
 
-function userReducer(state = null, action) {
+const userReducer = (
+  state = { user: null, showLogin: false, showSignUp: false },
+  action
+) => {
   switch (action.type) {
-    case 'CURRENT_USER':
-      return action.user;
+    case 'LOGIN_USER':
+      return { ...state, user: action.data, showLogin: false };
+    case 'LOGGEDIN_USER':
+      return { ...state, user: action.data, showSignUp: false };
     case 'LOGOUT_USER':
-      return null;
+      return { ...state, user: null };
+    case 'SHOW_LOGIN':
+      return { ...state, showSignUp: false, showLogin: true };
+    case 'SHOW_SIGNUP':
+      return { ...state, showSignUp: true, showLogin: false };
+    case 'HIDE_LOGIN':
+      return { ...state, showLogin: false, showSignUp: false };
     default:
       return state;
   }
-}
+};
 
-const allReducer  = combineReducers({
+const productReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'GET_ALL_PRODUCT':
+      return action.products;
+    case 'GET_PRODUCT':
+      return [...state, action.product];
+    default:
+      return state;
+  }
+};
+
+const cartReducer = (state = [], action) => {
+  let commentId;
+  switch (action.type) {
+    case 'ADD_TO_CART':
+      return [...state, action.cart];
+    case 'REMOVE_TO_CART':
+      commentId = action.id;
+      return [...state.filter(comment => comment.id !== commentId)];
+    default:
+      return state;
+  }
+};
+
+
+export default combineReducers({
   user: userReducer,
-  data: dataReducer
+  product: productReducer,
+  cart: cartReducer
 });
 
 export default allReducer

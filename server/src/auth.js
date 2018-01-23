@@ -5,13 +5,11 @@ const {comparePassword} = require('./password');
 
  passport.use(
   new LocalStrategy(async (username, password, done) => {
-     var user = await User.getUser(username);
-     if (user.length === 1) {
-       console.log(user);
-       const pwdCorrect = await comparePassword(password, user[0].password);
-       if (pwdCorrect) {
-        return done(null, user[0]);
-      }
+    var user = await User.get(username, password);
+    if (user.length === 1) {
+      return done(null, user[0]);
+    } else {
+        return done(null, false);
     }
     return done(null, false);
   })
@@ -22,11 +20,12 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-   User.findById(id)
-      .then((user) => {
-         done(null, user[0]);
-       })
-      .catch((error) => {
-         console.log(`Error: ${error}`);
+  User.getById(id)
+    .then((user) => {
+      done(null, user[0]);
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
     });
-});
+  }
+);
