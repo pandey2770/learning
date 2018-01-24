@@ -6,37 +6,22 @@ import Header from './Header';
 
 class Home extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      add: false,
-    };
-  }
-  
   componentWillMount() {
     this.props.getAllProducts();
   }
 
   addToCart = event => {
     const { id } = event.target.dataset;
-    const { add } = this.state;    
-    this.setState({
-      add: !add
-    });
     this.props.getProductCart(id, 'add');
   };
 
   removeCart = event => {
     const { id } = event.target.dataset;
-    const { add } = this.state;    
     this.props.removeCart(id);
-    this.setState({
-      add: !add
-    });
   };
 
   render() {
-    const { product, history, location } = this.props;
+    const { product, history, location, cart } = this.props;
     return (
       <div>
         <div>
@@ -48,7 +33,7 @@ class Home extends Component {
               <Link to={`/product/${p.id}`}>
                 <img src={p.img} data-id={p.id} className="img" alt="Product" />
               </Link>
-              {this.state.add
+              {cart.filter(c => c.id === p.id).length > 0
                 ? <button data-id={p.id} onClick={this.removeCart}>
                     remove from cart
                   </button>
