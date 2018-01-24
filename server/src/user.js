@@ -4,10 +4,10 @@ const {cryptPassword} = require('./password');
 
 
 
-async function get(email, password) {
+async function get(email) {
   const query = {
-    text: "SELECT * FROM demouser WHERE email = $1 and password = $2 ",
-    values: [email, password]
+    text: "SELECT * FROM demouser WHERE email = $1",
+    values: [email]
   };
   const users = await DB.get(query);
   return users;
@@ -26,7 +26,7 @@ async function signUp(email, password) {
   const pwd = await cryptPassword(password);
   const query = {
     text: "INSERT INTO demouser (id, email, password) VALUES ($1, $2, $3)",
-    values: [id, email, password],  
+    values: [id, email, pwd],  
   };
   await DB.mutate(query);
   return id;

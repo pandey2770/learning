@@ -1,0 +1,12 @@
+LOG:  database system was interrupted; last known up at 2018-01-18 19:50:01 IST
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/31F4FE0: wanted 24, got 0
+LOG:  redo is not required
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+ERROR:  relation "demousers" does not exist at character 15
+STATEMENT:  select * from demousers;
+ERROR:  duplicate key value violates unique constraint "demouser_email_key"
+DETAIL:  Key (email)=(o@o.com) already exists.
+STATEMENT:  INSERT INTO demouser (id, email, password) VALUES ($1, $2, $3)

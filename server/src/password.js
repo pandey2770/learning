@@ -18,7 +18,6 @@ exports.comparePassword = (plainPass, hashword) => {
     bcrypt.compare(plainPass, hashword, (err, isPasswordMatch) => {
       if (err) 
         return reject(err);
-
       return resolve(isPasswordMatch);
     });
   });

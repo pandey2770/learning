@@ -5,11 +5,12 @@ const {comparePassword} = require('./password');
 
  passport.use(
   new LocalStrategy(async (username, password, done) => {
-    var user = await User.get(username, password);
+    var user = await User.get(username);
     if (user.length === 1) {
-      return done(null, user[0]);
-    } else {
-        return done(null, false);
+      const passwordMatch = await comparePassword(password, user[0].password);
+      if (passwordMatch) {
+        return done(null, user[0]);
+      }
     }
     return done(null, false);
   })
