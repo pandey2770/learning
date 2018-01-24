@@ -4,8 +4,8 @@ const pool = new Pool({
   user: '',
   host: 'localhost',
   database: 'demo',
-  password: '',
-
+  password: ''
+})
 
 async function get(query) {
   const res = await pool.query(query);

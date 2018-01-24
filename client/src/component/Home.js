@@ -5,14 +5,12 @@ import { getAllProducts, getProductCart, removeCart } from '../action';
 import Header from './Header';
 
 class Home extends Component {
+
   constructor(props) {
     super(props);
-
     this.state = {
-      visible: false
+      add: false,
     };
-
-    this.addToCart = this.addToCart.bind(this);
   }
   
   componentWillMount() {
@@ -21,14 +19,20 @@ class Home extends Component {
 
   addToCart = event => {
     const { id } = event.target.dataset;
-    this.props.getProductCart(id);
-    this.setState({ visible: !this.state.visible });
+    const { add } = this.state;    
+    this.setState({
+      add: !add
+    });
+    this.props.getProductCart(id, 'add');
   };
 
   removeCart = event => {
     const { id } = event.target.dataset;
+    const { add } = this.state;    
     this.props.removeCart(id);
-    this.setState({ visible: !this.state.visible });
+    this.setState({
+      add: !add
+    });
   };
 
   render() {
@@ -44,7 +48,7 @@ class Home extends Component {
               <Link to={`/product/${p.id}`}>
                 <img src={p.img} data-id={p.id} className="img" alt="Product" />
               </Link>
-              {this.state.visible
+              {this.state.add
                 ? <button data-id={p.id} onClick={this.removeCart}>
                     remove from cart
                   </button>
@@ -70,7 +74,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
-    getProductCart: id => dispatch(getProductCart(id)),
+    getProductCart: (id, state) => dispatch(getProductCart(id,state)),
     removeCart: id => dispatch(removeCart(id))
   };
 }

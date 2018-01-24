@@ -20,6 +20,10 @@ body,
   display: flex;
   justify-content: center;
 }
+.numberInput {
+  width: 5%;
+  margin: 5px;
+}
 .width {
   width: 100%;
 }

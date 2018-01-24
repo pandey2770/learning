@@ -45,5 +45,4 @@ module.exports = {
   getById,
   signUp,
   updateData,
-  error,
 };
