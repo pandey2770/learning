@@ -15,11 +15,13 @@ class Cart extends Component {
   }
   render() {
     const { history, location, cart } = this.props;
-    console.log(this.props)
     return (
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
+        {!cart.length ?
+        <span>empty</span>
+:         <div>
         {cart.map((c, id) =>
           <div key={id} alt="Cart Product">
             <img src={c.img} className="img-big" alt="Product" />
@@ -34,6 +36,7 @@ class Cart extends Component {
             <span>Total Cart Amount </span>
             <button>Buy Now</button>
           </div>
+          </div>}
       </div>
     );
   }
