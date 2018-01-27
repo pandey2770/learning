@@ -25,7 +25,7 @@ class Cart extends Component {
         {cart.map((c, id) =>
           <div key={id} alt="Cart Product">
             <img src={c.img} className="img-big" alt="Product" />
-            <input type="number"  min='1' className='numberInput' data-id={c.rate} onChange={this.rate} />
+            <input type="number"  min='1' defaultValue='1' className='numberInput' data-id={c.rate} onChange={this.rate} />
             <button onClick={this.removeCart} data-id={c.id}>
                 Remove
             </button>
