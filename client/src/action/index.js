@@ -118,8 +118,9 @@ export const getCartDispatch = cart => {
 };
 
 export const removeCart = (id, userid) => {
+  console.log(id, userid)
   return async function(dispatch) {
-    const { data } = await axios.get('/api/cartdelete' , {id, userid});
+    const { data } = await axios.delete('/api/cartdelete' , {id, userid});
     return dispatch(removeCartData(data));
   };
 };

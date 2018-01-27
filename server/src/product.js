@@ -15,7 +15,7 @@ async function get(id) {
 
 async function postCart (id , userid, status ) {
   const query = {
-    text : "INSERT INTO CART (id, productId, status) VALUES ($1, $2, $3)",
+    text : "INSERT INTO CART (id, productid, status) VALUES ($1, $2, $3)",
     values: [userid, id, status]
   }
   await DB.mutate(query);console.log(query)
@@ -23,8 +23,8 @@ async function postCart (id , userid, status ) {
 
 async function deleteFromCatr (id , userid  ) {
   const query = {
-    text : "DELETE FROM cart WHERE id = $1, ",
-    values: [userid, id, status]
+    text : "DELETE FROM cart productid = $2 WHERE id = $1 ",
+    values: [userid, id ]
   }
   await DB.mutate(query);console.log(query)
 }

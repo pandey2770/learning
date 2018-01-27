@@ -78,6 +78,7 @@ app.post('/api/cart' , async(req) =>{
 })
 
 app.delete('/api/cartdelete' , async(req, res) => {
+  console.log( req.body.id, req.body.userid )
   const data = await Product.deleteFromCatr(req.body.id, req.body.userid);
   res.json(data);
 })
