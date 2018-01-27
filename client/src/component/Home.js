@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllProducts, getProductCart, removeCart } from '../action';
+import { getAllProducts, getProductCart, addToCartData, removeCart } from '../action';
 import Header from './Header';
 
 class Home extends Component {
@@ -11,13 +11,16 @@ class Home extends Component {
   }
 
   addToCart = event => {
-    const { id } = event.target.dataset;
-    this.props.getProductCart(id, 'add');
+    const{id:userid} = this.props.user;
+     const { id } = event.target.dataset;
+     this.props.getProductCart(id, userid, 'add');
+     this.props.addToCartData(id, userid, 'state');
   };
 
   removeCart = event => {
+    const{id:userid} = this.props.user;    
     const { id } = event.target.dataset;
-    this.props.removeCart(id);
+    this.props.removeCart(id, userid);
   };
 
   render() {
@@ -59,8 +62,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
-    getProductCart: (id, state) => dispatch(getProductCart(id,state)),
-    removeCart: id => dispatch(removeCart(id))
+    getProductCart: (id, state) => dispatch(getProductCart(id, state)),
+    removeCart: (id, userid) => dispatch(removeCart(id, userid)),
+    addToCartData: (id, userid, state) => dispatch(addToCartData(id, userid, state)),
   };
 }
 

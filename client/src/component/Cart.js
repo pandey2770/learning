@@ -11,7 +11,6 @@ class Cart extends Component {
 
   rate = event => {
     const {id} = event.target.dataset;
-    console.log(id)
   }
   render() {
     const { history, location, cart } = this.props;

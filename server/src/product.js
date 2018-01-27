@@ -13,7 +13,25 @@ async function get(id) {
   return products[0];
 }
 
+async function postCart (id , userid, status ) {
+  const query = {
+    text : "INSERT INTO CART (id, productId, status) VALUES ($1, $2, $3)",
+    values: [userid, id, status]
+  }
+  await DB.mutate(query);console.log(query)
+}
+
+async function deleteFromCatr (id , userid  ) {
+  const query = {
+    text : "DELETE FROM cart WHERE id = $1, ",
+    values: [userid, id, status]
+  }
+  await DB.mutate(query);console.log(query)
+}
+
 module.exports = {
   getAll,
-  get
+  get,
+  postCart,
+  deleteFromCatr
 };
