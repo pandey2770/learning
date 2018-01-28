@@ -22,7 +22,6 @@ async function postCart (id , userid, status ) {
 }
 
 async function deleteFromCatr (id, userid  ) {
-  console.log(id,userid)
   const query = {
     text : "DELETE FROM cart WHERE id=$1 AND productid=$2 ",
     values: [ id, userid ]
@@ -31,9 +30,20 @@ async function deleteFromCatr (id, userid  ) {
   return data;
 }
 
+async function cartdetail (id) {
+  const query = {
+    text: "SELECT * FROM cart WHERE id = $1",
+    values: [id]
+  };
+  const cart = await DB.get(query);
+  return cart[0];
+}
+
+
 module.exports = {
   getAll,
   get,
   postCart,
-  deleteFromCatr
+  deleteFromCatr,
+  cartdetail
 };

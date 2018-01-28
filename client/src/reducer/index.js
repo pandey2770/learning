@@ -36,6 +36,8 @@ const productReducer = (state = [], action) => {
 const cartReducer = (state = [], action) => {
   let commentId;
   switch (action.type) {
+    case 'LOGGEDIN_USER':
+    return []
     case 'ADD_TO_CART':
       return [...state, action.cart];
     case 'REMOVE_TO_CART':

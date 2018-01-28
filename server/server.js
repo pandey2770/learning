@@ -79,7 +79,12 @@ app.post('/api/cart' , async(req) =>{
 
 app.delete('/api/cartdelete/:userid/:id' , async(req, res) => {
   const data = await Product.deleteFromCatr(req.params.userid, req.params.id);
-  res.json(data);
+  res.json(req.params.id);
 })
+
+app.get('/api/cartdetail', async(req,res) => {
+  const data = await Product.cartdetail(req.user.id);
+  res.json(data)
+});
 
 app.listen(3001, () => console.log("Server started on port 3001"));

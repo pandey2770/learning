@@ -31,6 +31,7 @@ export const logoutUserDispatch = () => {
 export const getUser = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/user');
+    // const { cart } = await axios.get('/api/cartdetail');
     return dispatch(getUserDispatch(data));
   };
 };
@@ -118,9 +119,7 @@ export const getCartDispatch = cart => {
 };
 
 export const removeCart = (id, userid) => {
-  console.log(id,userid)
   return async function(dispatch) {
-    console.log(id,userid)
     const { data } = await axios.delete(`/api/cartdelete/${userid}/${id}`);
     return dispatch(removeCartData(data));
   };
@@ -133,6 +132,21 @@ export const removeCartData = id => {
     id
   };
 };
+
+ export const getcartdetail =() => {
+  return async function(dispatch) {
+    const { data } = await axios.get('/api/cartdetail');
+    console.log(data)
+    return dispatch(getUserDispatch(data));
+  };
+};
+
+// export const getUserDispatch = data => {
+//   return {
+//     type: 'LOGGEDIN_USER',
+//     data
+//   };
+// };
 
 export const showLogin = () => {
   return {
