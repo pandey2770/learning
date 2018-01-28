@@ -11,10 +11,11 @@ class Home extends Component {
   }
 
   addToCart = event => {
+    console.log(this.props)    
     const{id:userid} = this.props.user;
      const { id } = event.target.dataset;
      this.props.getProductCart(id, userid, 'add');
-     this.props.addToCartData(id, userid, 'state');
+    //  this.props.addToCartData(id, userid, 'state');
   };
 
   removeCart = event => {

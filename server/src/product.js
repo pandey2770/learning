@@ -18,15 +18,17 @@ async function postCart (id , userid, status ) {
     text : "INSERT INTO CART (id, productid, status) VALUES ($1, $2, $3)",
     values: [userid, id, status]
   }
-  await DB.mutate(query);console.log(query)
+  await DB.mutate(query);
 }
 
-async function deleteFromCatr (id , userid  ) {
+async function deleteFromCatr (id, userid  ) {
+  console.log(id,userid)
   const query = {
-    text : "DELETE FROM cart productid = $2 WHERE id = $1 ",
-    values: [userid, id ]
+    text : "DELETE FROM cart WHERE id=$1 AND productid=$2 ",
+    values: [ id, userid ]
   }
-  await DB.mutate(query);console.log(query)
+  const data= await DB.mutate(query);
+  return data;
 }
 
 module.exports = {

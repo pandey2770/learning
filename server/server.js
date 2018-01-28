@@ -77,9 +77,8 @@ app.post('/api/cart' , async(req) =>{
   const data = await Product.postCart(req.body.id, req.body.userid);
 })
 
-app.delete('/api/cartdelete' , async(req, res) => {
-  console.log( req.body.id, req.body.userid )
-  const data = await Product.deleteFromCatr(req.body.id, req.body.userid);
+app.delete('/api/cartdelete/:userid/:id' , async(req, res) => {
+  const data = await Product.deleteFromCatr(req.params.userid, req.params.id);
   res.json(data);
 })
 
