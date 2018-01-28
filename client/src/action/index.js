@@ -31,7 +31,6 @@ export const logoutUserDispatch = () => {
 export const getUser = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/user');
-    // const { cart } = await axios.get('/api/cartdetail');
     return dispatch(getUserDispatch(data));
   };
 };
@@ -136,17 +135,16 @@ export const removeCartData = id => {
  export const getcartdetail =() => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/cartdetail');
-    console.log(data)
-    return dispatch(getUserDispatch(data));
+    return dispatch(getCartispatch(data));
   };
 };
 
-// export const getUserDispatch = data => {
-//   return {
-//     type: 'LOGGEDIN_USER',
-//     data
-//   };
-// };
+export const getCartispatch = data => {
+  return {
+    type: 'CART_DATA',
+    data
+  };
+};
 
 export const showLogin = () => {
   return {

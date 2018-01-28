@@ -4,6 +4,26 @@ import Header from './Header';
 import { getProduct, removeCart } from '../action';
 
 class Cart extends Component {
+
+  state = {
+    product: undefined
+  };
+
+  componentWillMount(){
+    const {cart} = this.props;
+    if (cart) {
+      const { productList } = this.props;
+      if (productList) {
+        const product = productList.find(p => p.cart === cart);
+        if (product) {
+          this.setState({ product });
+          return;
+        }
+      }
+      this.props.getProduct(cart);
+    }
+  }
+
   removeCart = event => {
     const { id } = event.target.dataset;
     this.props.removeCart(id);
@@ -12,15 +32,17 @@ class Cart extends Component {
   rate = event => {
     const {id} = event.target.dataset;
   }
+
   render() {
     const { history, location, cart } = this.props;
+    const {product} = this.state;
     return (
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
         {!cart.length ?
         <span>empty</span>
-:         <div>
+        :<div>
         {cart.map((c, id) =>
           <div key={id} alt="Cart Product">
             <img src={c.img} className="img-big" alt="Product" />
@@ -42,9 +64,10 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
+  return {    
     productList: state.product,
-    cart: state.cart
+    cart: state.cart,
+    user: state.user.user,    
   };
 }
 

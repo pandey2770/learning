@@ -84,6 +84,7 @@ app.delete('/api/cartdelete/:userid/:id' , async(req, res) => {
 
 app.get('/api/cartdetail', async(req,res) => {
   const data = await Product.cartdetail(req.user.id);
+  console.log(data)
   res.json(data)
 });
 

@@ -36,7 +36,7 @@ async function cartdetail (id) {
     values: [id]
   };
   const cart = await DB.get(query);
-  return cart[0];
+  return cart[0] ;
 }
 
 

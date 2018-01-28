@@ -35,9 +35,14 @@ const productReducer = (state = [], action) => {
 
 const cartReducer = (state = [], action) => {
   let commentId;
+  let index;
   switch (action.type) {
-    case 'LOGGEDIN_USER':
-    return []
+    case 'CART_DATA':
+      // if(index = state.find(cartReducer => cartReducer.id === action.data.productid)){
+      //   state.splice(index, 1);
+      //   return [...state]
+      // };
+      return [...state, action.data.productid]
     case 'ADD_TO_CART':
       return [...state, action.cart];
     case 'REMOVE_TO_CART':
