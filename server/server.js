@@ -75,6 +75,7 @@ app.get('/api/product/:id', async(req,res) => {
 
 app.post('/api/cart' , async(req) =>{
   const data = await Product.postCart(req.body.id, req.body.userid);
+  res.json(req.body.userid)
 })
 
 app.delete('/api/cartdelete/:userid/:id' , async(req, res) => {
@@ -83,9 +84,11 @@ app.delete('/api/cartdelete/:userid/:id' , async(req, res) => {
 })
 
 app.get('/api/cartdetail', async(req,res) => {
+  console.log(req.user.id)
   const data = await Product.cartdetail(req.user.id);
-  console.log(data)
-  res.json(data)
+  if (data !== undefined || null) {
+    res.json(data)
+  }
 });
 
 app.listen(3001, () => console.log("Server started on port 3001"));

@@ -9,6 +9,7 @@ class Cart extends Component {
   };
 
   componentWillMount() {
+    console.log(this.props)
     const { cart } = this.props;
     if (cart) {
       const { productList } = this.props;
@@ -72,6 +73,7 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     productList: state.product,
     cart: state.cart,

@@ -35,7 +35,6 @@ const productReducer = (state = [], action) => {
 
 const cartReducer = (state = [], action) => {
   let commentId;
-  let index;
   switch (action.type) {
     case 'CART_DATA':
       if (action.data.productid === action.data.productid) {

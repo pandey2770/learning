@@ -99,15 +99,15 @@ export const getProductDispatch = product => {
 };
 
 export const getProductCart = (id, state) => {
-  return async function(dispatch) {
-    const { data } = await axios.get(`/api/product/${id}`);
-    return dispatch(getCartDispatch(data));
-  };
+  axios.get(`/api/product/${id}`);
 };
 
 export const addToCartData = (id, userid, state) => {
-  axios.post('/api/cart', { id, userid, state });
-};
+  return async function(dispatch) {
+    const {data} = await   axios.post('/api/cart', { id, userid, state });
+    return dispatch(getCartDispatch(data));
+  }
+}
 
 export const getCartDispatch = cart => {
   return {

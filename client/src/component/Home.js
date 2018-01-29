@@ -5,15 +5,13 @@ import {
   getAllProducts,
   getProductCart,
   addToCartData,
-  removeCart,
-  getcartdetail
+  removeCart
 } from '../action';
 import Header from './Header';
 
 class Home extends Component {
   componentWillMount() {
     this.props.getAllProducts();
-    this.props.getcartdetail();
   }
 
   addToCart = event => {
@@ -72,7 +70,6 @@ function mapDispatchToProps(dispatch) {
     removeCart: (id, userid) => dispatch(removeCart(id, userid)),
     addToCartData: (id, userid, state) =>
       dispatch(addToCartData(id, userid, state)),
-    getcartdetail: user => dispatch(getcartdetail(user))
   };
 }
 
