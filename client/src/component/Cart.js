@@ -4,13 +4,12 @@ import Header from './Header';
 import { getProduct, removeCart } from '../action';
 
 class Cart extends Component {
-
   state = {
     product: undefined
   };
 
-  componentWillMount(){
-    const {cart} = this.props;
+  componentWillMount() {
+    const { cart } = this.props;
     if (cart) {
       const { productList } = this.props;
       if (productList) {
@@ -30,44 +29,53 @@ class Cart extends Component {
   };
 
   rate = event => {
-    const {id} = event.target.dataset;
-  }
+    const { id } = event.target.dataset;
+  };
 
   render() {
     const { history, location, cart } = this.props;
-    const {product} = this.state;
+    const { product } = this.state;
     return (
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
-        {!cart.length ?
-        <span>empty</span>
-        :<div>
-        {cart.map((c, id) =>
-          <div key={id} alt="Cart Product">
-            <img src={c.img} className="img-big" alt="Product" />
-            <input type="number"  min='1' defaultValue='1' className='numberInput' data-id={c.rate} onChange={this.rate} />
-            <button onClick={this.removeCart} data-id={c.id}>
-                Remove
-            </button>
-            <span> Product Amount {c.rate}</span>
-          </div>
-        )}
-          <div>
-            <span>Total Cart Amount </span>
-            <button>Buy Now</button>
-          </div>
-          </div>}
+        {!cart.length
+          ? <span>empty</span>
+          : <div>
+              {cart.map((c, id) =>
+                <div key={id} alt="Cart Product">
+                  <img src={c.img} className="img-big" alt="Product" />
+                  <input
+                    type="number"
+                    min="1"
+                    defaultValue="1"
+                    className="numberInput"
+                    data-id={c.rate}
+                    onChange={this.rate}
+                  />
+                  <button onClick={this.removeCart} data-id={c.id}>
+                    Remove
+                  </button>
+                  <span>
+                    {' '}Product Amount {c.rate}
+                  </span>
+                </div>
+              )}
+              <div>
+                <span>Total Cart Amount </span>
+                <button>Buy Now</button>
+              </div>
+            </div>}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {    
+  return {
     productList: state.product,
     cart: state.cart,
-    user: state.user.user,    
+    user: state.user.user
   };
 }
 

@@ -106,9 +106,8 @@ export const getProductCart = (id, state) => {
 };
 
 export const addToCartData = (id, userid, state) => {
-     axios.post('/api/cart',{id, userid, state});
-  };
-
+  axios.post('/api/cart', { id, userid, state });
+};
 
 export const getCartDispatch = cart => {
   return {
@@ -124,7 +123,6 @@ export const removeCart = (id, userid) => {
   };
 };
 
-
 export const removeCartData = id => {
   return {
     type: 'REMOVE_TO_CART',
@@ -132,7 +130,7 @@ export const removeCartData = id => {
   };
 };
 
- export const getcartdetail =() => {
+export const getcartdetail = () => {
   return async function(dispatch) {
     const { data } = await axios.get('/api/cartdetail');
     return dispatch(getCartispatch(data));
@@ -163,6 +161,5 @@ export const hideLogin = () => {
     type: 'HIDE_LOGIN'
   };
 };
-
 
 // TODO: separate action for user and product

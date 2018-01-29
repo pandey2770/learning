@@ -38,11 +38,11 @@ const cartReducer = (state = [], action) => {
   let index;
   switch (action.type) {
     case 'CART_DATA':
-      // if(index = state.find(cartReducer => cartReducer.id === action.data.productid)){
-      //   state.splice(index, 1);
-      //   return [...state]
-      // };
-      return [...state, action.data.productid]
+      if (action.data.productid === action.data.productid) {
+        return [state];
+      } else {
+        return [...state, action.data.productid];
+      }
     case 'ADD_TO_CART':
       return [...state, action.cart];
     case 'REMOVE_TO_CART':
@@ -53,10 +53,8 @@ const cartReducer = (state = [], action) => {
   }
 };
 
-
 export default combineReducers({
   user: userReducer,
   product: productReducer,
   cart: cartReducer
 });
-
