@@ -4,19 +4,11 @@ async function getAll() {
   return await DB.get("SELECT * FROM product");
 }
 
-async function get(id) {
-  const query = {
-    text: "SELECT * FROM product WHERE id = $1",
-    values: [id]
-  };
-  const products = await DB.get(query);
-  return products[0];
-}
 
-async function postCart (id , userid, status ) {
+async function postCart (id , cartid, status ) {
   const query = {
     text : "INSERT INTO CART (id, productid, status) VALUES ($1, $2, $3)",
-    values: [userid, id, status]
+    values: [id, cartid, status]
   }
   await DB.mutate(query);
 }
@@ -42,7 +34,6 @@ async function cartdetail (id) {
 
 module.exports = {
   getAll,
-  get,
   postCart,
   deleteFromCatr,
   cartdetail

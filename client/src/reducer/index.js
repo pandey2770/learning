@@ -43,7 +43,7 @@ const cartReducer = (state = [], action) => {
         return [...state, action.data.productid];
       }
     case 'ADD_TO_CART':
-      return [...state, action.cart];
+      return [...state, action.data];
     case 'REMOVE_TO_CART':
       commentId = action.id;
       return [...state.filter(comment => comment.id !== commentId)];

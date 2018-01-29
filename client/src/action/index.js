@@ -17,7 +17,6 @@ export const loginUserDispatch = data => {
 export const logoutUser = history => {
   return async function(dispatch) {
     await axios.get('/api/logout');
-    history.push('/login');
     return dispatch(logoutUserDispatch());
   };
 };
@@ -98,21 +97,17 @@ export const getProductDispatch = product => {
   };
 };
 
-export const getProductCart = (id, state) => {
-  axios.get(`/api/product/${id}`);
-};
-
-export const addToCartData = (id, userid, state) => {
+export const addToCartData = (cartid, state) => {
   return async function(dispatch) {
-    const {data} = await   axios.post('/api/cart', { id, userid, state });
+    const {data} = await axios.post(`/api/cart/${cartid}`, { state });
     return dispatch(getCartDispatch(data));
   }
 }
 
-export const getCartDispatch = cart => {
+export const getCartDispatch = data => {
   return {
     type: 'ADD_TO_CART',
-    cart
+    data
   };
 };
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   getAllProducts,
-  getProductCart,
   addToCartData,
   removeCart
 } from '../action';
@@ -15,10 +14,9 @@ class Home extends Component {
   }
 
   addToCart = event => {
-    const { id: userid } = this.props.user;
-    const { id } = event.target.dataset;
-    this.props.getProductCart(id, userid, 'add');
-    this.props.addToCartData(id, userid, 'state');
+    const { id:cartid } = event.target.dataset;
+    console.log(cartid,'home')
+    this.props.addToCartData(cartid, 'state');
   };
 
   removeCart = event => {
@@ -66,10 +64,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
-    getProductCart: (id, state) => dispatch(getProductCart(id, state)),
     removeCart: (id, userid) => dispatch(removeCart(id, userid)),
-    addToCartData: (id, userid, state) =>
-      dispatch(addToCartData(id, userid, state)),
+    addToCartData: (cartid, state) => dispatch(addToCartData(cartid, state)),
   };
 }
 
