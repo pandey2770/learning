@@ -35,8 +35,7 @@ async function cartdetail (id) {
     text: "SELECT * FROM cart WHERE id = $1",
     values: [id]
   };
-  const cart = await DB.get(query);
-  return cart[0] ;
+  return await DB.get(query);
 }
 
 

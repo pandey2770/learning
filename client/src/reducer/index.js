@@ -36,12 +36,8 @@ const productReducer = (state = [], action) => {
 const cartReducer = (state = [], action) => {
   let commentId;
   switch (action.type) {
-    case 'CART_DATA':console.log(state,'reducer')
-      if (action.data.productid === state) {
-        return [...state.splice];
-      } else {
-        return [...state, action.data.productid];
-      }
+    case 'CART_DATA':
+      return [ ...state, action.data ];
     case 'ADD_TO_CART':
       return [...state, action.data];
     case 'REMOVE_TO_CART':

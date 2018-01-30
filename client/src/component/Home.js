@@ -15,7 +15,6 @@ class Home extends Component {
 
   addToCart = event => {
     const { id:cartid } = event.target.dataset;
-    console.log(cartid,'home')
     this.props.addToCartData(cartid, 'state');
   };
 
