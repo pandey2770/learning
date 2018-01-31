@@ -9,9 +9,7 @@ import {
 import Header from './Header';
 
 class Home extends Component {
-  componentWillMount() {
-    this.props.getAllProducts();
-  }
+
 
   addToCart = event => {
     const { id:cartid } = event.target.dataset;
@@ -62,7 +60,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAllProducts: () => dispatch(getAllProducts()),
     removeCart: (id, userid) => dispatch(removeCart(id, userid)),
     addToCartData: (cartid, state) => dispatch(addToCartData(cartid, state)),
   };
