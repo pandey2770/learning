@@ -24,7 +24,6 @@ class Home extends Component {
 
   render() {
     const { product, history, location, cart } = this.props;
-    console.log(cart,'carthome')
     return (
       <div>
         <div>

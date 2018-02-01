@@ -18,7 +18,7 @@ async function postCart (id , cartid, status ) {
     text : "INSERT INTO CART (id, productid, status) VALUES ($1, $2, $3)",
     values: [id, cartid, status]
   }
-  await DB.mutate(query);
+  return await DB.mutate(query);
 }
 
 async function deleteFromCatr (id, userid  ) {
