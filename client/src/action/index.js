@@ -100,6 +100,7 @@ export const getProductDispatch = product => {
 export const addToCartData = (cartid, state) => {
   return async function(dispatch) {
     const {data} = await axios.post(`/api/cart/${cartid}`, { state });
+    console.log(data,'data')    
     return dispatch(getCartDispatch(data));
   }
 }

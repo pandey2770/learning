@@ -57,7 +57,7 @@ class Header extends Component {
                   </Link>
                   <Link to={`/cart`}>
                     <li className="nav-item nav-link">
-                      Cart{cart.length > 0 && `  ${cart.length}`}
+                      Cart{cart.length > 0 && `  ${cart[0].length}`}
                     </li>
                   </Link>
                 </ul>
