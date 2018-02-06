@@ -8,18 +8,15 @@ class Cart extends Component {
     product: undefined
   };
 
-  componentWillMount() {
-    const { cart } = this.props;
-    if (cart) {
-      const { productList } = this.props;
-      if (productList) {
-        const product = productList.find(p => p.cart === cart);
-        if (product) {
-          this.setState({ product });
-          return;
-        }
+  componentWillReceiveProps(props) {
+    const { cart } = props;
+    const { product } = this.state;
+    const { productList } = props;
+    if (cart && !product && productList !== this.props.productList) {
+      const product = productList.find(p => p.cart === cart[0]);
+      if (product) {
+        this.setState({ product });
       }
-      this.props.getProduct(cart);
     }
   }
 
@@ -42,9 +39,13 @@ class Cart extends Component {
         {!cart.length
           ? <span>empty</span>
           : <div>
-              {cart.map((c, id) =>
+              {cart[0].map((c, id) =>
                 <div key={id} alt="Cart Product">
-                  <img src={c.img} className="img-big" alt="Product" />
+                  <img
+                    src={product && product.img}
+                    className="img-big"
+                    alt="Product"
+                  />
                   <input
                     type="number"
                     min="1"
@@ -53,7 +54,7 @@ class Cart extends Component {
                     data-id={c.rate}
                     onChange={this.rate}
                   />
-                  <button onClick={this.removeCart} data-id={c.id}>
+                  <button onClick={this.removeCart} data-id={c.productid}>
                     Remove
                   </button>
                   <span>
@@ -72,7 +73,6 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     productList: state.product,
     cart: state.cart,

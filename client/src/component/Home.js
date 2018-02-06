@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  getAllProducts,
-  addToCartData,
-  removeCart
-} from '../action';
+import { getAllProducts, addToCartData, removeCart } from '../action';
 import Header from './Header';
 
 class Home extends Component {
-
-
   addToCart = event => {
-    const { id:cartid } = event.target.dataset;
+    const { id: cartid } = event.target.dataset;
     this.props.addToCartData(cartid, 'state');
   };
 
@@ -61,7 +55,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     removeCart: (id, userid) => dispatch(removeCart(id, userid)),
-    addToCartData: (cartid, state) => dispatch(addToCartData(cartid, state)),
+    addToCartData: (cartid, state) => dispatch(addToCartData(cartid, state))
   };
 }
 

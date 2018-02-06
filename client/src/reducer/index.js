@@ -22,7 +22,7 @@ const userReducer = (
   }
 };
 
-const productReducer = (state = [], action) => {
+const productReducer = (state = [0], action) => {
   switch (action.type) {
     case 'GET_ALL_PRODUCT':
       return action.products;
@@ -37,11 +37,11 @@ const cartReducer = (state = [], action) => {
   let commentId;
   switch (action.type) {
     case 'CART_DATA':
-    return [ ...state, action.data ];
-    case 'ADD_TO_CART':console.log(action.data,'reducer')
+      return [...state, action.data];
+    case 'ADD_TO_CART':
       return [...state, action.data];
     case 'REMOVE_TO_CART':
-      commentId = action.id;
+      commentId = action.data;
       return [...state.filter(comment => comment.id !== commentId)];
     default:
       return state;

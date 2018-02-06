@@ -115,7 +115,7 @@ function mapDispatchToProps(dispatch) {
     logoutUser: history => dispatch(logoutUser(history)),
     getUser: () => dispatch(getUser()),
     showLogin: () => dispatch(showLogin()),
-    showSignUp: () => dispatch(showSignUp()),
+    showSignUp: () => dispatch(showSignUp())
   };
 }
 

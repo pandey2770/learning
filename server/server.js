@@ -75,12 +75,11 @@ app.get('/api/product/:id', async(req,res) => {
 
 app.post('/api/cart/:cartid' , async(req, res) =>{
   const data = await Product.postCart(req.user.id, req.params.cartid);
-  console.log(data)
-  res.json(data)
+  res.json(req.params.cartid)
 })
 
-app.delete('/api/cartdelete/:userid/:id' , async(req, res) => {
-  const data = await Product.deleteFromCatr(req.params.userid, req.params.id);
+app.delete('/api/cartdelete/:id' , async(req, res) => {
+  const data = await Product.deleteFromCatr(req.user.id, req.params.id);
   res.json(req.params.id);
 })
 

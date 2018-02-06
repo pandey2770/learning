@@ -99,11 +99,10 @@ export const getProductDispatch = product => {
 
 export const addToCartData = (cartid, state) => {
   return async function(dispatch) {
-    const {data} = await axios.post(`/api/cart/${cartid}`, { state });
-    console.log(data,'data')    
+    const { data } = await axios.post(`/api/cart/${cartid}`, { state });
     return dispatch(getCartDispatch(data));
-  }
-}
+  };
+};
 
 export const getCartDispatch = data => {
   return {
@@ -112,17 +111,17 @@ export const getCartDispatch = data => {
   };
 };
 
-export const removeCart = (id, userid) => {
+export const removeCart = id => {
   return async function(dispatch) {
-    const { data } = await axios.delete(`/api/cartdelete/${userid}/${id}`);
+    const { data } = await axios.delete(`/api/cartdelete/${id}`);
     return dispatch(removeCartData(data));
   };
 };
 
-export const removeCartData = id => {
+export const removeCartData = data => {
   return {
     type: 'REMOVE_TO_CART',
-    id
+    data
   };
 };
 

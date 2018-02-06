@@ -12,51 +12,46 @@ import '../style.css';
 import { getAllProducts, getcartdetail } from '../action';
 
 class App extends Component {
-
   componentWillMount() {
     this.props.getAllProducts();
-    this.props.getcartdetail();    
+    this.props.getcartdetail();
   }
 
   render() {
-    return null
+    return null;
   }
 }
 
 function mapStateToProps(state) {
-  return {
-  };
+  return {};
 }
 
-
 function mapDispatchToProps(dispatch) {
-return {
-  getAllProducts: () => dispatch(getAllProducts()),
-  getcartdetail: () => dispatch(getcartdetail())      
-};
+  return {
+    getAllProducts: () => dispatch(getAllProducts()),
+    getcartdetail: () => dispatch(getcartdetail())
+  };
 }
 
 const NewApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 class Raper extends Component {
-    render() {
-      return (
-        <div style={{ position: 'relative', height: '100%' }}>
-          <NewApp />
-          <Switch>
-            <Route path="/features" component={Features} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/product/:id" component={Product} />
-            <Route path="/" component={Home} />
-          </Switch>
-          <LoginPopup />
-          <SignUpPopup />
-        </div>
-      );
-    }
+  render() {
+    return (
+      <div style={{ position: 'relative', height: '100%' }}>
+        <NewApp />
+        <Switch>
+          <Route path="/features" component={Features} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/product/:id" component={Product} />
+          <Route path="/" component={Home} />
+        </Switch>
+        <LoginPopup />
+        <SignUpPopup />
+      </div>
+    );
   }
-  
+}
+
 export default Raper;
-
-
