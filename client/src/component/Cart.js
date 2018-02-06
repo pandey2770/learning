@@ -72,6 +72,7 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     productList: state.product,
     cart: state.cart,
