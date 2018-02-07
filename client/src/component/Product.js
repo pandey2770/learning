@@ -28,7 +28,7 @@ class Product extends Component {
     const { product } = this.state;
     const { productList } = props;
     if (id && !product && productList !== this.props.productList) {
-      const product = productList.find(p => p.id === id);
+      const product = productList.find(p => p.id ===  id);
       if (product) {
         this.setState({ product });
       }

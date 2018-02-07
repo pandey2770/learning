@@ -38,7 +38,6 @@ class Header extends Component {
 
   render() {
     const { user, cart } = this.props;
-    console.log(cart);
     return (
       <div className="style">
         <div className="width">

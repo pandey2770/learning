@@ -8,14 +8,18 @@ class Cart extends Component {
     product: undefined
   };
 
+
   componentWillReceiveProps(props) {
     const { cart } = props;
-    const { product } = this.state;
-    const { productList } = props;
-    if (cart && !product && productList !== this.props.productList) {
-      const product = productList.find(p => p.newCart === cart[0]);
-      if (product) {
-        this.setState({ product });
+    console.log(cart,'cart')
+    if (cart.length !== 0 ) {
+      const { product } = this.state;
+      const { productList } = props;
+      if (cart && !product && productList !== this.props.productList) {
+        const product = productList.find(p => p.id === cart, console.log(cart,'cartLast'), );
+        if (product) {
+          this.setState({ product });
+        }
       }
     }
   }
@@ -39,7 +43,7 @@ class Cart extends Component {
         {!cart.length
           ? <span>empty</span>
           : <div>
-              {cart[0].map((c, id) =>
+              {cart.map((c, id) =>
                 <div key={id} alt="Cart Product">
                   <img
                     src={product && product.img}
