@@ -75,7 +75,7 @@ app.get('/api/product/:id', async(req,res) => {
 
 app.post('/api/cart/:cartid' , async(req, res) =>{
   const data = await Product.postCart(req.user.id, req.params.cartid);
-  res.json(req.params.cartid)
+  res.json(req.user.id)
 })
 
 app.delete('/api/cartdelete/:id' , async(req, res) => {

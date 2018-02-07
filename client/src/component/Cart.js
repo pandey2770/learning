@@ -13,7 +13,7 @@ class Cart extends Component {
     const { product } = this.state;
     const { productList } = props;
     if (cart && !product && productList !== this.props.productList) {
-      const product = productList.find(p => p.cart === cart[0]);
+      const product = productList.find(p => p.newCart === cart[0]);
       if (product) {
         this.setState({ product });
       }

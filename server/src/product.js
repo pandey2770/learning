@@ -26,7 +26,7 @@ async function deleteFromCatr (id, userid  ) {
     text : "DELETE FROM cart WHERE id=$1 AND productid=$2 ",
     values: [ id, userid ]
   }
-  const data= await DB.mutate(query);
+  const data = await DB.mutate(query);
   return data;
 }
 

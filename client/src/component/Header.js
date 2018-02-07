@@ -38,6 +38,7 @@ class Header extends Component {
 
   render() {
     const { user, cart } = this.props;
+    console.log(cart);
     return (
       <div className="style">
         <div className="width">
@@ -56,7 +57,7 @@ class Header extends Component {
                   </Link>
                   <Link to={`/cart`}>
                     <li className="nav-item nav-link">
-                      Cart{cart.length > 0 && `  ${cart[0].length}`}
+                      Cart{cart.length > 0 && `  ${cart.length}`}
                     </li>
                   </Link>
                 </ul>
