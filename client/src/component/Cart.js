@@ -10,49 +10,47 @@ class Cart extends Component {
 
   componentWillMount() {
     const { cart } = this.props;
-    let product = [];
     let i;
     let x = [];
-    let y;
+    let product = [];
     for (i = 0; i < cart.length; i++) {
-      y = cart[i].cartid;
+      let y = cart[i].cartid;
       x.push(y);
     }
     if (x) {
       const { productList } = this.props;
       if (productList) {
         for (i = 0; i < x.length; i++) {
-          const cartid = productList.find(p => p.id === x);
+          const cartid = productList.find(p => p.id == x[i]);
           product.push(cartid);
-          console.log(product);
-          if (product) {
-            this.setState({ product });
-            return;
-          }
+        }
+        if (product) {
+          this.setState({ product });
+          return;
         }
       }
     }
   }
 
-  componentWillReceiveProps(props) {
-    const { cart } = props;
-    let i;
-    let x = [];
-    let y;
-    for (i = 0; i < cart.length; i++) {
-      y = cart[i].cartid;
-      x.push(y);
-    }
-    console.log(x);
-    const { product } = this.state;
-    const { productList } = props;
-    if (x && !product && productList !== this.props.productList) {
-      const product = productList.find(p => p.id === console.log(x), x);
-      if (product) {
-        this.setState({ product });
-      }
-    }
-  }
+  // componentWillReceiveProps(props) {
+  //   const { cart } = props;
+  //   let i;
+  //   let x = [];
+  //   let y;
+  //   for (i = 0; i < cart.length; i++) {
+  //     y = cart[i].cartid;
+  //     x.push(y);
+  //   }
+  //   console.log(x);
+  //   const { product } = this.state;
+  //   const { productList } = props;
+  //   if (x && !product && productList !== this.props.productList) {
+  //     const product = productList.find(p => p.id === console.log(x), x);
+  //     if (product) {
+  //       this.setState({ product });
+  //     }
+  //   }
+  // }
 
   removeCart = event => {
     const { id } = event.target.dataset;
@@ -66,7 +64,6 @@ class Cart extends Component {
   render() {
     const { history, location, cart } = this.props;
     const { product } = this.state;
-    console.log(product);
     return (
       <div>
         <Header history={history} location={location} />
@@ -76,11 +73,14 @@ class Cart extends Component {
           : <div>
               {cart.map((c, id) =>
                 <div key={id} alt="Cart Product">
-                  <img
-                    src={product && product.img}
-                    className="img-big"
-                    alt="Product"
-                  />
+                  {product.map((p, id) =>
+                    <img
+                      src={p.img}
+                      key={id}
+                      className="img-big"
+                      alt="Product"
+                    />
+                  )}
                   <input
                     type="number"
                     min="1"

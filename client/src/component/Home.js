@@ -29,7 +29,7 @@ class Home extends Component {
               <Link to={`/product/${p.id}`}>
                 <img src={p.img} data-id={p.id} className="img" alt="Product" />
               </Link>
-              {cart.filter(c => c.id === p.id).length > 0
+              {cart.filter(c => c.id === p.id).length < 0
                 ? <button data-id={p.id} onClick={this.removeCart}>
                     remove from cart
                   </button>
