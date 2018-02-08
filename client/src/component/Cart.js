@@ -8,18 +8,48 @@ class Cart extends Component {
     product: undefined
   };
 
+  componentWillMount() {
+    const { cart } = this.props;
+    let product = [];
+    let i;
+    let x = [];
+    let y;
+    for (i = 0; i < cart.length; i++) {
+      y = cart[i].cartid;
+      x.push(y);
+    }
+    if (x) {
+      const { productList } = this.props;
+      if (productList) {
+        for (i = 0; i < x.length; i++) {
+          const cartid = productList.find(p => p.id === x);
+          product.push(cartid);
+          console.log(product);
+          if (product) {
+            this.setState({ product });
+            return;
+          }
+        }
+      }
+    }
+  }
 
   componentWillReceiveProps(props) {
     const { cart } = props;
-    console.log(cart,'cart')
-    if (cart.length !== 0 ) {
-      const { product } = this.state;
-      const { productList } = props;
-      if (cart && !product && productList !== this.props.productList) {
-        const product = productList.find(p => p.id === cart, console.log(cart,'cartLast'), );
-        if (product) {
-          this.setState({ product });
-        }
+    let i;
+    let x = [];
+    let y;
+    for (i = 0; i < cart.length; i++) {
+      y = cart[i].cartid;
+      x.push(y);
+    }
+    console.log(x);
+    const { product } = this.state;
+    const { productList } = props;
+    if (x && !product && productList !== this.props.productList) {
+      const product = productList.find(p => p.id === console.log(x), x);
+      if (product) {
+        this.setState({ product });
       }
     }
   }
@@ -36,6 +66,7 @@ class Cart extends Component {
   render() {
     const { history, location, cart } = this.props;
     const { product } = this.state;
+    console.log(product);
     return (
       <div>
         <Header history={history} location={location} />
