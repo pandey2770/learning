@@ -80,7 +80,7 @@ app.post('/api/cart/:cartid' , async(req, res) =>{
 
 app.delete('/api/cartdelete/:id' , async(req, res) => {
   const data = await Product.deleteFromCatr(req.user.id, req.params.id);
-  res.json(req.params.id);
+  res.json(req.user.id);
 })
 
 app.get('/api/cartdetail', async(req,res) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import { getProduct, removeCart } from '../action';
+import { removeCart } from '../action';
 
 class Cart extends Component {
   state = {
@@ -34,7 +34,6 @@ class Cart extends Component {
 
   componentWillReceiveProps(props) {
     const { cart } = props;
-    console.log(cart);
     if (cart !== 0) {
       const { product } = this.state;
       const { productList } = props;
@@ -59,8 +58,7 @@ class Cart extends Component {
 
   removeCart = event => {
     const { id } = event.target.dataset;
-    console.log(id);
-    this.props.removeCart(id);
+    this.props.removeCart(id, 'state');
   };
 
   rate = event => {
@@ -70,6 +68,7 @@ class Cart extends Component {
   render() {
     const { history, location, cart } = this.props;
     const { product } = this.state;
+    console.log(cart,product)
     return (
       <div>
         <Header history={history} location={location} />
@@ -77,36 +76,29 @@ class Cart extends Component {
         {!cart.length
           ? <span>empty</span>
           : <div>
-              {cart.map((c, id) =>
+              {product.map((p, id) =>
                 <div key={id} alt="Cart Product">
-                  {product.map((p, id) =>
-                    <div key={id}>
-                      <img
-                        src={p.img}
-                        key={id}
-                        className="img-big"
-                        alt="Product"
-                      />
-                      <input
-                        type="number"
-                        min="1"
-                        defaultValue="1"
-                        className="numberInput"
-                        data-id={c.rate}
-                        onChange={this.rate}
-                      />
-                      <button onClick={this.removeCart} data-id={p.id}>
-                        Remove
-                      </button>
-                      <span>
-                        Product Amount {p.rate}
-                      </span>
-                    </div>
-                  )}
+                  <div key={id}>
+                    <img src={p.img} className="img-big" alt="Product" />
+                    <input
+                      type="number"
+                      min="1"
+                      defaultValue="1"
+                      className="numberInput"
+                      data-id={p.rate}
+                      onChange={this.rate}
+                    />
+                    <button onClick={this.removeCart} data-id={p.id}>
+                      Remove
+                    </button>
+                    <span>
+                      Product Amount {p.rate}
+                    </span>
+                  </div>
                 </div>
               )}
               <div>
-                <span>Total Cart Amount </span>
+                <span>Total Cart Amount</span>
                 <button>Buy Now</button>
               </div>
             </div>}
@@ -116,7 +108,7 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  console.log(state)
   return {
     productList: state.product,
     cart: state.cart,
@@ -126,8 +118,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getProduct: cart => dispatch(getProduct(cart)),
-    removeCart: id => dispatch(removeCart(id))
+    removeCart: (id, state) => dispatch(removeCart(id, state))
   };
 }
 

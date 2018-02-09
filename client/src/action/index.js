@@ -112,19 +112,18 @@ export const getCartDispatch = newData => {
   };
 };
 
-export const removeCart = id => {
-  console.log(id);
+export const removeCart = (productid, state) => {
   return async function(dispatch) {
-    const { data } = await axios.delete(`/api/cartdelete/${id}`);
-    console.log(data);
-    return dispatch(removeCartData(data));
+    const { data } = await axios.delete(`/api/cartdelete/${productid}`);
+    const newData = { id: data, productid, state };
+    return dispatch(removeCartData(newData));
   };
 };
 
-export const removeCartData = data => {
+export const removeCartData = newData => {
   return {
     type: 'REMOVE_TO_CART',
-    data
+    newData
   };
 };
 
