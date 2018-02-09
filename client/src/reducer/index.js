@@ -37,11 +37,14 @@ const cartReducer = (state = [], action) => {
   let commentId;
   switch (action.type) {
     case 'CART_DATA':
+      console.log(action.data);
       return [...state, ...action.data];
     case 'ADD_TO_CART':
+      console.log(action.newData);
       return [...state, action.newData];
     case 'REMOVE_TO_CART':
-      commentId = action.data;
+      console.log(state);
+      commentId = action.newData;
       return [...state.filter(comment => comment.id !== commentId)];
     default:
       return state;

@@ -27,7 +27,6 @@ class Product extends Component {
     const { id } = props.match.params;
     const { product } = this.state;
     const { productList } = props;
-    console.log(product);
     if (id && !product && productList !== this.props.productList) {
       const product = productList.find(p => p.id === id);
       if (product) {

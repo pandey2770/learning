@@ -14,15 +14,15 @@ class Cart extends Component {
     let x = [];
     let product = [];
     for (i = 0; i < cart.length; i++) {
-      let y = cart[i].cartid;
+      let y = cart[i].productid;
       x.push(y);
     }
     if (x) {
       const { productList } = this.props;
       if (productList) {
         for (i = 0; i < x.length; i++) {
-          const cartid = productList.find(p => p.id == x[i]);
-          product.push(cartid);
+          const productid = productList.find(p => p.id === x[i]);
+          product.push(productid);
         }
         if (product) {
           this.setState({ product });
@@ -34,7 +34,8 @@ class Cart extends Component {
 
   componentWillReceiveProps(props) {
     const { cart } = props;
-    if (cart != 0) {
+    console.log(cart);
+    if (cart !== 0) {
       const { product } = this.state;
       const { productList } = props;
       let productImg = [];
@@ -48,7 +49,6 @@ class Cart extends Component {
         for (i = 0; i < x.length; i++) {
           const cartid = productList.find(p => p.id === x[i]);
           productImg.push(cartid);
-          console.log(productImg);
           if (product) {
             this.setState({ product: productImg });
           }
@@ -59,6 +59,7 @@ class Cart extends Component {
 
   removeCart = event => {
     const { id } = event.target.dataset;
+    console.log(id);
     this.props.removeCart(id);
   };
 
@@ -67,9 +68,8 @@ class Cart extends Component {
   };
 
   render() {
-    const { history, location, cart, productList } = this.props;
+    const { history, location, cart } = this.props;
     const { product } = this.state;
-    console.log(product);
     return (
       <div>
         <Header history={history} location={location} />
@@ -80,27 +80,29 @@ class Cart extends Component {
               {cart.map((c, id) =>
                 <div key={id} alt="Cart Product">
                   {product.map((p, id) =>
-                    <img
-                      src={p.img}
-                      key={id}
-                      className="img-big"
-                      alt="Product"
-                    />
+                    <div key={id}>
+                      <img
+                        src={p.img}
+                        key={id}
+                        className="img-big"
+                        alt="Product"
+                      />
+                      <input
+                        type="number"
+                        min="1"
+                        defaultValue="1"
+                        className="numberInput"
+                        data-id={c.rate}
+                        onChange={this.rate}
+                      />
+                      <button onClick={this.removeCart} data-id={p.id}>
+                        Remove
+                      </button>
+                      <span>
+                        Product Amount {p.rate}
+                      </span>
+                    </div>
                   )}
-                  <input
-                    type="number"
-                    min="1"
-                    defaultValue="1"
-                    className="numberInput"
-                    data-id={c.rate}
-                    onChange={this.rate}
-                  />
-                  <button onClick={this.removeCart} data-id={c.productid}>
-                    Remove
-                  </button>
-                  <span>
-                    {' '}Product Amount {c.rate}
-                  </span>
                 </div>
               )}
               <div>
@@ -114,6 +116,7 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     productList: state.product,
     cart: state.cart,

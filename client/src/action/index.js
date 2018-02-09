@@ -97,10 +97,10 @@ export const getProductDispatch = product => {
   };
 };
 
-export const addToCartData = (cartid, state) => {
+export const addToCartData = (productid, state) => {
   return async function(dispatch) {
-    const { data } = await axios.post(`/api/cart/${cartid}`, { state });
-    const newData = { id: data, cartid, state };
+    const { data } = await axios.post(`/api/cart/${productid}`, { state });
+    const newData = { id: data, productid, state };
     return dispatch(getCartDispatch(newData));
   };
 };
@@ -113,8 +113,10 @@ export const getCartDispatch = newData => {
 };
 
 export const removeCart = id => {
+  console.log(id);
   return async function(dispatch) {
     const { data } = await axios.delete(`/api/cartdelete/${id}`);
+    console.log(data);
     return dispatch(removeCartData(data));
   };
 };
