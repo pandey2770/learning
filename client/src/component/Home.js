@@ -36,6 +36,9 @@ class Home extends Component {
                 : <button data-id={p.id} onClick={this.addToCart}>
                     Add to Cart
                   </button>}
+              <span>
+                {' '}$ {p.rate}
+              </span>
             </div>
           )}
         </div>
