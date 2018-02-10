@@ -12,6 +12,7 @@ import '../style.css';
 import { getAllProducts, getcartdetail } from '../action';
 
 class App extends Component {
+
   componentWillMount() {
     this.props.getAllProducts();
     this.props.getcartdetail();

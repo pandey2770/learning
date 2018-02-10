@@ -72,6 +72,12 @@ body,
   border: 1px solid gray;
   background-color: #f8f9fa;
 }
-
+.heart {
+  fill: red;
+  position: relative;
+  top: 5px;
+  width: 50px;
+  animation: pulse 1s ease infinite, 
+}
 /* TODO: fix css class names */
 /* TODO: add all log files to gitignore */
