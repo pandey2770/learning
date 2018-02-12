@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import { removeCart } from '../action';
+import { removeCart, confirm } from '../action';
 
 class Cart extends Component {
   state = {
@@ -75,10 +75,13 @@ class Cart extends Component {
     // const { id } = event.target.dataset;
   };
 
+  confirm = () => {
+    this.props.confirm();
+  };
+
   render() {
     const { history, location, cart } = this.props;
     const { product, rate } = this.state;
-    console.log(rate);
     return (
       <div>
         <Header history={history} location={location} />
@@ -109,7 +112,7 @@ class Cart extends Component {
               )}
               <div>
                 <span>Total Cart Amount</span>
-                <button>Buy Now</button>
+                <button onClick={this.confirm}>Buy Now</button>
                 {rate}
               </div>
             </div>}
@@ -128,7 +131,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    removeCart: (id, state) => dispatch(removeCart(id, state))
+    removeCart: (id, state) => dispatch(removeCart(id, state)),
+    confirm: () => dispatch(confirm())
   };
 }
 

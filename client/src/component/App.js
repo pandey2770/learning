@@ -7,6 +7,7 @@ import Cart from './Cart';
 import Profile from './Profile';
 import LoginPopup from './LoginPopup';
 import SignUpPopup from './SignUpPopup';
+import Order from './Order';
 import Product from './Product';
 import '../style.css';
 import { getAllProducts, getcartdetail } from '../action';
@@ -49,6 +50,7 @@ class Raper extends Component {
         </Switch>
         <LoginPopup />
         <SignUpPopup />
+        <Order />
       </div>
     );
   }

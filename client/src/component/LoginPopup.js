@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser, hideLogin, showSignUp } from '../action';
+import { loginUser, hide, showSignUp } from '../action';
 
 class LoginPopup extends Component {
   state = {
@@ -8,6 +8,12 @@ class LoginPopup extends Component {
     username: '',
     password: ''
   };
+
+  componentDidMount() {
+    document.addEventListener('keyup', e => {
+      if (e.keyCode === 27) this.props.hide();
+    });
+  }
 
   updateInput = event => {
     this.setState({
@@ -26,12 +32,12 @@ class LoginPopup extends Component {
   };
 
   close = () => {
-    this.props.hideLogin();
+    this.props.hide();
   };
 
   render() {
     const { username, password } = this.state;
-    if (!this.props.showLogin) {
+    if (!this.props.popUp) {
       return null;
     }
     return (
@@ -92,7 +98,7 @@ class LoginPopup extends Component {
 
 function mapStateToProps(state) {
   return {
-    showLogin: state.user.showLogin
+    popUp: state.popUp.showLogin
   };
 }
 
@@ -100,7 +106,7 @@ function mapDispatchToProps(dispatch) {
   return {
     loginUser: (username, password, history) =>
       dispatch(loginUser(username, password, history)),
-    hideLogin: state => dispatch(hideLogin(state)),
+    hide: state => dispatch(hide(state)),
     showSignUp: () => dispatch(showSignUp())
   };
 }

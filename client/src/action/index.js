@@ -153,9 +153,15 @@ export const showSignUp = () => {
   };
 };
 
-export const hideLogin = () => {
+export const hide = () => {
   return {
-    type: 'HIDE_LOGIN'
+    type: 'HIDE'
+  };
+};
+
+export const confirm = () => {
+  return {
+    type: 'CONFIRM'
   };
 };
 
