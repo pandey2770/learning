@@ -5,20 +5,23 @@ import { removeCart } from '../action';
 
 class Cart extends Component {
   state = {
-    product: undefined
+    product: undefined,
+    rate: undefined,
+    productImg: undefined
   };
 
   componentWillMount() {
     const { cart } = this.props;
+    const { productList } = this.props;
     let i;
     let x = [];
+    let sum = [];
     let product = [];
     for (i = 0; i < cart.length; i++) {
       let y = cart[i].productid;
       x.push(y);
     }
     if (x) {
-      const { productList } = this.props;
       if (productList) {
         for (i = 0; i < x.length; i++) {
           const productid = productList.find(p => p.id === x[i]);
@@ -26,6 +29,14 @@ class Cart extends Component {
         }
         if (product) {
           this.setState({ product });
+          for (i = 0; i < product.length; i++) {
+            const rateId = product[i].rate;
+            sum.push(+rateId);
+            const reducer = (accumulator, currentValue) =>
+              accumulator + currentValue;
+            const rate = sum.reduce(reducer);
+            this.setState({ rate });
+          }
           return;
         }
       }
@@ -34,24 +45,25 @@ class Cart extends Component {
 
   componentWillReceiveProps(props) {
     const { cart } = props;
-      const { product } = this.state;
-      const { productList } = props;
-      let productImg = [];
-      let i;
-      let x = [];
-      for (i = 0; i < cart.length; i++) {
-        let y = cart[i].productid;
-        x.push(y);
-      }
-      if (x && product.length === 0 ) {
-        for (i = 0; i < x.length; i++) {
-          const cartid = productList.find(p => p.id === x[i]);
-          productImg.push(cartid);
-          if (product) {
-            this.setState({ product: productImg });
-          }
+    const { product } = this.state;
+    const { productList } = props;
+    let i;
+    let x = [];
+    let rate = [];
+    let productImg = [];
+    for (i = 0; i < cart.length; i++) {
+      let y = cart[i].productid;
+      x.push(y);
+    }
+    if (x && product.length === 0) {
+      for (i = 0; i < x.length; i++) {
+        const cartid = productList.find(p => p.id === x[i]);
+        productImg.push(cartid);
+        if (productImg) {
+          this.setState({ product: productImg, productImg });
         }
       }
+    }
   }
 
   removeCart = event => {
@@ -65,7 +77,8 @@ class Cart extends Component {
 
   render() {
     const { history, location, cart } = this.props;
-    const { product } = this.state;
+    const { product, rate } = this.state;
+    console.log(rate);
     return (
       <div>
         <Header history={history} location={location} />
@@ -97,6 +110,7 @@ class Cart extends Component {
               <div>
                 <span>Total Cart Amount</span>
                 <button>Buy Now</button>
+                {rate}
               </div>
             </div>}
       </div>

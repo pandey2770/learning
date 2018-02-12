@@ -77,7 +77,7 @@ body,
   position: relative;
   top: 5px;
   width: 50px;
-  animation: pulse 1s ease infinite, 
+  animation: pulse 1s ease infinite;
 }
 /* TODO: fix css class names */
 /* TODO: add all log files to gitignore */
