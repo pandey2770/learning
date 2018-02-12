@@ -159,9 +159,10 @@ export const hide = () => {
   };
 };
 
-export const confirm = () => {
+export const confirm = data => {
   return {
-    type: 'CONFIRM'
+    type: 'CONFIRM',
+    data
   };
 };
 

@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hide } from '../action';
 
-class Cart extends Component {
-  componentWillMount() {
-    console.log(this.props, 'asdadasdas');
-  }
-
+class Order extends Component {
   componentDidMount() {
     document.addEventListener('keyup', e => {
       if (e.keyCode === 27) this.props.hide();
@@ -18,7 +14,8 @@ class Cart extends Component {
   };
 
   render() {
-    if (!this.props.popUp) {
+    const { data } = this.props.popUp;
+    if (!this.props.popUp.showConfirm) {
       return null;
     }
     return (
@@ -31,6 +28,11 @@ class Cart extends Component {
             className="closeButton"
           />
           <h2 className="center-center">Confirm Your Order</h2>
+          {data.map((d, id) =>
+            <div key={id}>
+              <img src={d.img} className="img" alt="Product" />
+            </div>
+          )}
         </div>
       </div>
     );
@@ -39,7 +41,7 @@ class Cart extends Component {
 
 function mapStateToProps(state) {
   return {
-    popUp: state.popUp.showConfirm
+    popUp: state.popUp
   };
 }
 
@@ -49,4 +51,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Order);

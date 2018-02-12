@@ -33,7 +33,7 @@ const popUp = (
     case 'SHOW_SIGNUP':
       return { ...state, showSignUp: true };
     case 'CONFIRM':
-      return { ...state, showConfirm: true };
+      return { ...state, data: action.data, showConfirm: true };
     case 'HIDE':
       return {
         ...state,

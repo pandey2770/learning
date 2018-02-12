@@ -76,7 +76,8 @@ class Cart extends Component {
   };
 
   confirm = () => {
-    this.props.confirm();
+    const { product } = this.state;
+    this.props.confirm(product);
   };
 
   render() {
@@ -132,7 +133,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     removeCart: (id, state) => dispatch(removeCart(id, state)),
-    confirm: () => dispatch(confirm())
+    confirm: product => dispatch(confirm(product))
   };
 }
 
