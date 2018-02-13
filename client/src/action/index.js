@@ -112,10 +112,10 @@ export const getCartDispatch = newData => {
   };
 };
 
-export const removeCart = (productid, state) => {
+export const removeCart = productid => {
   return async function(dispatch) {
     const { data } = await axios.delete(`/api/cartdelete/${productid}`);
-    const newData = { id: data, productid, state };
+    const newData = { id: data, productid };
     return dispatch(removeCartData(newData));
   };
 };
@@ -124,6 +124,21 @@ export const removeCartData = newData => {
   return {
     type: 'REMOVE_TO_CART',
     newData
+  };
+};
+
+export const cashOrder = state => {
+  return async function(dispatch) {
+    const { data } = await axios.put('/api/order', { state });
+    console.log(data);
+    return dispatch(order(data));
+  };
+};
+
+export const order = data => {
+  return {
+    type: 'CASH_ORDER',
+    data
   };
 };
 

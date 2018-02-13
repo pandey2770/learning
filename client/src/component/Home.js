@@ -7,12 +7,12 @@ import Header from './Header';
 class Home extends Component {
   addToCart = event => {
     const { id: cartid } = event.target.dataset;
-    this.props.addToCartData(cartid, 'state');
+    this.props.addToCartData(cartid, 'addCart');
   };
 
   removeCart = event => {
     const { id } = event.target.dataset;
-    this.props.removeCart(id, 'state');
+    this.props.removeCart(id);
   };
 
   render() {
@@ -59,7 +59,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    removeCart: (id, state) => dispatch(removeCart(id, state)),
+    removeCart: id => dispatch(removeCart(id)),
     addToCartData: (cartid, state) => dispatch(addToCartData(cartid, state))
   };
 }

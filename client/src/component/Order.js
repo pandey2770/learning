@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hide } from '../action';
+import { hide, cashOrder } from '../action';
 
 class Order extends Component {
   componentDidMount() {
@@ -11,6 +11,10 @@ class Order extends Component {
 
   close = () => {
     this.props.hide();
+  };
+
+  cashOrder = () => {
+    this.props.cashOrder('Pending');
   };
 
   render() {
@@ -33,6 +37,8 @@ class Order extends Component {
               <img src={d.img} className="img" alt="Product" />
             </div>
           )}
+          <button onClick={this.cashOrder}>Cash on delivery</button>
+          <button>Card / Net Banking</button>
         </div>
       </div>
     );
@@ -41,13 +47,15 @@ class Order extends Component {
 
 function mapStateToProps(state) {
   return {
+    cart: state.cart,
     popUp: state.popUp
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    hide: state => dispatch(hide(state))
+    hide: state => dispatch(hide(state)),
+    cashOrder: state => dispatch(cashOrder(state))
   };
 }
 

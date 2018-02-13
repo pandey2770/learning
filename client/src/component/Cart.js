@@ -68,7 +68,7 @@ class Cart extends Component {
 
   removeCart = event => {
     const { id } = event.target.dataset;
-    this.props.removeCart(id, 'state');
+    this.props.removeCart(id);
   };
 
   rate = event => {
@@ -132,7 +132,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    removeCart: (id, state) => dispatch(removeCart(id, state)),
+    removeCart: id => dispatch(removeCart(id)),
     confirm: product => dispatch(confirm(product))
   };
 }
