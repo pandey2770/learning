@@ -8,7 +8,7 @@ class Cart extends Component {
     product: undefined,
     rate: undefined,
     productImg: undefined,
-    oderChart: undefined
+    orderCart: []
   };
 
   componentWillMount() {
@@ -46,12 +46,14 @@ class Cart extends Component {
 
   componentWillReceiveProps(props) {
     const { order } = this.props;
+    const { orderCart } = this.state;
     const { cart } = props;
     const { product } = this.state;
     const { productList } = props;
     let i;
+    let a = [];
     let x = [];
-    let rate = [];
+    let orderImg = [];
     let productImg = [];
     for (i = 0; i < cart.length; i++) {
       let y = cart[i].productid;
@@ -66,8 +68,22 @@ class Cart extends Component {
         }
       }
     }
+    if (order.length >= 0) {
+      for (i = 0; i < order.length; i++) {
+        let y = order[i].productid;
+        a.push(y);
+      }
+      if (a) {
+        for (i = 0; i < a.length; i++) {
+          const orderId = productList.find(p => p.id === a[i]);
+          orderImg.push(orderId);
+          if (orderImg) {
+            this.setState({ orderCart: orderImg });
+          }
+        }
+      }
+    }
   }
-
 
   removeCart = event => {
     const { id } = event.target.dataset;
@@ -84,14 +100,19 @@ class Cart extends Component {
   };
 
   render() {
-    const { history, location, cart, order } = this.props;
-    const { product, rate } = this.state;
-    console.log(product)
+    const { history, location, cart } = this.props;
+    const { orderCart, product, rate } = this.state;
     return (
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
-        {!order.length ? <div /> : <div>there</div>}
+        <div>
+          {orderCart.map((o, id) =>
+            <div key={id}>
+              {o.id}- {o.details} - {o.img} - {o.rate}
+            </div>
+          )}
+        </div>
         {!cart.length
           ? <span>empty</span>
           : <div>
