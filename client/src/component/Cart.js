@@ -7,7 +7,8 @@ class Cart extends Component {
   state = {
     product: undefined,
     rate: undefined,
-    productImg: undefined
+    productImg: undefined,
+    oderChart: undefined
   };
 
   componentWillMount() {
@@ -44,6 +45,7 @@ class Cart extends Component {
   }
 
   componentWillReceiveProps(props) {
+    const { order } = this.props;
     const { cart } = props;
     const { product } = this.state;
     const { productList } = props;
@@ -66,6 +68,7 @@ class Cart extends Component {
     }
   }
 
+
   removeCart = event => {
     const { id } = event.target.dataset;
     this.props.removeCart(id);
@@ -81,12 +84,14 @@ class Cart extends Component {
   };
 
   render() {
-    const { history, location, cart } = this.props;
+    const { history, location, cart, order } = this.props;
     const { product, rate } = this.state;
+    console.log(product)
     return (
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
+        {!order.length ? <div /> : <div>there</div>}
         {!cart.length
           ? <span>empty</span>
           : <div>
@@ -126,7 +131,8 @@ function mapStateToProps(state) {
   return {
     productList: state.product,
     cart: state.cart,
-    user: state.user.user
+    user: state.user.user,
+    order: state.order
   };
 }
 

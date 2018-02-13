@@ -130,14 +130,28 @@ export const removeCartData = newData => {
 export const cashOrder = state => {
   return async function(dispatch) {
     const { data } = await axios.put('/api/order', { state });
-    console.log(data);
-    return dispatch(order(data));
+    const newData = { id: data, state };
+    return dispatch(order(newData));
   };
 };
 
-export const order = data => {
+export const order = newData => {
   return {
     type: 'CASH_ORDER',
+    newData
+  };
+};
+
+export const getAllOrder = () => {
+  return async function(dispatch) {
+    const { data } = await axios.get('/api/orderdata');
+    return dispatch(getOrderDispatch(data));
+  };
+};
+
+export const getOrderDispatch = data => {
+  return {
+    type: 'ORDER_DATA',
     data
   };
 };

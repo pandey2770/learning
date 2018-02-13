@@ -10,10 +10,11 @@ import SignUpPopup from './SignUpPopup';
 import Order from './Order';
 import Product from './Product';
 import '../style.css';
-import { getAllProducts, getcartdetail } from '../action';
+import { getAllProducts, getcartdetail, getAllOrder } from '../action';
 
 class App extends Component {
   componentWillMount() {
+    this.props.getAllOrder();
     this.props.getAllProducts();
     this.props.getcartdetail();
   }
@@ -30,7 +31,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
-    getcartdetail: () => dispatch(getcartdetail())
+    getcartdetail: () => dispatch(getcartdetail()),
+    getAllOrder: () => dispatch(getAllOrder())
   };
 }
 

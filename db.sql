@@ -10,7 +10,8 @@ CREATE TABLE demouser (
  CREATE TABLE cart (
    id uuid,
    productId uuid,
-   status varchar,
+   state varchar,
+   pyMethod varchar,
    FOREIGN KEY  (id) REFERENCES demouser(id),
    FOREIGN KEY (productId) REFERENCES product(id)
  );

@@ -73,18 +73,30 @@ app.get('/api/product/:id', async(req,res) => {
    res.json(data)
  })
 
-app.post('/api/cart/:cartid' , async(req, res) =>{
-  const data = await Product.postCart(req.user.id, req.params.cartid);
+app.post('/api/cart/:cartid' , async(req, res) => {
+  const data = await Product.postCart(req.user.id, req.params.cartid, req.body.state);
   res.json(req.user.id)
 })
 
 app.delete('/api/cartdelete/:id' , async(req, res) => {
-  const data = await Product.deleteFromCatr(req.user.id, req.params.id);
+   const data = await Product.deleteFromCatr(req.user.id, req.params.id);
   res.json(req.user.id);
+})
+
+app.put('/api/order', async(req, res) => {
+  const data = await Product.cashOrder(req.user.id, req.body.state);
+ res.json(req.user.id);
 })
 
 app.get('/api/cartdetail', async(req,res) => {
   const data = await Product.cartdetail(req.user.id);
+  if (data !== undefined || null) {
+  res.json(data)
+  }
+});
+
+app.get('/api/orderdata', async(req,res) => {
+  const data = await Product.orderData(req.user.id);
   if (data !== undefined || null) {
   res.json(data)
   }

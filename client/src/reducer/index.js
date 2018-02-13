@@ -68,6 +68,19 @@ const cartReducer = (state = [], action) => {
       index = state.findIndex(product => product.id === action.newData);
       state.splice(index, 1);
       return [...state];
+    case 'CASH_ORDER':
+      return [];
+    default:
+      return state;
+  }
+};
+
+const order = (state = [], action) => {
+  switch (action.type) {
+    case 'ORDER_DATA':
+      return [...state, ...action.data];
+    case 'CASH_ORDER':
+      return [...state, action.newData];
     default:
       return state;
   }
@@ -77,5 +90,6 @@ export default combineReducers({
   user: userReducer,
   product: productReducer,
   cart: cartReducer,
-  popUp: popUp
+  popUp: popUp,
+  order: order
 });

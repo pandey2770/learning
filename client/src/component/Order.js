@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hide, cashOrder } from '../action';
+import { hide, cashOrder, getAllOrder } from '../action';
 
 class Order extends Component {
   componentDidMount() {
@@ -55,7 +55,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     hide: state => dispatch(hide(state)),
-    cashOrder: state => dispatch(cashOrder(state))
+    cashOrder: state => dispatch(cashOrder(state)),
+    getAllOrder: () => dispatch(getAllOrder())
   };
 }
 
