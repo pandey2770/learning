@@ -22,9 +22,10 @@ async function postCart (id , cartid, state ) {
 }
 
 async function deleteFromCatr (id, userid  ) {
+  const state='addCart';
   const query = {
-    text : "DELETE FROM cart WHERE id=$1 AND productid=$2 ",
-    values: [ id, userid ]
+    text : "DELETE FROM cart WHERE id=$1 and productid=$2 and state=$3 ",
+    values: [ id, userid, state ]
   }
   const data = await DB.mutate(query);
   return data;

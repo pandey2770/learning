@@ -85,7 +85,7 @@ app.delete('/api/cartdelete/:id' , async(req, res) => {
 
 app.put('/api/order', async(req, res) => {
   const data = await Product.cashOrder(req.user.id, req.body.state);
- res.json(req.user.id);
+  res.json(req.user.id);
 })
 
 app.get('/api/cartdetail', async(req,res) => {

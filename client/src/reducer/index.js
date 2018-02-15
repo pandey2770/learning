@@ -80,7 +80,8 @@ const order = (state = [], action) => {
     case 'ORDER_DATA':
       return [...state, ...action.data];
     case 'CASH_ORDER':
-      return [...state, action.newData];
+      console.log(...state, ...action.newData, 'asdasda', action.newData);
+      return [...state, ...action.newData];
     default:
       return state;
   }

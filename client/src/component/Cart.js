@@ -100,7 +100,7 @@ class Cart extends Component {
   };
 
   render() {
-    const { history, location, cart } = this.props;
+    const { history, location, cart, order } = this.props;
     const { orderCart, product, rate } = this.state;
     return (
       <div>
@@ -108,21 +108,22 @@ class Cart extends Component {
         <h1>Cart</h1>
         {orderCart.map((o, id) =>
           <div className="container" key={id}>
+            <h2>Order Pending</h2>
             <table className="table">
               <thead>
                 <tr>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Email</th>
-                  <th>xyz</th>
+                  <th>Product Name</th>
+                  <th>Status</th>
+                  <th>Product</th>
+                  <th>rate</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td />
                   <td>
-                    {o.details}
+                    {o.name}
                   </td>
+                  <td>Pending</td>
                   <td>
                     <img src={o.img} className="img" alt="Product" />
                   </td>
@@ -135,7 +136,9 @@ class Cart extends Component {
           </div>
         )}
         {!cart.length
-          ? <span>empty</span>
+          ? <div>
+              <span>empty</span>
+            </div>
           : <div>
               {product.map((p, id) =>
                 <div key={id} alt="Cart Product">
