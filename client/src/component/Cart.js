@@ -106,13 +106,34 @@ class Cart extends Component {
       <div>
         <Header history={history} location={location} />
         <h1>Cart</h1>
-        <div>
-          {orderCart.map((o, id) =>
-            <div key={id}>
-              {o.id}- {o.details} - {o.img} - {o.rate}
-            </div>
-          )}
-        </div>
+        {orderCart.map((o, id) =>
+          <div className="container" key={id}>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>xyz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td />
+                  <td>
+                    {o.details}
+                  </td>
+                  <td>
+                    <img src={o.img} className="img" alt="Product" />
+                  </td>
+                  <td>
+                    {o.rate}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
         {!cart.length
           ? <span>empty</span>
           : <div>
