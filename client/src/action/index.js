@@ -34,7 +34,6 @@ export const getUser = () => {
   };
 };
 
-
 export const signUp = (history, username, password) => {
   return async function(dispatch) {
     axios.post('/api/signUp', { username, password }).then(
@@ -54,7 +53,6 @@ export const getUserDispatch = data => {
     data
   };
 };
-
 
 export const updateData = (id, user) => {
   return async function(dispatch) {
