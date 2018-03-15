@@ -34,12 +34,6 @@ export const getUser = () => {
   };
 };
 
-export const getUserDispatch = data => {
-  return {
-    type: 'LOGGEDIN_USER',
-    data
-  };
-};
 
 export const signUp = (history, username, password) => {
   return async function(dispatch) {
@@ -53,6 +47,14 @@ export const signUp = (history, username, password) => {
     );
   };
 };
+
+export const getUserDispatch = data => {
+  return {
+    type: 'LOGGEDIN_USER',
+    data
+  };
+};
+
 
 export const updateData = (id, user) => {
   return async function(dispatch) {
